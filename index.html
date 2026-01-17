@@ -7,11 +7,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <style>
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body, html { height: 100%; font-family: 'Roboto', sans-serif; color: #fff; overflow-x: hidden; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            font-family: 'Roboto', sans-serif;
+            color: #fff;
+            overflow-x: hidden;
+        }
 
         /* Canvas Matrix */
-        canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
 
         /* Menu flottant */
         .floating-menu {
@@ -21,87 +38,367 @@
             transform: translateY(-50%);
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
             z-index: 10;
         }
+
         .floating-menu a {
-            background: rgba(0,255,0,0.7);
-            padding: 12px;
+            background: rgba(0, 255, 0, 0.7);
+            padding: 10px;
             border-radius: 50%;
             color: #000;
             text-align: center;
-            font-size: 18px;
+            font-size: 16px;
             transition: 0.3s;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .floating-menu a:hover { background: #ff4081; color: #fff; }
+
+        .floating-menu a:hover {
+            background: #ff4081;
+            color: #fff;
+            transform: scale(1.1);
+        }
 
         header {
-            background: rgba(0,0,0,0.7);
+            background: rgba(0, 0, 0, 0.85);
             padding: 20px;
             text-align: center;
+            backdrop-filter: blur(10px);
         }
-        header h1 { font-size: 2.5em; margin-bottom: 10px; }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px #00ff00;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
         nav a {
             color: #00ff00;
-            margin: 0 15px;
+            margin: 0 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 0.95em;
+        }
+
+        nav a:hover {
+            color: #ff4081;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        section {
+            padding: 60px 20px;
+            background: rgba(0, 0, 0, 0.75);
+            margin: 20px auto;
+            max-width: 1200px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(0, 255, 0, 0.2);
+        }
+
+        section h2 {
+            margin-bottom: 25px;
+            color: #00ff00;
+            font-size: 1.8em;
+            text-shadow: 0 0 10px #00ff00;
+            border-bottom: 2px solid #00ff00;
+            padding-bottom: 10px;
+        }
+
+        section p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .projects, .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .project, .skill {
+            background: rgba(255, 255, 255, 0.1);
+            flex: 1 1 300px;
+            padding: 25px;
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(0, 255, 0, 0.3);
+        }
+
+        .project:hover, .skill:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
+        }
+
+        .project h3 {
+            color: #00ff00;
+            margin-bottom: 10px;
+        }
+
+        /* Tableau de synthèse */
+        .tableau-container {
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+
+        .tableau-synthese {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.5);
+            font-size: 0.9em;
+        }
+
+        .tableau-synthese th {
+            background: rgba(0, 255, 0, 0.3);
+            color: #00ff00;
+            padding: 15px 10px;
+            text-align: left;
+            border: 1px solid rgba(0, 255, 0, 0.4);
+            font-weight: bold;
+        }
+
+        .tableau-synthese td {
+            padding: 12px 10px;
+            border: 1px solid rgba(0, 255, 0, 0.2);
+            vertical-align: top;
+        }
+
+        .tableau-synthese tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .tableau-synthese tr:hover {
+            background: rgba(0, 255, 0, 0.1);
+        }
+
+        .competence-tag {
+            display: inline-block;
+            background: rgba(0, 255, 0, 0.2);
+            color: #00ff00;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin: 2px;
+            font-size: 0.85em;
+        }
+
+        .situation-title {
+            color: #ff4081;
+            font-weight: bold;
+        }
+
+        .context-info {
+            color: #aaa;
+            font-size: 0.9em;
+        }
+
+        /* Légende */
+        .legende {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(0, 255, 0, 0.2);
+        }
+
+        .legende h3 {
+            color: #00ff00;
+            margin-bottom: 15px;
+        }
+
+        .legende-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 10px;
+        }
+
+        .legende-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .legende-item .competence-tag {
+            min-width: 60px;
+            text-align: center;
+        }
+
+        /* Veille Technologique */
+        .veille-intro {
+            background: linear-gradient(135deg, rgba(0, 255, 0, 0.1), rgba(255, 64, 129, 0.1));
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-left: 4px solid #00ff00;
+        }
+
+        .veille-intro h3 {
+            color: #00ff00;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .veille-intro p {
+            margin-bottom: 10px;
+        }
+
+        .theme-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #00ff00, #00cc00);
+            color: #000;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .article-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid rgba(0, 255, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 0, 0.2);
+            border-color: #00ff00;
+        }
+
+        .article-card h4 {
+            color: #00ff00;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            line-height: 1.4;
+        }
+
+        .article-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 12px;
+            font-size: 0.85em;
+            color: #aaa;
+        }
+
+        .article-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .article-meta i {
+            color: #ff4081;
+        }
+
+        .article-keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 12px;
+        }
+
+        .keyword-tag {
+            background: rgba(255, 64, 129, 0.2);
+            color: #ff4081;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+        }
+
+        .article-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: #00ff00;
             text-decoration: none;
             font-weight: bold;
             transition: 0.3s;
         }
-        nav a:hover { color: #ff4081; }
 
-        section {
-            padding: 60px 20px;
-            background: rgba(0,0,0,0.6);
-            margin: 20px auto;
-            max-width: 1000px;
-            border-radius: 15px;
+        .article-link:hover {
+            color: #ff4081;
         }
-        section h2 { margin-bottom: 20px; color: #00ff00; }
-        .projects, .skills { display: flex; flex-wrap: wrap; gap: 20px; }
-        .project, .skill {
-            background: rgba(255,255,255,0.1);
-            flex: 1 1 250px;
-            padding: 20px;
+
+        .article-link i {
+            margin-left: 5px;
+        }
+
+        /* Résumés d'actualités */
+        .actualites-section {
+            margin-top: 40px;
+        }
+
+        .actualites-section h3 {
+            color: #ff4081;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+        }
+
+        .actualite-item {
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 10px;
-            transition: transform 0.3s;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 3px solid #ff4081;
         }
-        .project:hover, .skill:hover { transform: scale(1.05); }
 
-        /* Tableau de synthèse */
-        .table-wrapper{
-            overflow-x: auto;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.15);
+        .actualite-item h4 {
+            color: #00ff00;
+            margin-bottom: 10px;
         }
-        table.synthese-table{
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 900px; /* force le scroll horizontal si écran petit */
-            background: rgba(0,0,0,0.35);
+
+        .actualite-item p {
+            font-size: 0.95em;
+            line-height: 1.7;
+            color: #ccc;
         }
-        .synthese-table td, .synthese-table th{
-            border: 1px solid rgba(255,255,255,0.12);
-            padding: 10px 12px;
-            vertical-align: top;
-            font-size: 0.92em;
-            line-height: 1.35;
-            white-space: normal;
+
+        .actualite-source {
+            margin-top: 10px;
+            font-size: 0.85em;
+            color: #888;
         }
-        .synthese-table tr:nth-child(even){
-            background: rgba(255,255,255,0.04);
+
+        .actualite-source a {
+            color: #00ff00;
+            text-decoration: none;
+        }
+
+        .actualite-source a:hover {
+            text-decoration: underline;
         }
 
         footer {
             text-align: center;
             padding: 20px;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0, 0, 0, 0.85);
             margin-top: 20px;
         }
+
         a.contact-btn {
             display: inline-block;
             margin-top: 10px;
-            padding: 10px 20px;
+            padding: 12px 25px;
             background: #00ff00;
             color: #000;
             border-radius: 5px;
@@ -109,7 +406,54 @@
             font-weight: bold;
             transition: 0.3s;
         }
-        a.contact-btn:hover { background: #ff4081; color: #fff; }
+
+        a.contact-btn:hover {
+            background: #ff4081;
+            color: #fff;
+            box-shadow: 0 0 15px #ff4081;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            nav a {
+                margin: 5px 5px;
+                font-size: 0.85em;
+                padding: 6px 10px;
+            }
+
+            .floating-menu {
+                right: 5px;
+                gap: 8px;
+            }
+
+            .floating-menu a {
+                padding: 8px;
+                font-size: 14px;
+                width: 35px;
+                height: 35px;
+            }
+
+            section {
+                padding: 30px 15px;
+                margin: 10px;
+            }
+
+            .tableau-synthese {
+                font-size: 0.8em;
+            }
+
+            .tableau-synthese th, .tableau-synthese td {
+                padding: 8px 5px;
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -119,8 +463,9 @@
     <div class="floating-menu">
         <a href="#about" title="À propos"><i class="fas fa-user"></i></a>
         <a href="#projects" title="Projets"><i class="fas fa-folder-open"></i></a>
-        <a href="#synthese" title="Tableau de synthèse"><i class="fas fa-table"></i></a>
+        <a href="#synthese" title="Tableau de Synthèse"><i class="fas fa-table"></i></a>
         <a href="#skills" title="Compétences"><i class="fas fa-laptop-code"></i></a>
+        <a href="#veille" title="Veille Technologique"><i class="fas fa-atom"></i></a>
         <a href="#contact" title="Contact"><i class="fas fa-envelope"></i></a>
         <a href="https://www.linkedin.com/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
         <a href="https://github.com/" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
@@ -131,45 +476,429 @@
         <nav>
             <a href="#about">À propos</a>
             <a href="#projects">Projets</a>
-            <a href="#synthese">Synthèse</a>
+            <a href="#synthese">Tableau de Synthèse</a>
             <a href="#skills">Compétences</a>
+            <a href="#veille">Veille Technologique</a>
             <a href="#contact">Contact</a>
         </nav>
     </header>
 
-   <section id="about">
-    <h2>À propos de moi</h2>
-    <p>Étudiant en <strong>BTS Services Informatiques aux Organisations (SIO)</strong>, je suis passionné par les <strong>systèmes, les réseaux et la cybersécurité</strong>. Mon objectif est de développer des compétences solides en administration, virtualisation et programmation afin de devenir un professionnel polyvalent dans le domaine de l’informatique.</p>
-    <p>Curieux et rigoureux, j’aime apprendre de nouvelles technologies et relever des défis techniques à travers des projets concrets, tels que la création d’applications web, la mise en place de serveurs ou l’automatisation de tâches. Mon parcours me permet d’acquérir une vision globale des systèmes informatiques, allant du matériel jusqu’au développement logiciel.</p>
-    <p>Je m’intéresse particulièrement à la <strong>sécurité des systèmes d’information</strong> et à l’<strong>innovation numérique</strong>. Je cherche constamment à améliorer mes connaissances pour anticiper les besoins des entreprises et garantir la fiabilité et la performance de leurs infrastructures informatiques.</p>
-</section>
+    <section id="about">
+        <h2><i class="fas fa-user"></i> À propos de moi</h2>
+        <p>Étudiant en <strong>BTS Services Informatiques aux Organisations (SIO)</strong>, je suis passionné par les <strong>systèmes, les réseaux et la cybersécurité</strong>. Mon objectif est de développer des compétences solides en administration, virtualisation et programmation afin de devenir un professionnel polyvalent dans le domaine de l'informatique.</p>
+        <p>Curieux et rigoureux, j'aime apprendre de nouvelles technologies et relever des défis techniques à travers des projets concrets, tels que la création d'applications web, la mise en place de serveurs ou l'automatisation de tâches. Mon parcours me permet d'acquérir une vision globale des systèmes informatiques, allant du matériel jusqu'au développement logiciel.</p>
+        <p>Je m'intéresse particulièrement à la <strong>sécurité des systèmes d'information</strong> et à l'<strong>innovation numérique</strong>. Je cherche constamment à améliorer mes connaissances pour anticiper les besoins des entreprises et garantir la fiabilité et la performance de leurs infrastructures informatiques.</p>
+    </section>
 
     <section id="projects">
-    <h2>Projets réalisés</h2>
-    <div class="projects">
-        <div class="project">
-            <h3>Harry Potter (API)</h3>
-            <p>Création d’un site interactif utilisant une API pour afficher les personnages, sorts et maisons de l’univers Harry Potter. Ce projet met en pratique la manipulation d’API, le filtrage dynamique en JavaScript et l’intégration de données JSON.</p>
+        <h2><i class="fas fa-folder-open"></i> Projets réalisés</h2>
+        <div class="projects">
+            <div class="project">
+                <h3><i class="fas fa-magic"></i> Harry Potter (API)</h3>
+                <p>Création d'un site interactif utilisant une API pour afficher les personnages, sorts et maisons de l'univers Harry Potter. Ce projet met en pratique la manipulation d'API, le filtrage dynamique en JavaScript et l'intégration de données JSON.</p>
+            </div>
+            <div class="project">
+                <h3><i class="fas fa-building"></i> BCM INFORMATIQUE (Site vitrine)</h3>
+                <p>Conception d'un site vitrine professionnel pour l'entreprise BCM INFORMATIQUE, présentant ses services, ses réalisations et ses coordonnées. Le site met en avant une interface claire et moderne, optimisée pour le référencement et la navigation sur mobile.</p>
+            </div>
         </div>
-        <div class="project">
-            <h3>BCM INFORMATIQUE (Site vitrine)</h3>
-            <p>Conception d’un site vitrine professionnel pour l’entreprise BCM INFORMATIQUE, présentant ses services, ses réalisations et ses coordonnées. Le site met en avant une interface claire et moderne, optimisée pour le référencement et la navigation sur mobile.</p>
-        </div>
-    </div>
-</section>
+    </section>
 
-    <!-- NOUVEL ONGLET : Tableau de synthèse -->
     <section id="synthese">
-        <h2>Tableau de synthèse</h2>
-        <p>Voici mon tableau de synthèse (Epreuve E6) intégré directement dans le portfolio.</p>
+        <h2><i class="fas fa-table"></i> Tableau de Synthèse - Épreuve E5</h2>
+        <p>Ce tableau présente les situations professionnelles que j'ai rencontrées durant ma formation et les compétences associées du référentiel BTS SIO option SISR/SLAM.</p>
 
-        <div class="table-wrapper">
-            <table class="synthese-table">
+        <div class="tableau-container">
+            <table class="tableau-synthese">
+                <thead>
+                    <tr>
+                        <th>Situations professionnelles</th>
+                        <th>Contexte / Organisation</th>
+                        <th>Période</th>
+                        <th>Modalité</th>
+                        <th>Compétences mobilisées</th>
+                        <th>Productions associées</th>
+                    </tr>
+                </thead>
                 <tbody>
-<tr><td>BTS SERVICES INFORMATIQUES AUX ORGANISATIONS</td><td></td><td></td><td></td><td></td><td></td><td>SESSION 2025</td><td></td></tr>
-<tr><td>Tableau de synthèse des réalisations professionnelles </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>NOM et prénom : SILLION Thomas</td><td></td><td></td><td></td><td></td><td>N° candidat :  02541488286</td><td></td><td></td></tr>
-<tr><td>Centre de formation :Lycée Le Rebours</td><td></td><td></td><td></td><td></td><td>Option :</td><td>? SISR</td><td>? SLAM</td></tr>
-<tr><td>Adresse URL du portfolio :</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Compétences mises en œuvre<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></td><td>Période (sous la forme du JJ/MM/AA au JJ/MM/AA)</td><td>Réalisations (intitulé et liste des documents et productions associés)</td><td>Activités (A1 à A5)</td><td>Tâches (T1 à T5)</td><td>Catégories de compétences (1 à 6)</td><td>Compétences (C1 à C6)</td><td>Organiser son développement professionnel</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td></td><td>?Recenser et identifier les ressources numériques <br>?Exploiter des référentiels, normes et standards adoptés par le prestataire informatique <br>?Mettre en place et vérifier les niveaux d'habilitation associés à un service <br>?Vérifier les conditions de la continuité d'un service informatique <br>?Gérer des sauvegardes <br>?Vérifier le respect des règles d'utilisation des ressources numériques<br>?Collecter, suivre et orienter des demandes <br>?Traiter des demandes concernant les services réseau et système, applicatifs <br>?Traiter des demandes con
+                    <tr>
+                        <td><span class="situation-title">Développement d'un site API Harry Potter</span></td>
+                        <td class="context-info">Formation BTS SIO - Projet pédagogique</td>
+                        <td>2024</td>
+                        <td>Individuel</td>
+                        <td>
+                            <span class="competence-tag">B1.1</span>
+                            <span class="competence-tag">B1.4</span>
+                            <span class="competence-tag">B1.6</span>
+                        </td>
+                        <td>Site web dynamique, documentation technique</td>
+                    </tr>
+                    <tr>
+                        <td><span class="situation-title">Création site vitrine BCM Informatique</span></td>
+                        <td class="context-info">Stage en entreprise</td>
+                        <td>2024</td>
+                        <td>Individuel</td>
+                        <td>
+                            <span class="competence-tag">B1.1</span>
+                            <span class="competence-tag">B1.3</span>
+                            <span class="competence-tag">B1.5</span>
+                        </td>
+                        <td>Site vitrine responsive, cahier des charges</td>
+                    </tr>
+                    <tr>
+                        <td><span class="situation-title">Configuration serveur Windows</span></td>
+                        <td class="context-info">TP en formation</td>
+                        <td>2023-2024</td>
+                        <td>Équipe</td>
+                        <td>
+                            <span class="competence-tag">B2.1</span>
+                            <span class="competence-tag">B2.2</span>
+                            <span class="competence-tag">B3.1</span>
+                        </td>
+                        <td>Serveur configuré, documentation d'installation</td>
+                    </tr>
+                    <tr>
+                        <td><span class="situation-title">Mise en place Active Directory</span></td>
+                        <td class="context-info">Formation BTS SIO - TP réseau</td>
+                        <td>2024</td>
+                        <td>Équipe</td>
+                        <td>
+                            <span class="competence-tag">B2.2</span>
+                            <span class="competence-tag">B2.3</span>
+                            <span class="competence-tag">B3.2</span>
+                        </td>
+                        <td>Infrastructure AD, GPO, scripts PowerShell</td>
+                    </tr>
+                    <tr>
+                        <td><span class="situation-title">Virtualisation avec VMware/Docker</span></td>
+                        <td class="context-info">Formation BTS SIO</td>
+                        <td>2023-2024</td>
+                        <td>Individuel</td>
+                        <td>
+                            <span class="competence-tag">B2.1</span>
+                            <span class="competence-tag">B2.4</span>
+                            <span class="competence-tag">B3.3</span>
+                        </td>
+                        <td>Machines virtuelles, conteneurs Docker</td>
+                    </tr>
+                    <tr>
+                        <td><span class="situation-title">Sécurisation d'infrastructure réseau</span></td>
+                        <td class="context-info">Projet de fin d'année</td>
+                        <td>2024</td>
+                        <td>Équipe</td>
+                        <td>
+                            <span class="competence-tag">B3.1</span>
+                            <span class="competence-tag">B3.2</span>
+                            <span class="competence-tag">B3.3</span>
+                        </td>
+                        <td>Firewall, VLAN, DMZ, documentation sécurité</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="legende">
+            <h3><i class="fas fa-info-circle"></i> Légende des compétences</h3>
+            <div class="legende-grid">
+                <div class="legende-item">
+                    <span class="competence-tag">B1.1</span>
+                    <span>Gérer le patrimoine informatique</span>
+                </div>
+                <div class="legende-item">
+                    <span class="competence-tag">B1.2</span>
+                    <span>Répondre aux incidents</span>
+                </div>
+                <div class="legende-item">
+                    <span class="competence-tag">B1.3</span>
+                    <span>Développer la présence en ligne</span>
+                </div>
+                <div class="legende-item">
+                    <span class="competence-tag">B1.4</span>
+                    <span>Travailler en mode projet</span>
+                </div>
+                <div class="legende-item">
+                    <span class="competence-tag">B1.5</span>
+                    <span>Mettre à disposition un service</span>
+                </div>
+                <div class="legende-item">
+                    <span class="competence-tag">B1.6</span>
+                    <span>Organiser son développement</span>
+                </div>
+                <div class="legende-item">
+                    <span class="competence-tag">B2.1</span>
+                    <span>Concevoir une solution d'infrastructure</span>
+                </div>
+                <div class="legende-item">
+                    <span class="competence-tag">B2.2</span>
+                    <span>Installer et configurer un service</span>
+                </div>
+                <div class="legende-item">
+                    <span class="competence-tag">B2.3</span>
+                    <span>Administrer un service</span>
+                </div>
+                <div class="legende-item">
+                    <span class="competence-tag">B2.4</span>
+                    <span>Superviser une infrastructure</span>
+                </div>
+                <div class="legende-item">
+                    <span class="competence-tag">B3.1</span>
+                    <span>Protéger les données</span>
+                </div>
+                <div class="legende-item">
+                    <span class="competence-tag">B3.2</span>
+                    <span>Sécuriser les équipements</span>
+                </div>
+                <div class="legende-item">
+                    <span class="competence-tag">B3.3</span>
+                    <span>Sécuriser une infrastructure</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2><i class="fas fa-laptop-code"></i> Compétences techniques</h2>
+        <div class="skills">
+            <div class="skill">
+                <strong><i class="fas fa-server"></i> Systèmes et Virtualisation :</strong>
+                <p>Linux, Docker, VMware, Windows Server</p>
+            </div>
+            <div class="skill">
+                <strong><i class="fas fa-shield-alt"></i> Réseaux et Sécurité :</strong>
+                <p>DHCP, DNS, Active Directory, PKI, Cisco Packet Tracer, VLAN, DMZ, Proxy</p>
+            </div>
+            <div class="skill">
+                <strong><i class="fas fa-code"></i> Programmation et Automatisation :</strong>
+                <p>Python, Arduino, HTML, CSS, JavaScript, C++, PowerShell</p>
+            </div>
+            <div class="skill">
+                <strong><i class="fas fa-file-alt"></i> Bureautique et Conception :</strong>
+                <p>Microsoft Office, LibreOffice, SolidWorks</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="veille">
+        <h2><i class="fas fa-atom"></i> Veille Technologique</h2>
+        
+        <div class="veille-intro">
+            <h3><i class="fas fa-microchip"></i> Thème : L'Informatique Quantique</h3>
+            <p>Dans le cadre de ma veille technologique, j'ai choisi de m'intéresser à <strong>l'informatique quantique</strong>, une révolution technologique qui pourrait transformer radicalement notre façon de traiter l'information. Cette technologie exploite les principes de la mécanique quantique (superposition, intrication) pour effectuer des calculs impossibles pour les ordinateurs classiques.</p>
+            <p>Les enjeux sont majeurs : optimisation, cryptographie, intelligence artificielle, simulation moléculaire... L'informatique quantique représente à la fois une opportunité et un défi pour la sécurité informatique.</p>
+            <span class="theme-badge"><i class="fas fa-atom"></i> Ordinateur Quantique</span>
+        </div>
+
+        <h3 style="color: #00ff00; margin-bottom: 20px;"><i class="fas fa-newspaper"></i> Articles de référence</h3>
+        
+        <div class="articles-grid">
+            <div class="article-card">
+                <h4>Ordinateur : les promesses de l'aube quantique</h4>
+                <div class="article-meta">
+                    <span><i class="fas fa-user"></i> Julien Bourdet</span>
+                    <span><i class="fas fa-calendar"></i> 15/04/2019</span>
+                </div>
+                <div class="article-keywords">
+                    <span class="keyword-tag">qubits</span>
+                    <span class="keyword-tag">supraconducteurs</span>
+                    <span class="keyword-tag">avenir</span>
+                </div>
+                <a href="https://lejournal.cnrs.fr/articles/ordinateur-les-promesses-de-laube-quantique" target="_blank" class="article-link">Lire l'article <i class="fas fa-external-link-alt"></i></a>
+            </div>
+
+            <div class="article-card">
+                <h4>Pourquoi s'intéresser à l'informatique quantique ?</h4>
+                <div class="article-meta">
+                    <span><i class="fas fa-user"></i> Maxime Johnson</span>
+                    <span><i class="fas fa-calendar"></i> 06/03/2025</span>
+                </div>
+                <div class="article-keywords">
+                    <span class="keyword-tag">marché</span>
+                    <span class="keyword-tag">enjeux</span>
+                    <span class="keyword-tag">technologie</span>
+                </div>
+                <a href="https://www.revuegestion.ca/pourquoi-sinteresser-a-linformatique-quantique" target="_blank" class="article-link">Lire l'article <i class="fas fa-external-link-alt"></i></a>
+            </div>
+
+            <div class="article-card">
+                <h4>Informatique quantique : c'est quoi ?</h4>
+                <div class="article-meta">
+                    <span><i class="fas fa-building"></i> BPI France</span>
+                    <span><i class="fas fa-calendar"></i> 19/09/2023</span>
+                </div>
+                <div class="article-keywords">
+                    <span class="keyword-tag">définition</span>
+                    <span class="keyword-tag">applications</span>
+                    <span class="keyword-tag">potentiel</span>
+                </div>
+                <a href="https://bigmedia.bpifrance.fr/news/informatique-quantique-quantum-computing-cest-quoi" target="_blank" class="article-link">Lire l'article <i class="fas fa-external-link-alt"></i></a>
+            </div>
+
+            <div class="article-card">
+                <h4>La cryptographie face à la menace quantique</h4>
+                <div class="article-meta">
+                    <span><i class="fas fa-user"></i> Bastien Contreras</span>
+                    <span><i class="fas fa-calendar"></i> 13/02/2024</span>
+                </div>
+                <div class="article-keywords">
+                    <span class="keyword-tag">cryptographie</span>
+                    <span class="keyword-tag">sécurité</span>
+                    <span class="keyword-tag">chiffrement</span>
+                </div>
+                <a href="https://lejournal.cnrs.fr/articles/la-cryptographie-face-a-la-menace-quantique" target="_blank" class="article-link">Lire l'article <i class="fas fa-external-link-alt"></i></a>
+            </div>
+
+            <div class="article-card">
+                <h4>L'ordinateur quantique : tout comprendre en 15 minutes</h4>
+                <div class="article-meta">
+                    <span><i class="fas fa-user"></i> Landry Bretheau</span>
+                    <span><i class="fas fa-calendar"></i> 13/09/2023</span>
+                </div>
+                <div class="article-keywords">
+                    <span class="keyword-tag">superposition</span>
+                    <span class="keyword-tag">intrication</span>
+                    <span class="keyword-tag">fonctionnement</span>
+                </div>
+                <a href="https://www.polytechnique-insights.com/tribunes/science/lordinateur-quantique-tout-comprendre-en-15-minutes/" target="_blank" class="article-link">Lire l'article <i class="fas fa-external-link-alt"></i></a>
+            </div>
+
+            <div class="article-card">
+                <h4>L'informatique quantique peut-elle aider l'IA ?</h4>
+                <div class="article-meta">
+                    <span><i class="fas fa-building"></i> Techniques de l'Ingénieur</span>
+                    <span><i class="fas fa-calendar"></i> 08/10/2025</span>
+                </div>
+                <div class="article-keywords">
+                    <span class="keyword-tag">IA</span>
+                    <span class="keyword-tag">synergie</span>
+                    <span class="keyword-tag">applications</span>
+                </div>
+                <a href="https://www.techniques-ingenieur.fr/actualite/articles/linformatique-quantique-peut-elle-aider-lia-151118/" target="_blank" class="article-link">Lire l'article <i class="fas fa-external-link-alt"></i></a>
+            </div>
+
+            <div class="article-card">
+                <h4>À Massy, Quandela fait passer l'ordinateur quantique de l'ombre à la lumière</h4>
+                <div class="article-meta">
+                    <span><i class="fas fa-building"></i> Techniques de l'Ingénieur</span>
+                    <span><i class="fas fa-calendar"></i> 20/12/2024</span>
+                </div>
+                <div class="article-keywords">
+                    <span class="keyword-tag">start-up française</span>
+                    <span class="keyword-tag">innovations</span>
+                    <span class="keyword-tag">matériel</span>
+                </div>
+                <a href="https://www.techniques-ingenieur.fr/actualite/articles/a-massy-quandela-fait-passer-l-ordinateur-quantique-de-l-ombre-a-la-lumiere-140720/" target="_blank" class="article-link">Lire l'article <i class="fas fa-external-link-alt"></i></a>
+            </div>
+
+            <div class="article-card">
+                <h4>Théorie des codes correcteurs d'erreur : vers l'ordinateur quantique</h4>
+                <div class="article-meta">
+                    <span><i class="fas fa-building"></i> INRIA</span>
+                    <span><i class="fas fa-calendar"></i> 28/10/2022</span>
+                </div>
+                <div class="article-keywords">
+                    <span class="keyword-tag">codes correcteurs</span>
+                    <span class="keyword-tag">fiabilité</span>
+                    <span class="keyword-tag">qubits logiques</span>
+                </div>
+                <a href="https://www.inria.fr/fr/theorie-codes-correcteurs-erreur-ordinateur-quantique-resultats-fondamentaux" target="_blank" class="article-link">Lire l'article <i class="fas fa-external-link-alt"></i></a>
+            </div>
+        </div>
+
+        <div class="actualites-section">
+            <h3><i class="fas fa-bolt"></i> Actualités récentes résumées</h3>
+            
+            <div class="actualite-item">
+                <h4><i class="fas fa-microchip"></i> Nvidia accélère sur le quantique avec NVQLink et Cuda-Q</h4>
+                <p>Nvidia renforce sa présence dans le calcul quantique avec l'extension de Cuda-Q (compatible avec environ 75% des systèmes quantiques) et le lancement de NVQLink pour relier directement les systèmes quantiques aux GPU. La plateforme open source permet de combiner calcul quantique et IA tout en améliorant la détection d'erreurs en temps réel. Nvidia collabore notamment avec les entreprises françaises Alice & Bob et Quandela.</p>
+                <div class="actualite-source">Source : <a href="https://www.lemondeinformatique.fr/actualites/lire-avec-nvqlink-et-cuda-q-nvidia-accelere-sur-le-quantique-98331.html" target="_blank">Le Monde Informatique</a></div>
+            </div>
+
+            <div class="actualite-item">
+                <h4><i class="fas fa-atom"></i> Google avance avec Quantum Echoes et sa puce Willow</h4>
+                <p>Google a dévoilé Quantum Echoes, le premier algorithme vérifiable et reproductible, exécuté sur sa puce Willow de 105 qubits. Ce système a surpassé les supercalculateurs classiques d'un facteur 13 000, ouvrant la voie à des applications concrètes dans la chimie, la modélisation moléculaire et la science des matériaux.</p>
+                <div class="actualite-source">Source : <a href="https://www.lemondeinformatique.fr/actualites/lire-avec-quantum-echoes-et-willow-google-avance-sur-le-quantique-98295.html" target="_blank">Le Monde Informatique</a></div>
+            </div>
+
+            <div class="actualite-item">
+                <h4><i class="fas fa-random"></i> Curby : génération quantique de nombres aléatoires</h4>
+                <p>L'université du Colorado a développé Curby, un système quantique capable de générer des nombres aléatoires vérifiables et infalsifiables. Basé sur l'intrication quantique et une chaîne de hachage cryptographique, Curby ouvre la voie à des applications dans la cybersécurité, la finance et les audits publics.</p>
+                <div class="actualite-source">Source : <a href="https://www.lemondeinformatique.fr/actualites/lire-curby-propose-une-systeme-quantique-de-generation-de-nombres-aleatoires-97186.html" target="_blank">Le Monde Informatique</a></div>
+            </div>
+
+            <div class="actualite-item">
+                <h4><i class="fas fa-handshake"></i> Partenariat IBM-AMD pour le quantique hybride</h4>
+                <p>IBM et AMD ont annoncé un partenariat stratégique pour développer des systèmes quantiques hybrides combinant les ordinateurs quantiques d'IBM avec les processeurs et GPU d'AMD. L'objectif : exploiter la puissance conjointe du calcul quantique et classique. IBM ambitionne de construire d'ici 2029 le premier ordinateur quantique évolutif avec correction d'erreurs.</p>
+                <div class="actualite-source">Source : <a href="https://www.lemondeinformatique.fr/actualites/lire-un-partenariat-ibm-amd-pour-accelerer-dans-le-quantique-hybride-97723.html" target="_blank">Le Monde Informatique</a></div>
+            </div>
+
+            <div class="actualite-item">
+                <h4><i class="fas fa-shield-alt"></i> Quantum Defender : réseau résistant aux menaces quantiques</h4>
+                <p>Orange Business et Toshiba ont lancé Quantum Defender, un réseau de fibre optique sécurisé résistant aux menaces quantiques. Cette solution combine distribution de clés quantiques et chiffrement post-quantique pour protéger les données contre des attaques futures comme le "Store Now, Decrypt Later".</p>
+                <div class="actualite-source">Source : <a href="https://www.lemondeinformatique.fr/actualites/lire-orange-business-et-toshiba-lancent-un-reseau-resistant-aux-menaces-quantiques-97116.html" target="_blank">Le Monde Informatique</a></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2><i class="fas fa-envelope"></i> Contact</h2>
+        <p>Vous pouvez me contacter par email ou via LinkedIn pour échanger sur mes projets et expériences.</p>
+        <a class="contact-btn" href="mailto:ton.email@example.com"><i class="fas fa-paper-plane"></i> Envoyer un email</a>
+    </section>
+
+    <footer>
+        &copy; 2025 Mon Portfolio BTS SIO - Tous droits réservés
+    </footer>
+
+    <script>
+        // Matrix Effect
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%QUANTUM'.split('');
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#0F0';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = letters[Math.floor(Math.random() * letters.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(draw, 35);
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
