@@ -235,6 +235,117 @@
             text-align: center;
         }
 
+        /* Stages */
+        .stages-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .stage-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 30px;
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .stage-card:hover {
+            box-shadow: 0 0 25px rgba(0, 255, 0, 0.3);
+            border-color: #00ff00;
+        }
+
+        .stage-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 255, 0, 0.2);
+        }
+
+        .stage-header h3 {
+            color: #00ff00;
+            font-size: 1.4em;
+        }
+
+        .stage-header .stage-period {
+            background: rgba(255, 64, 129, 0.2);
+            color: #ff4081;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+        .stage-header .stage-role {
+            color: #aaa;
+            font-size: 0.95em;
+            width: 100%;
+        }
+
+        .stage-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stage-info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stage-info-item i {
+            color: #ff4081;
+            width: 20px;
+            text-align: center;
+        }
+
+        .stage-missions h4 {
+            color: #00ff00;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .mission-item {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            border-left: 3px solid #00ff00;
+        }
+
+        .mission-item h5 {
+            color: #ff4081;
+            margin-bottom: 8px;
+            font-size: 1em;
+        }
+
+        .mission-item p {
+            font-size: 0.9em;
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .stage-skills {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .stage-skill-tag {
+            background: rgba(0, 255, 0, 0.15);
+            color: #00ff00;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+        }
+
         /* Veille Technologique */
         .veille-intro {
             background: linear-gradient(135deg, rgba(0, 255, 0, 0.1), rgba(255, 64, 129, 0.1));
@@ -462,6 +573,7 @@
     <!-- Menu flottant -->
     <div class="floating-menu">
         <a href="#about" title="À propos"><i class="fas fa-user"></i></a>
+        <a href="#stages" title="Stages"><i class="fas fa-briefcase"></i></a>
         <a href="#projects" title="Projets"><i class="fas fa-folder-open"></i></a>
         <a href="#synthese" title="Tableau de Synthèse"><i class="fas fa-table"></i></a>
         <a href="#skills" title="Compétences"><i class="fas fa-laptop-code"></i></a>
@@ -475,6 +587,7 @@
         <h1>Mon Portfolio BTS SIO</h1>
         <nav>
             <a href="#about">À propos</a>
+            <a href="#stages">Stages</a>
             <a href="#projects">Projets</a>
             <a href="#synthese">Tableau de Synthèse</a>
             <a href="#skills">Compétences</a>
@@ -488,6 +601,136 @@
         <p>Je m'appelle Thomas SILLION, j'ai 23 ans, je suis étudiant en <strong>BTS Services Informatiques aux Organisations (SIO)</strong>, je suis passionné par les <strong>systèmes, les réseaux et la cybersécurité</strong>. Mon objectif est de développer des compétences solides en administration, virtualisation et en réseau afin de devenir un professionnel polyvalent dans le domaine de l'informatique.</p>
         <p>Curieux et rigoureux, j'aime apprendre de nouvelles technologies et relever des défis techniques à travers des projets concrets, tels que la mise en place de serveurs ou l'automatisation de tâches. Mon parcours me permet d'acquérir une vision globale des systèmes informatiques, allant du matériel jusqu'au développement logiciel.</p>
         <p>Je m'intéresse particulièrement à la <strong>sécurité des systèmes d'information</strong> et à l'<strong>innovation numérique</strong>. Je cherche constamment à améliorer mes connaissances pour anticiper les besoins des entreprises et garantir la fiabilité et la performance de leurs infrastructures informatiques.</p>
+    </section>
+
+    <section id="stages">
+        <h2><i class="fas fa-briefcase"></i> Stages professionnels</h2>
+
+        <div class="stages-grid">
+            <!-- Stage 1 : Eiffage SI -->
+            <div class="stage-card">
+                <div class="stage-header">
+                    <h3><i class="fas fa-building"></i> Eiffage Systèmes d'Information</h3>
+                    <span class="stage-period"><i class="fas fa-calendar-alt"></i> 1ère année BTS SIO</span>
+                    <span class="stage-role">Technicien support informatique</span>
+                </div>
+
+                <div class="stage-info">
+                    <div class="stage-info-item">
+                        <i class="fas fa-industry"></i>
+                        <span>Secteur : Technologies de l'information</span>
+                    </div>
+                    <div class="stage-info-item">
+                        <i class="fas fa-users"></i>
+                        <span>Effectif : 200–250 salariés</span>
+                    </div>
+                    <div class="stage-info-item">
+                        <i class="fas fa-euro-sign"></i>
+                        <span>CA : 150 M€ (2023)</span>
+                    </div>
+                    <div class="stage-info-item">
+                        <i class="fas fa-cogs"></i>
+                        <span>Cloud, cybersécurité, dev logiciel</span>
+                    </div>
+                </div>
+
+                <div class="stage-missions">
+                    <h4><i class="fas fa-tasks"></i> Missions réalisées</h4>
+
+                    <div class="mission-item">
+                        <h5><i class="fas fa-ticket-alt"></i> Gestion des tickets (EasyVista)</h5>
+                        <p>Prise en charge et suivi de tickets via l'outil EasyVista. Gestion des tickets de personnel (attribution, traitement ACRU, validation et clôture) et des tickets de modification serveur nécessitant une vérification via fichier Excel avant toute intervention sur les serveurs.</p>
+                    </div>
+
+                    <div class="mission-item">
+                        <h5><i class="fas fa-desktop"></i> Remasterisation de postes</h5>
+                        <p>Réinstallation complète de postes Eiffage à l'aide d'une clé de boot : mise en réseau du PC, installation de Windows 11 avec la bonne version, configuration de la localisation, langue et nom de machine, puis mises à jour Lenovo et Windows.</p>
+                    </div>
+
+                    <div class="mission-item">
+                        <h5><i class="fas fa-truck-loading"></i> Déménagement de matériel</h5>
+                        <p>Démontage des écrans et de leurs supports, retrait des câbles, et réalisation d'un inventaire complet du matériel pour assurer la traçabilité lors du déménagement.</p>
+                    </div>
+
+                    <div class="mission-item">
+                        <h5><i class="fas fa-chalkboard-teacher"></i> Formation de stagiaires</h5>
+                        <p>Accueil et intégration de nouveaux stagiaires. Définition d'objectifs clairs, partage des connaissances acquises, encouragement à l'autonomie et vérification de la compréhension par des mises en situation pratiques.</p>
+                    </div>
+                </div>
+
+                <div class="stage-skills">
+                    <span class="stage-skill-tag">EasyVista</span>
+                    <span class="stage-skill-tag">Windows 11</span>
+                    <span class="stage-skill-tag">Support N1/N2</span>
+                    <span class="stage-skill-tag">Gestion de parc</span>
+                    <span class="stage-skill-tag">Inventaire</span>
+                    <span class="stage-skill-tag">Formation</span>
+                </div>
+            </div>
+
+            <!-- Stage 2 : AP-HP -->
+            <div class="stage-card">
+                <div class="stage-header">
+                    <h3><i class="fas fa-hospital"></i> Assistance Publique – Hôpitaux de Paris (AP-HP)</h3>
+                    <span class="stage-period"><i class="fas fa-calendar-alt"></i> 12 janvier – 27 février 2026</span>
+                    <span class="stage-role">Technicien support et infrastructure réseau – Sécurisation d'un environnement hospitalier critique</span>
+                </div>
+
+                <div class="stage-info">
+                    <div class="stage-info-item">
+                        <i class="fas fa-hospital-alt"></i>
+                        <span>38 hôpitaux</span>
+                    </div>
+                    <div class="stage-info-item">
+                        <i class="fas fa-users"></i>
+                        <span>100 000 employés</span>
+                    </div>
+                    <div class="stage-info-item">
+                        <i class="fas fa-euro-sign"></i>
+                        <span>Budget > 7 milliards €</span>
+                    </div>
+                    <div class="stage-info-item">
+                        <i class="fas fa-network-wired"></i>
+                        <span>Équipe : ~30 administrateurs réseau</span>
+                    </div>
+                </div>
+
+                <div class="stage-missions">
+                    <h4><i class="fas fa-tasks"></i> Missions réalisées</h4>
+
+                    <div class="mission-item">
+                        <h5><i class="fas fa-fire-alt"></i> Maintenance Firewall Palo Alto PA-850</h5>
+                        <p>Bascule en haute disponibilité (HA) vers le firewall secondaire, intervention contrôlée sur l'équipement principal, rétablissement des flux réseau et tests de stabilité pour garantir la continuité de service dans un environnement hospitalier critique.</p>
+                    </div>
+
+                    <div class="mission-item">
+                        <h5><i class="fas fa-shield-alt"></i> Gestion des flux Checkpoint</h5>
+                        <p>Consultation de la matrice des flux, modification des règles via tickets SMAX avec traçabilité par trigramme. Chaque intervention est documentée pour garantir la responsabilité et l'auditabilité des modifications dans un cadre sécurisé.</p>
+                    </div>
+
+                    <div class="mission-item">
+                        <h5><i class="fas fa-phone-alt"></i> Résolution d'incident – Téléphonie IP</h5>
+                        <p>Analyse des flux inter-VLAN impactant la téléphonie IP, vérification des règles firewall associées, correction du filtrage réseau. Cet incident a mis en évidence l'importance de la segmentation réseau dans un environnement hospitalier.</p>
+                    </div>
+
+                    <div class="mission-item">
+                        <h5><i class="fas fa-server"></i> Architecture et sécurité réseau</h5>
+                        <p>Observation et compréhension d'une infrastructure complexe : baies réseau haute densité, segmentation VLAN, redondance et haute disponibilité, fibre optique et cœur de réseau. Travail dans le respect du principe du moindre privilège et des procédures formelles avec validation hiérarchique.</p>
+                    </div>
+                </div>
+
+                <div class="stage-skills">
+                    <span class="stage-skill-tag">Palo Alto</span>
+                    <span class="stage-skill-tag">Checkpoint</span>
+                    <span class="stage-skill-tag">Haute Disponibilité</span>
+                    <span class="stage-skill-tag">VLAN</span>
+                    <span class="stage-skill-tag">Firewall</span>
+                    <span class="stage-skill-tag">SMAX</span>
+                    <span class="stage-skill-tag">Téléphonie IP</span>
+                    <span class="stage-skill-tag">Sécurité réseau</span>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section id="projects">
