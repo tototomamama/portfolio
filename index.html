@@ -1276,8 +1276,8 @@
     <section id="contact">
         <h2><i class="fas fa-envelope"></i> Contact</h2>
         <p>Vous pouvez me contacter par email ou via LinkedIn pour échanger sur mes projets et expériences.</p>
-        <!-- ✅ CORRECTION : adresse email en clair dans mailto, remplace le lien Cloudflare -->
-        <a class="contact-btn" href="mailto:thomas.sillion@exemple.com"><i class="fas fa-paper-plane"></i> Envoyer un email</a>
+        <!-- ✅ CORRECTION : adresse email en clair dans mailto -->
+        <a class="contact-btn" href="mailto:thomas.sillion@gmail.com"><i class="fas fa-paper-plane"></i> Envoyer un email</a>
     </section>
 
     <!-- Modal BCM Informatique -->
@@ -1372,7 +1372,7 @@
         &copy; 2026 Mon Portfolio BTS SIO - Tous droits réservés
     </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // ===== Matrix Effect =====
         const canvas = document.getElementById('matrix');
         const ctx = canvas.getContext('2d');
@@ -1463,16 +1463,92 @@
             else if (tab === 'houses') renderHouses();
         }
 
+        // Données de secours si l'API ne répond pas
+        const HP_FALLBACK_CHARACTERS = [
+            { name: "Harry Potter",      house: "Gryffindor", image: "" },
+            { name: "Hermione Granger",  house: "Gryffindor", image: "" },
+            { name: "Ron Weasley",       house: "Gryffindor", image: "" },
+            { name: "Draco Malfoy",      house: "Slytherin",  image: "" },
+            { name: "Luna Lovegood",     house: "Ravenclaw",  image: "" },
+            { name: "Neville Londubat",  house: "Gryffindor", image: "" },
+            { name: "Cedric Diggory",    house: "Hufflepuff", image: "" },
+            { name: "Cho Chang",         house: "Ravenclaw",  image: "" },
+        ];
+        const HP_FALLBACK_SPELLS = [
+            { name: "Expelliarmus",  description: "Désarme l'adversaire." },
+            { name: "Lumos",         description: "Illumine l'extrémité de la baguette." },
+            { name: "Alohomora",     description: "Ouvre les serrures." },
+            { name: "Expecto Patronum", description: "Invoque un Patronus pour repousser les Détraqueurs." },
+            { name: "Wingardium Leviosa", description: "Lévite un objet." },
+            { name: "Avada Kedavra", description: "Malédiction de la mort (impardonnable)." },
+            { name: "Accio",         description: "Fait venir un objet à soi." },
+            { name: "Stupefy",       description: "Étourdit l'adversaire." },
+        ];
+
+        // Fonction utilitaire : fetch avec timeout + retry
+        async function fetchWithRetry(url, maxAttempts = 3, timeoutMs = 12000) {
+            for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+                try {
+                    const controller = new AbortController();
+                    const timer = setTimeout(() => controller.abort(), timeoutMs);
+                    const res = await fetch(url, { signal: controller.signal });
+                    clearTimeout(timer);
+                    if (!res.ok) throw new Error('HTTP ' + res.status);
+                    return await res.json();
+                } catch (e) {
+                    if (attempt === maxAttempts) throw e;
+                    // Petit délai avant de réessayer
+                    await new Promise(r => setTimeout(r, 2000));
+                }
+            }
+        }
+
+        // Affiche la barre de progression + message
+        function showProgress(content, emoji, label, attempt, max) {
+            const pct = Math.round(((attempt - 1) / max) * 100);
+            content.innerHTML = `
+                <div class="hp-loading">
+                    <div style="font-size:2em;margin-bottom:12px;">${emoji}</div>
+                    <div style="margin-bottom:14px;">${label}</div>
+                    <div style="background:rgba(255,255,255,0.15);border-radius:20px;height:10px;width:260px;margin:0 auto;">
+                        <div id="hp-progress-bar" style="background:#d4af37;height:10px;border-radius:20px;width:${pct}%;transition:width 0.4s;"></div>
+                    </div>
+                    <div style="margin-top:10px;font-size:0.85em;color:#aaa;">
+                        ${attempt > 1 ? 'Tentative ' + attempt + ' / ' + max + '…' : 'Connexion au serveur…'}
+                    </div>
+                </div>`;
+        }
+
+        // Anime la barre pendant le chargement
+        function animateBar(targetPct) {
+            const bar = document.getElementById('hp-progress-bar');
+            if (bar) bar.style.width = targetPct + '%';
+        }
+
         async function renderCharacters(search = '', house = '') {
             const content = document.getElementById('hp-modal-content');
             if (!hpCharacters) {
-                content.innerHTML = '<div class="hp-loading">⚡ Chargement des personnages...</div>';
-                try {
-                    const res = await fetch('https://hp-api.onrender.com/api/characters');
-                    hpCharacters = await res.json();
-                } catch(e) {
-                    content.innerHTML = '<div class="hp-loading" style="color:#ff4081">Erreur de chargement. Vérifiez votre connexion.</div>';
-                    return;
+                const MAX = 3;
+                for (let attempt = 1; attempt <= MAX; attempt++) {
+                    showProgress(content, '🧙', 'Chargement des personnages…', attempt, MAX);
+                    await new Promise(r => setTimeout(r, 50)); // laisse le DOM s'afficher
+                    try {
+                        animateBar(30 + attempt * 20);
+                        hpCharacters = await fetchWithRetry('https://hp-api.onrender.com/api/characters', 1, 12000);
+                        animateBar(100);
+                        await new Promise(r => setTimeout(r, 300));
+                        break; // succès
+                    } catch(e) {
+                        if (attempt === MAX) {
+                            // Fallback données locales
+                            hpCharacters = HP_FALLBACK_CHARACTERS;
+                            content.innerHTML = `<div class="hp-loading" style="color:#d4af37;font-size:1em;">
+                                ⚠️ Serveur indisponible — données partielles affichées.<br>
+                                <small style="color:#aaa;">Le serveur de l'API est en veille. Réessayez dans quelques minutes.</small>
+                            </div>`;
+                            await new Promise(r => setTimeout(r, 1800));
+                        }
+                    }
                 }
             }
             let filtered = hpCharacters.filter(c =>
@@ -1487,8 +1563,8 @@
                     <select id="hp-house" onchange="renderCharacters(document.getElementById('hp-search').value, this.value)">
                         <option value="">Toutes les maisons</option>
                         <option value="Gryffindor" ${house==='Gryffindor'?'selected':''}>Gryffondor</option>
-                        <option value="Slytherin" ${house==='Slytherin'?'selected':''}>Serpentard</option>
-                        <option value="Ravenclaw" ${house==='Ravenclaw'?'selected':''}>Serdaigle</option>
+                        <option value="Slytherin"  ${house==='Slytherin' ?'selected':''}>Serpentard</option>
+                        <option value="Ravenclaw"  ${house==='Ravenclaw' ?'selected':''}>Serdaigle</option>
                         <option value="Hufflepuff" ${house==='Hufflepuff'?'selected':''}>Poufsouffle</option>
                     </select>
                 </div>
@@ -1500,20 +1576,32 @@
                             <p>${c.house || 'Inconnu'}</p>
                         </div>
                     `).join('')}
-                </div>
-            `;
+                </div>`;
         }
 
         async function renderSpells() {
             const content = document.getElementById('hp-modal-content');
             if (!hpSpells) {
-                content.innerHTML = '<div class="hp-loading">✨ Chargement des sorts...</div>';
-                try {
-                    const res = await fetch('https://hp-api.onrender.com/api/spells');
-                    hpSpells = await res.json();
-                } catch(e) {
-                    content.innerHTML = '<div class="hp-loading" style="color:#ff4081">Erreur de chargement.</div>';
-                    return;
+                const MAX = 3;
+                for (let attempt = 1; attempt <= MAX; attempt++) {
+                    showProgress(content, '✨', 'Chargement des sorts…', attempt, MAX);
+                    await new Promise(r => setTimeout(r, 50));
+                    try {
+                        animateBar(30 + attempt * 20);
+                        hpSpells = await fetchWithRetry('https://hp-api.onrender.com/api/spells', 1, 12000);
+                        animateBar(100);
+                        await new Promise(r => setTimeout(r, 300));
+                        break;
+                    } catch(e) {
+                        if (attempt === MAX) {
+                            hpSpells = HP_FALLBACK_SPELLS;
+                            content.innerHTML = `<div class="hp-loading" style="color:#d4af37;font-size:1em;">
+                                ⚠️ Serveur indisponible — données partielles affichées.<br>
+                                <small style="color:#aaa;">Le serveur de l'API est en veille. Réessayez dans quelques minutes.</small>
+                            </div>`;
+                            await new Promise(r => setTimeout(r, 1800));
+                        }
+                    }
                 }
             }
             content.innerHTML = `
@@ -1525,8 +1613,7 @@
                             <p style="font-size:0.82em;color:#f5deb3;">${s.description || 'Pas de description'}</p>
                         </div>
                     `).join('')}
-                </div>
-            `;
+                </div>`;
         }
 
         // ✅ CORRECTION : fonction renderHouses complète (elle était tronquée dans le fichier original)
@@ -1571,12 +1658,4 @@
                             <p><strong>Fondateur :</strong> ${h.founder}</p>
                             <p><strong>Couleurs :</strong> ${h.colors}</p>
                             <p><strong>Mascotte :</strong> ${h.mascot}</p>
-                            <p style="margin-top:8px;font-size:0.85em;">${h.traits}</p>
-                        </div>
-                    `).join('')}
-                </div>
-            `;
-        }
-    </script>
-</body>
-</html>
+                            <p style="margin-top:8px;font-size:0.85em;">$
