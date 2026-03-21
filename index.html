@@ -55,7 +55,165 @@
         .mission-item h5 { color: #ff4081; margin-bottom: 8px; font-size: 1em; }
         .mission-item p { font-size: 0.9em; color: #ccc; line-height: 1.6; }
         .stage-skills { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 8px; }
-        .stage-skill-tag { background: rgba(0,255,0,0.15); color: #00ff00; padding: 5px 12px; border-radius: 15px; font-size: 0.85em; }
+
+        /* ===== SKILL TAG - CLIQUABLE ===== */
+        .stage-skill-tag {
+            background: rgba(0,255,0,0.15);
+            color: #00ff00;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            cursor: pointer;
+            border: 1px solid rgba(0,255,0,0.3);
+            transition: all 0.25s ease;
+            user-select: none;
+        }
+        .stage-skill-tag:hover {
+            background: rgba(0,255,0,0.35);
+            border-color: #00ff00;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,255,0,0.3);
+            color: #fff;
+        }
+        .stage-skill-tag:active { transform: scale(0.96); }
+
+        /* ===== MODAL COMPETENCE ===== */
+        #skill-modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            backdrop-filter: blur(4px);
+        }
+        #skill-modal-overlay.active { display: flex; }
+        #skill-modal {
+            background: linear-gradient(135deg, #0a0a0a, #111);
+            border: 1px solid #00ff00;
+            border-radius: 16px;
+            max-width: 560px;
+            width: 100%;
+            box-shadow: 0 0 50px rgba(0,255,0,0.25), 0 0 100px rgba(0,255,0,0.08);
+            overflow: hidden;
+            animation: skillModalIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
+        }
+        @keyframes skillModalIn {
+            from { opacity: 0; transform: scale(0.85) translateY(20px); }
+            to   { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        #skill-modal-header {
+            background: rgba(0,255,0,0.12);
+            border-bottom: 1px solid rgba(0,255,0,0.3);
+            padding: 20px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        #skill-modal-header .skill-icon {
+            width: 50px; height: 50px;
+            background: rgba(0,255,0,0.15);
+            border: 1px solid rgba(0,255,0,0.4);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5em;
+            flex-shrink: 0;
+        }
+        #skill-modal-header h3 {
+            color: #00ff00;
+            font-size: 1.4em;
+            text-shadow: 0 0 10px rgba(0,255,0,0.5);
+            flex: 1;
+        }
+        #skill-modal-close {
+            background: none;
+            border: 1px solid rgba(0,255,0,0.4);
+            color: #00ff00;
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: 0.2s;
+            flex-shrink: 0;
+        }
+        #skill-modal-close:hover { background: rgba(0,255,0,0.2); border-color: #00ff00; }
+        #skill-modal-body { padding: 25px; }
+        .skill-category-badge {
+            display: inline-block;
+            background: rgba(255,64,129,0.2);
+            color: #ff4081;
+            border: 1px solid rgba(255,64,129,0.4);
+            border-radius: 20px;
+            padding: 3px 14px;
+            font-size: 0.8em;
+            margin-bottom: 16px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+        .skill-description {
+            color: #ddd;
+            line-height: 1.8;
+            font-size: 0.95em;
+            margin-bottom: 20px;
+        }
+        .skill-usage-title {
+            color: #00ff00;
+            font-size: 0.9em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .skill-usage-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .skill-usage-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.88em;
+            color: #ccc;
+            background: rgba(255,255,255,0.04);
+            border-radius: 8px;
+            padding: 10px 14px;
+            border-left: 2px solid rgba(0,255,0,0.4);
+        }
+        .skill-usage-list li i { color: #00ff00; margin-top: 2px; flex-shrink: 0; }
+        .skill-level-bar-wrap {
+            margin-top: 18px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 10px;
+            padding: 14px 18px;
+            border: 1px solid rgba(0,255,0,0.15);
+        }
+        .skill-level-label {
+            display: flex; justify-content: space-between;
+            font-size: 0.82em; color: #aaa; margin-bottom: 8px;
+        }
+        .skill-level-label span:last-child { color: #00ff00; font-weight: bold; }
+        .skill-level-track {
+            background: rgba(255,255,255,0.08);
+            border-radius: 20px;
+            height: 8px;
+            overflow: hidden;
+        }
+        .skill-level-fill {
+            height: 100%;
+            border-radius: 20px;
+            background: linear-gradient(90deg, #00cc00, #00ff00);
+            box-shadow: 0 0 8px rgba(0,255,0,0.5);
+            transition: width 0.8s cubic-bezier(0.4,0,0.2,1);
+            width: 0%;
+        }
+
+        /* rest of existing styles */
         .veille-intro { background: linear-gradient(135deg, rgba(0,255,0,0.1), rgba(255,64,129,0.1)); padding: 25px; border-radius: 10px; margin-bottom: 30px; border-left: 4px solid #00ff00; }
         .veille-intro h3 { color: #00ff00; margin-bottom: 15px; font-size: 1.3em; }
         .veille-intro p { margin-bottom: 10px; }
@@ -194,12 +352,17 @@
             <div class="stage-missions">
                 <h4><i class="fas fa-tasks"></i> Missions realisees</h4>
                 <div class="mission-item"><h5><i class="fas fa-ticket-alt"></i> Gestion des tickets (EasyVista)</h5><p>Prise en charge et suivi de tickets via l'outil EasyVista. Gestion des tickets de personnel (attribution, traitement ACRU, validation et cloture) et des tickets de modification serveur necessitant une verification via fichier Excel avant toute intervention sur les serveurs.</p></div>
-                <div class="mission-item"><h5><i class="fas fa-desktop"></i> Remasterisation de postes</h5><p>Reinstallation complete de postes Eiffage a l'aide d'une cle de boot : mise en reseau du PC, installation de Windows 11 avec la bonne version, configuration de la localisation, configuration de la langue et du nom de machine, puis mises a jour Lenovo et Windows.</p></div>
+                <div class="mission-item"><h5><i class="fas fa-desktop"></i> Remasterisation de postes</h5><p>Reinstallation complete de postes Eiffage a l'aide d'une cle de boot : mise en reseau du PC, installation de Windows 11 avec la bonne version, configuration de la localisation, langue et nom de machine, puis mises a jour Lenovo et Windows.</p></div>
                 <div class="mission-item"><h5><i class="fas fa-truck-loading"></i> Demenagement de materiel</h5><p>Demontage des ecrans et de leurs supports, retrait des cables, et realisation d'un inventaire complet du materiel pour assurer la tracabilite lors du demenagement.</p></div>
                 <div class="mission-item"><h5><i class="fas fa-chalkboard-teacher"></i> Formation de stagiaires</h5><p>Accueil et integration de nouveaux stagiaires. Definition d'objectifs clairs, partage des connaissances acquises, encouragement a l'autonomie et verification de la comprehension par des mises en situation pratiques.</p></div>
             </div>
             <div class="stage-skills">
-                <span class="stage-skill-tag">EasyVista</span><span class="stage-skill-tag">Windows 11</span><span class="stage-skill-tag">Support N1/N2</span><span class="stage-skill-tag">Gestion de parc</span><span class="stage-skill-tag">Inventaire</span><span class="stage-skill-tag">Formation</span>
+                <span class="stage-skill-tag" onclick="openSkillModal('EasyVista')">EasyVista</span>
+                <span class="stage-skill-tag" onclick="openSkillModal('Windows 11')">Windows 11</span>
+                <span class="stage-skill-tag" onclick="openSkillModal('Support N1/N2')">Support N1/N2</span>
+                <span class="stage-skill-tag" onclick="openSkillModal('Gestion de parc')">Gestion de parc</span>
+                <span class="stage-skill-tag" onclick="openSkillModal('Inventaire')">Inventaire</span>
+                <span class="stage-skill-tag" onclick="openSkillModal('Formation')">Formation</span>
             </div>
         </div>
         <div class="stage-card">
@@ -222,7 +385,14 @@
                 <div class="mission-item"><h5><i class="fas fa-server"></i> Architecture et securite reseau</h5><p>Observation et comprehension d'une infrastructure complexe : baies reseau haute densite, segmentation VLAN, redondance et haute disponibilite, fibre optique et coeur de reseau. Travail dans le respect du principe du moindre privilege et des procedures formelles avec validation hierarchique.</p></div>
             </div>
             <div class="stage-skills">
-                <span class="stage-skill-tag">Palo Alto</span><span class="stage-skill-tag">Checkpoint</span><span class="stage-skill-tag">Haute Disponibilite</span><span class="stage-skill-tag">VLAN</span><span class="stage-skill-tag">Firewall</span><span class="stage-skill-tag">SMAX</span><span class="stage-skill-tag">Telephonie IP</span><span class="stage-skill-tag">Securite reseau</span>
+                <span class="stage-skill-tag" onclick="openSkillModal('Palo Alto')">Palo Alto</span>
+                <span class="stage-skill-tag" onclick="openSkillModal('Checkpoint')">Checkpoint</span>
+                <span class="stage-skill-tag" onclick="openSkillModal('Haute Disponibilite')">Haute Disponibilite</span>
+                <span class="stage-skill-tag" onclick="openSkillModal('VLAN')">VLAN</span>
+                <span class="stage-skill-tag" onclick="openSkillModal('Firewall')">Firewall</span>
+                <span class="stage-skill-tag" onclick="openSkillModal('SMAX')">SMAX</span>
+                <span class="stage-skill-tag" onclick="openSkillModal('Telephonie IP')">Telephonie IP</span>
+                <span class="stage-skill-tag" onclick="openSkillModal('Securite reseau')">Securite reseau</span>
             </div>
         </div>
     </div>
@@ -318,7 +488,7 @@
     <div class="actualites-section">
         <h3><i class="fas fa-bolt"></i> Actualites recentes resumees</h3>
         <div class="actualite-item"><h4><i class="fas fa-microchip"></i> Nvidia accelere sur le quantique avec NVQLink et Cuda-Q</h4><p>Nvidia renforce sa presence dans le calcul quantique avec l'extension de Cuda-Q et le lancement de NVQLink pour relier directement les systemes quantiques aux GPU. La plateforme open source permet de combiner calcul quantique et IA. Nvidia collabore notamment avec les entreprises francaises Alice et Bob et Quandela.</p><div class="actualite-source">Source : <a href="https://www.lemondeinformatique.fr/actualites/lire-avec-nvqlink-et-cuda-q-nvidia-accelere-sur-le-quantique-98331.html" target="_blank">Le Monde Informatique</a></div></div>
-        <div class="actualite-item"><h4><i class="fas fa-atom"></i> Google avance avec Quantum Echoes et sa puce Willow</h4><p>Google a devoile Quantum Echoes, le premier algorithme verifiable et reproductible, execute sur sa puce Willow de 105 qubits. Ce systeme a surpasse les supercalculateurs classiques d'un facteur, ouvrant la voie a des applications en chimie et modelisation moleculaire.</p><div class="actualite-source">Source : <a href="https://www.lemondeinformatique.fr/actualites/lire-avec-quantum-echoes-et-willow-google-avance-sur-le-quantique-98295.html" target="_blank">Le Monde Informatique</a></div></div>
+        <div class="actualite-item"><h4><i class="fas fa-atom"></i> Google avance avec Quantum Echoes et sa puce Willow</h4><p>Google a devoile Quantum Echoes, le premier algorithme verifiable et reproductible, execute sur sa puce Willow de 105 qubits. Ce systeme a surpasse les supercalculateurs classiques d'un facteur 13 000, ouvrant la voie a des applications en chimie et modelisation moleculaire.</p><div class="actualite-source">Source : <a href="https://www.lemondeinformatique.fr/actualites/lire-avec-quantum-echoes-et-willow-google-avance-sur-le-quantique-98295.html" target="_blank">Le Monde Informatique</a></div></div>
         <div class="actualite-item"><h4><i class="fas fa-random"></i> Curby : generation quantique de nombres aleatoires</h4><p>L'universite du Colorado a developpe Curby, un systeme quantique capable de generer des nombres aleatoires verifiables et infalsifiables. Base sur l'intrication quantique et une chaine de hachage cryptographique, Curby ouvre la voie a des applications en cybersecurite et finance.</p><div class="actualite-source">Source : <a href="https://www.lemondeinformatique.fr/actualites/lire-curby-propose-une-systeme-quantique-de-generation-de-nombres-aleatoires-97186.html" target="_blank">Le Monde Informatique</a></div></div>
         <div class="actualite-item"><h4><i class="fas fa-handshake"></i> Partenariat IBM-AMD pour le quantique hybride</h4><p>IBM et AMD ont annonce un partenariat strategique pour developper des systemes quantiques hybrides combinant les ordinateurs quantiques d'IBM avec les processeurs et GPU d'AMD. IBM ambitionne de construire d'ici 2029 le premier ordinateur quantique evolutif avec correction d'erreurs.</p><div class="actualite-source">Source : <a href="https://www.lemondeinformatique.fr/actualites/lire-un-partenariat-ibm-amd-pour-accelerer-dans-le-quantique-hybride-97723.html" target="_blank">Le Monde Informatique</a></div></div>
         <div class="actualite-item"><h4><i class="fas fa-shield-alt"></i> Quantum Defender : reseau resistant aux menaces quantiques</h4><p>Orange Business et Toshiba ont lance Quantum Defender, un reseau de fibre optique securise resistant aux menaces quantiques. Cette solution combine distribution de cles quantiques et chiffrement post-quantique pour proteger les donnees contre des attaques futures.</p><div class="actualite-source">Source : <a href="https://www.lemondeinformatique.fr/actualites/lire-orange-business-et-toshiba-lancent-un-reseau-resistant-aux-menaces-quantiques-97116.html" target="_blank">Le Monde Informatique</a></div></div>
@@ -329,6 +499,33 @@
     <p>Vous pouvez me contacter par email ou via LinkedIn pour echanger sur mes projets et experiences.</p>
     <a class="contact-btn" href="mailto:thomas.sillion@gmail.com"><i class="fas fa-paper-plane"></i> Envoyer un email</a>
 </section>
+
+<!-- ===== MODAL COMPETENCE ===== -->
+<div id="skill-modal-overlay" onclick="handleSkillOverlayClick(event)">
+    <div id="skill-modal">
+        <div id="skill-modal-header">
+            <div class="skill-icon" id="skill-modal-icon"></div>
+            <h3 id="skill-modal-title"></h3>
+            <button id="skill-modal-close" onclick="closeSkillModal()"><i class="fas fa-times"></i></button>
+        </div>
+        <div id="skill-modal-body">
+            <div class="skill-category-badge" id="skill-modal-category"></div>
+            <p class="skill-description" id="skill-modal-desc"></p>
+            <div class="skill-usage-title"><i class="fas fa-check-circle"></i> Ce que j'ai accompli avec cette competence</div>
+            <ul class="skill-usage-list" id="skill-modal-list"></ul>
+            <div class="skill-level-bar-wrap">
+                <div class="skill-level-label">
+                    <span>Niveau acquis</span>
+                    <span id="skill-modal-level-txt"></span>
+                </div>
+                <div class="skill-level-track">
+                    <div class="skill-level-fill" id="skill-modal-level-bar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Modal BCM -->
 <div id="bcm-modal-overlay">
     <div id="bcm-modal">
@@ -362,6 +559,7 @@
 </div>
 <footer>&copy; 2026 Mon Portfolio BTS SIO - Tous droits reserves</footer>
 <script>
+// ===== MATRIX =====
 const canvas = document.getElementById('matrix');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
@@ -384,6 +582,8 @@ function draw() {
 }
 setInterval(draw, 35);
 window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+
+// ===== SMOOTH SCROLL =====
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -391,6 +591,233 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 });
+
+// ===== SKILL MODAL DATA =====
+const skillData = {
+    'EasyVista': {
+        icon: 'fas fa-ticket-alt',
+        category: 'Outil ITSM - Gestion de tickets',
+        description: "EasyVista est un outil de gestion de services informatiques (ITSM) utilise pour creer, suivre et cloture des tickets d'incidents ou de demandes. J'ai utilise cet outil quotidiennement lors de mon stage chez Eiffage pour gerer les demandes des collaborateurs.",
+        points: [
+            "Prise en charge et suivi de tickets d'incidents utilisateurs",
+            "Attribution des tickets ACRU aux techniciens concernes",
+            "Verification des demandes de modification serveur via fichier Excel",
+            "Validation et cloture des tickets apres resolution"
+        ],
+        level: 70,
+        levelTxt: "Operationnel"
+    },
+    'Windows 11': {
+        icon: 'fab fa-windows',
+        category: 'Systeme d\'exploitation - Microsoft',
+        description: "Windows 11 est le systeme d'exploitation desktop de Microsoft. Durant mon stage chez Eiffage, j'ai effectue des reinstallations completes de postes en deployant Windows 11 via une cle de boot, avec configuration de la localisation, de la langue et du nom de machine.",
+        points: [
+            "Reinstallation complete de postes via cle de boot (imaging)",
+            "Configuration de la localisation, langue et nom de machine",
+            "Application des mises a jour Windows et pilotes constructeur (Lenovo)",
+            "Mise en reseau des machines apres installation"
+        ],
+        level: 80,
+        levelTxt: "Avance"
+    },
+    'Support N1/N2': {
+        icon: 'fas fa-headset',
+        category: 'Support informatique - Helpdesk',
+        description: "Le support N1 correspond a la prise en charge initiale des demandes utilisateurs (diagnostic, solutions simples), tandis que le N2 implique un niveau d'expertise plus approfondi pour les problemes complexes. J'ai assure ces deux niveaux de support lors de mes stages.",
+        points: [
+            "Diagnostic et resolution d'incidents utilisateurs au quotidien",
+            "Escalade vers les equipes N3 pour les problemes critiques",
+            "Suivi et documentation des interventions via EasyVista",
+            "Conseil aux utilisateurs sur les bonnes pratiques informatiques"
+        ],
+        level: 75,
+        levelTxt: "Operationnel"
+    },
+    'Gestion de parc': {
+        icon: 'fas fa-desktop',
+        category: 'Administration systeme - Parc informatique',
+        description: "La gestion de parc informatique consiste a maintenir un inventaire a jour des equipements, a assurer leur deploiement, leur suivi et leur maintenance. Chez Eiffage, j'ai participe a la gestion physique et logicielle du parc de postes de travail.",
+        points: [
+            "Participation au deploiement de nouveaux postes de travail",
+            "Suivi de l'inventaire materiel lors du demenagement",
+            "Gestion des tickets de modification serveur avec verification prealable",
+            "Maintenance et remasterisation des postes defectueux"
+        ],
+        level: 65,
+        levelTxt: "Intermediaire"
+    },
+    'Inventaire': {
+        icon: 'fas fa-clipboard-list',
+        category: 'Gestion - Traçabilite du materiel',
+        description: "La realisation d'inventaires permet de maintenir une traçabilite precise sur les equipements informatiques. Lors du demenagement chez Eiffage, j'ai effectue un inventaire complet du materiel pour garantir qu'aucun equipement ne soit perdu ou oublie.",
+        points: [
+            "Demontage et etiquetage des ecrans et supports",
+            "Creation d'un inventaire complet avant demenagement",
+            "Verification de la tracabilite de chaque equipement",
+            "Retrait et rangement organise des cables et peripheriques"
+        ],
+        level: 70,
+        levelTxt: "Operationnel"
+    },
+    'Formation': {
+        icon: 'fas fa-chalkboard-teacher',
+        category: 'Pedagogie - Transfert de competences',
+        description: "La capacite a former et accompagner des collegues ou stagiaires est une competence transversale essentielle. Chez Eiffage, j'ai eu l'opportunite d'accueillir et d'integrer de nouveaux stagiaires, en leur transmettant les connaissances acquises.",
+        points: [
+            "Accueil et integration de nouveaux stagiaires dans l'equipe",
+            "Definition d'objectifs clairs et progressifs",
+            "Partage des procedures et bonnes pratiques internes",
+            "Verification de la comprehension par des mises en situation"
+        ],
+        level: 65,
+        levelTxt: "Intermediaire"
+    },
+    'Palo Alto': {
+        icon: 'fas fa-fire-alt',
+        category: 'Securite reseau - Firewall NGFW',
+        description: "Palo Alto Networks est un leader mondial des firewalls de nouvelle generation (NGFW). Lors de mon stage a l'AP-HP, j'ai travaille sur le firewall PA-850, en participant a une operation de bascule en haute disponibilite (HA) pour une maintenance planifiee.",
+        points: [
+            "Bascule en haute disponibilite (HA) vers le firewall secondaire",
+            "Intervention controlee sur l'equipement principal hors production",
+            "Retablissement des flux reseau et tests de stabilite post-maintenance",
+            "Garantie de la continuite de service dans un environnement hospitalier critique"
+        ],
+        level: 55,
+        levelTxt: "Notions avancees"
+    },
+    'Checkpoint': {
+        icon: 'fas fa-shield-alt',
+        category: 'Securite reseau - Gestion des regles firewall',
+        description: "Checkpoint est une solution de securite reseau largement deployee en entreprise. A l'AP-HP, j'ai consulte et modifie des regles de filtrage via l'outil de gestion SMAX, en respectant une tracabilite stricte par trigramme pour chaque intervention.",
+        points: [
+            "Consultation et analyse de la matrice des flux existante",
+            "Modification des regles firewall via tickets SMAX documentes",
+            "Tracabilite des interventions par trigramme pour l'auditabilite",
+            "Respect des procedures formelles avec validation hierarchique"
+        ],
+        level: 50,
+        levelTxt: "Notions avancees"
+    },
+    'Haute Disponibilite': {
+        icon: 'fas fa-sync-alt',
+        category: 'Infrastructure reseau - Redondance & continuite',
+        description: "La haute disponibilite (HA) designe une architecture permettant a un systeme de rester operationnel meme en cas de panne d'un composant. A l'AP-HP, j'ai participe a une bascule HA sur firewall Palo Alto, garantissant la continuite des services hospitaliers.",
+        points: [
+            "Execution d'une bascule HA planifiee sur firewall Palo Alto PA-850",
+            "Tests de stabilite et verification des flux apres bascule",
+            "Comprehension de l'architecture active/passive en environnement critique",
+            "Retablissement du systeme principal apres maintenance"
+        ],
+        level: 55,
+        levelTxt: "Intermediaire"
+    },
+    'VLAN': {
+        icon: 'fas fa-network-wired',
+        category: 'Reseau - Segmentation logique',
+        description: "Les VLANs (Virtual Local Area Network) permettent de segmenter logiquement un reseau physique en plusieurs reseaux independants. J'ai travaille sur cette technologie en cours (configuration sur Cisco) et en stage a l'AP-HP lors de l'incident de telephonie IP.",
+        points: [
+            "Configuration de VLANs en environnement Cisco (TP en formation)",
+            "Analyse de flux inter-VLAN lors d'un incident telephonie IP a l'AP-HP",
+            "Comprehension de la segmentation reseau en milieu hospitalier",
+            "Verification des regles firewall associees a la segmentation VLAN"
+        ],
+        level: 65,
+        levelTxt: "Intermediaire"
+    },
+    'Firewall': {
+        icon: 'fas fa-fire',
+        category: 'Securite reseau - Filtrage & protection perimetre',
+        description: "Un firewall est un equipement ou logiciel qui filtre les flux reseau selon des regles definies. J'ai manipule deux solutions majeures du marche (Palo Alto et Checkpoint) lors de mon stage a l'AP-HP, dans un contexte de securite hospitaliere critique.",
+        points: [
+            "Maintenance du firewall Palo Alto PA-850 avec bascule HA",
+            "Modification de regles de filtrage sur Checkpoint via SMAX",
+            "Resolution d'un incident de telephonie IP lie aux regles firewall",
+            "Comprehension du principe du moindre privilege dans les regles de filtrage"
+        ],
+        level: 60,
+        levelTxt: "Intermediaire"
+    },
+    'SMAX': {
+        icon: 'fas fa-tasks',
+        category: 'Outil ITSM - Gestion de tickets (AP-HP)',
+        description: "SMAX (Service Management Automation X) est l'outil de gestion des services informatiques utilise a l'AP-HP. Il permet de creer et suivre des tickets de modification avec une tracabilite stricte, indispensable dans un environnement hospitalier soumis a audit.",
+        points: [
+            "Creation et suivi de tickets de modification de regles firewall",
+            "Tracabilite par trigramme de chaque intervention realisee",
+            "Respect des procedures formelles de validation avant toute modification",
+            "Documentation des changements pour l'auditabilite des interventions"
+        ],
+        level: 60,
+        levelTxt: "Operationnel"
+    },
+    'Telephonie IP': {
+        icon: 'fas fa-phone-alt',
+        category: 'Reseau - Communication VoIP',
+        description: "La telephonie IP (VoIP) permet de faire transiter les appels telephoniques sur le reseau IP. A l'AP-HP, j'ai resolu un incident impactant la telephonie IP en analysant les flux inter-VLAN et en corrigeant les regles firewall qui bloquaient le trafic vocal.",
+        points: [
+            "Analyse d'un incident de telephonie IP impactant plusieurs services",
+            "Identification du flux inter-VLAN bloque par une regle firewall",
+            "Correction du filtrage reseau pour retablir les communications",
+            "Prise de conscience de l'importance de la telephonie en milieu hospitalier"
+        ],
+        level: 45,
+        levelTxt: "Notions pratiques"
+    },
+    'Securite reseau': {
+        icon: 'fas fa-lock',
+        category: 'Cybersecurite - Protection de l\'infrastructure',
+        description: "La securite reseau englobe l'ensemble des pratiques visant a proteger l'infrastructure informatique contre les menaces. A l'AP-HP, j'ai evolue dans un environnement ou chaque decision technique est prise dans le respect strict du principe du moindre privilege et des procedures formelles.",
+        points: [
+            "Travail sur des equipements critiques (Palo Alto, Checkpoint) en environnement hospitalier",
+            "Application du principe du moindre privilege dans chaque intervention",
+            "Respect des procedures formelles avec validation hierarchique systematique",
+            "Comprehension de l'architecture reseau securisee : DMZ, VLAN, HA, fibre optique"
+        ],
+        level: 60,
+        levelTxt: "Intermediaire"
+    }
+};
+
+function openSkillModal(skillName) {
+    const data = skillData[skillName];
+    if (!data) return;
+
+    document.getElementById('skill-modal-icon').innerHTML = '<i class="' + data.icon + '"></i>';
+    document.getElementById('skill-modal-title').textContent = skillName;
+    document.getElementById('skill-modal-category').textContent = data.category;
+    document.getElementById('skill-modal-desc').textContent = data.description;
+    document.getElementById('skill-modal-level-txt').textContent = data.levelTxt + ' — ' + data.level + '%';
+
+    const list = document.getElementById('skill-modal-list');
+    list.innerHTML = data.points.map(p => '<li><i class="fas fa-angle-right"></i> ' + p + '</li>').join('');
+
+    // Reset then animate bar
+    const bar = document.getElementById('skill-modal-level-bar');
+    bar.style.width = '0%';
+
+    document.getElementById('skill-modal-overlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    // Trigger animation after paint
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => { bar.style.width = data.level + '%'; });
+    });
+}
+
+function closeSkillModal() {
+    document.getElementById('skill-modal-overlay').classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+function handleSkillOverlayClick(e) {
+    if (e.target === document.getElementById('skill-modal-overlay')) closeSkillModal();
+}
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeSkillModal();
+});
+
+// ===== BCM MODAL =====
 function openBCMModal() { document.getElementById('bcm-modal-overlay').classList.add('active'); document.body.style.overflow = 'hidden'; showBCMPage('accueil', document.querySelector('.bcm-nav-btn')); }
 function closeBCMModal() { document.getElementById('bcm-modal-overlay').classList.remove('active'); document.body.style.overflow = ''; }
 document.getElementById('bcm-modal-overlay').addEventListener('click', function(e) { if (e.target===this) closeBCMModal(); });
@@ -400,6 +827,8 @@ function showBCMPage(page, btn) {
     document.getElementById('bcm-page-'+page).classList.add('active');
     if (btn) btn.classList.add('active');
 }
+
+// ===== HP MODAL =====
 let hpCharacters = null;
 let hpSpells = null;
 function openHPModal() { document.getElementById('hp-modal-overlay').classList.add('active'); document.body.style.overflow = 'hidden'; showHPTab('characters', document.querySelector('.hp-nav-btn')); }
