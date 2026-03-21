@@ -55,165 +55,65 @@
         .mission-item h5 { color: #ff4081; margin-bottom: 8px; font-size: 1em; }
         .mission-item p { font-size: 0.9em; color: #ccc; line-height: 1.6; }
         .stage-skills { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 8px; }
-
-        /* ===== SKILL TAG - CLIQUABLE ===== */
         .stage-skill-tag {
-            background: rgba(0,255,0,0.15);
-            color: #00ff00;
-            padding: 5px 12px;
-            border-radius: 15px;
-            font-size: 0.85em;
-            cursor: pointer;
-            border: 1px solid rgba(0,255,0,0.3);
-            transition: all 0.25s ease;
-            user-select: none;
+            background: rgba(0,255,0,0.15); color: #00ff00; padding: 6px 14px; border-radius: 15px;
+            font-size: 0.85em; cursor: pointer; border: 1px solid rgba(0,255,0,0.4);
+            transition: all 0.25s ease; user-select: none; display: inline-block;
         }
-        .stage-skill-tag:hover {
-            background: rgba(0,255,0,0.35);
-            border-color: #00ff00;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,255,0,0.3);
-            color: #fff;
-        }
+        .stage-skill-tag:hover { background: rgba(0,255,0,0.35); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,255,0,0.3); color: #fff; }
         .stage-skill-tag:active { transform: scale(0.96); }
 
-        /* ===== MODAL COMPETENCE ===== */
+        /* MODAL COMPETENCE */
         #skill-modal-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.85);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            backdrop-filter: blur(4px);
+            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88);
+            z-index: 9999; align-items: center; justify-content: center;
+            padding: 20px; backdrop-filter: blur(5px);
         }
         #skill-modal-overlay.active { display: flex; }
         #skill-modal {
-            background: linear-gradient(135deg, #0a0a0a, #111);
-            border: 1px solid #00ff00;
-            border-radius: 16px;
-            max-width: 560px;
-            width: 100%;
-            box-shadow: 0 0 50px rgba(0,255,0,0.25), 0 0 100px rgba(0,255,0,0.08);
-            overflow: hidden;
-            animation: skillModalIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
+            background: #0d0d0d; border: 1px solid #00ff00; border-radius: 16px;
+            max-width: 580px; width: 100%; max-height: 90vh; overflow-y: auto;
+            box-shadow: 0 0 60px rgba(0,255,0,0.3);
+            animation: smIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
         }
-        @keyframes skillModalIn {
-            from { opacity: 0; transform: scale(0.85) translateY(20px); }
-            to   { opacity: 1; transform: scale(1) translateY(0); }
-        }
+        @keyframes smIn { from { opacity:0; transform:scale(0.8) translateY(30px); } to { opacity:1; transform:scale(1) translateY(0); } }
         #skill-modal-header {
-            background: rgba(0,255,0,0.12);
-            border-bottom: 1px solid rgba(0,255,0,0.3);
-            padding: 20px 25px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 15px;
+            background: rgba(0,255,0,0.1); border-bottom: 1px solid rgba(0,255,0,0.3);
+            padding: 18px 22px; display: flex; align-items: center; gap: 14px; position: sticky; top: 0;
         }
-        #skill-modal-header .skill-icon {
-            width: 50px; height: 50px;
-            background: rgba(0,255,0,0.15);
-            border: 1px solid rgba(0,255,0,0.4);
-            border-radius: 12px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.5em;
-            flex-shrink: 0;
+        .sm-icon {
+            width: 48px; height: 48px; background: rgba(0,255,0,0.12);
+            border: 1px solid rgba(0,255,0,0.4); border-radius: 10px;
+            display: flex; align-items: center; justify-content: center; font-size: 1.4em; flex-shrink: 0;
         }
-        #skill-modal-header h3 {
-            color: #00ff00;
-            font-size: 1.4em;
-            text-shadow: 0 0 10px rgba(0,255,0,0.5);
-            flex: 1;
+        #skill-modal-header h3 { color: #00ff00; font-size: 1.3em; flex: 1; margin: 0; padding: 0; border: none; text-shadow: 0 0 8px rgba(0,255,0,0.5); }
+        #sm-close {
+            background: none; border: 1px solid rgba(0,255,0,0.4); color: #00ff00;
+            width: 34px; height: 34px; border-radius: 50%; font-size: 1em; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: 0.2s;
         }
-        #skill-modal-close {
-            background: none;
-            border: 1px solid rgba(0,255,0,0.4);
-            color: #00ff00;
-            width: 36px; height: 36px;
-            border-radius: 50%;
-            font-size: 1.1em;
-            cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-            transition: 0.2s;
-            flex-shrink: 0;
+        #sm-close:hover { background: rgba(0,255,0,0.2); }
+        #skill-modal-body { padding: 22px; }
+        .sm-cat {
+            display: inline-block; background: rgba(255,64,129,0.18); color: #ff4081;
+            border: 1px solid rgba(255,64,129,0.4); border-radius: 20px; padding: 3px 14px;
+            font-size: 0.78em; font-weight: bold; margin-bottom: 14px;
         }
-        #skill-modal-close:hover { background: rgba(0,255,0,0.2); border-color: #00ff00; }
-        #skill-modal-body { padding: 25px; }
-        .skill-category-badge {
-            display: inline-block;
-            background: rgba(255,64,129,0.2);
-            color: #ff4081;
-            border: 1px solid rgba(255,64,129,0.4);
-            border-radius: 20px;
-            padding: 3px 14px;
-            font-size: 0.8em;
-            margin-bottom: 16px;
-            font-weight: bold;
-            letter-spacing: 0.5px;
-        }
-        .skill-description {
-            color: #ddd;
-            line-height: 1.8;
-            font-size: 0.95em;
-            margin-bottom: 20px;
-        }
-        .skill-usage-title {
-            color: #00ff00;
-            font-size: 0.9em;
-            font-weight: bold;
-            margin-bottom: 10px;
-            display: flex; align-items: center; gap: 8px;
-        }
-        .skill-usage-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-bottom: 20px;
-        }
-        .skill-usage-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            font-size: 0.88em;
-            color: #ccc;
-            background: rgba(255,255,255,0.04);
-            border-radius: 8px;
-            padding: 10px 14px;
+        .sm-desc { color: #ddd; line-height: 1.8; font-size: 0.93em; margin-bottom: 18px; }
+        .sm-list-title { color: #00ff00; font-size: 0.88em; font-weight: bold; margin-bottom: 10px; }
+        .sm-list { list-style: none; display: flex; flex-direction: column; gap: 7px; margin-bottom: 18px; }
+        .sm-list li {
+            display: flex; align-items: flex-start; gap: 10px; font-size: 0.86em; color: #ccc;
+            background: rgba(255,255,255,0.04); border-radius: 7px; padding: 9px 13px;
             border-left: 2px solid rgba(0,255,0,0.4);
         }
-        .skill-usage-list li i { color: #00ff00; margin-top: 2px; flex-shrink: 0; }
-        .skill-level-bar-wrap {
-            margin-top: 18px;
-            background: rgba(255,255,255,0.06);
-            border-radius: 10px;
-            padding: 14px 18px;
-            border: 1px solid rgba(0,255,0,0.15);
-        }
-        .skill-level-label {
-            display: flex; justify-content: space-between;
-            font-size: 0.82em; color: #aaa; margin-bottom: 8px;
-        }
-        .skill-level-label span:last-child { color: #00ff00; font-weight: bold; }
-        .skill-level-track {
-            background: rgba(255,255,255,0.08);
-            border-radius: 20px;
-            height: 8px;
-            overflow: hidden;
-        }
-        .skill-level-fill {
-            height: 100%;
-            border-radius: 20px;
-            background: linear-gradient(90deg, #00cc00, #00ff00);
-            box-shadow: 0 0 8px rgba(0,255,0,0.5);
-            transition: width 0.8s cubic-bezier(0.4,0,0.2,1);
-            width: 0%;
-        }
+        .sm-list li::before { content: "›"; color: #00ff00; font-size: 1.2em; line-height: 1; flex-shrink: 0; }
+        .sm-level-wrap { background: rgba(255,255,255,0.05); border-radius: 10px; padding: 13px 16px; border: 1px solid rgba(0,255,0,0.15); }
+        .sm-level-labels { display: flex; justify-content: space-between; font-size: 0.8em; color: #aaa; margin-bottom: 8px; }
+        .sm-level-labels span:last-child { color: #00ff00; font-weight: bold; }
+        .sm-level-track { background: rgba(255,255,255,0.08); border-radius: 20px; height: 8px; overflow: hidden; }
+        .sm-level-fill { height: 100%; border-radius: 20px; background: linear-gradient(90deg,#00bb00,#00ff00); box-shadow: 0 0 8px rgba(0,255,0,0.5); transition: width 0.9s cubic-bezier(0.4,0,0.2,1); width: 0%; }
 
-        /* rest of existing styles */
         .veille-intro { background: linear-gradient(135deg, rgba(0,255,0,0.1), rgba(255,64,129,0.1)); padding: 25px; border-radius: 10px; margin-bottom: 30px; border-left: 4px solid #00ff00; }
         .veille-intro h3 { color: #00ff00; margin-bottom: 15px; font-size: 1.3em; }
         .veille-intro p { margin-bottom: 10px; }
@@ -328,12 +228,14 @@
         <a href="#contact">Contact</a>
     </nav>
 </header>
+
 <section id="about">
     <h2><i class="fas fa-user"></i> A propos de moi</h2>
     <p>Je m'appelle Thomas SILLION, j'ai 23 ans, je suis etudiant en <strong>BTS Services Informatiques aux Organisations (SIO)</strong>, passionne par les <strong>systemes, les reseaux et la cybersecurite</strong>. Mon objectif est de developper des competences solides en administration, virtualisation et en reseau afin de devenir un professionnel polyvalent dans le domaine de l'informatique.</p>
     <p>Curieux et rigoureux, j'aime apprendre de nouvelles technologies et relever des defis techniques a travers des projets concrets, tels que la mise en place de serveurs ou l'automatisation de taches. Mon parcours me permet d'acquerir une vision globale des systemes informatiques, allant du materiel jusqu'au developpement logiciel.</p>
     <p>Je m'interesse particulierement a la <strong>securite des systemes d'information</strong> et a l'<strong>innovation numerique</strong>. Je cherche constamment a ameliorer mes connaissances pour anticiper les besoins des entreprises et garantir la fiabilite et la performance de leurs infrastructures informatiques.</p>
 </section>
+
 <section id="stages">
     <h2><i class="fas fa-briefcase"></i> Stages professionnels</h2>
     <div class="stages-grid">
@@ -397,6 +299,7 @@
         </div>
     </div>
 </section>
+
 <section id="projects">
     <h2><i class="fas fa-folder-open"></i> Projets realises</h2>
     <div class="projects">
@@ -412,6 +315,7 @@
         </div>
     </div>
 </section>
+
 <section id="synthese">
     <h2><i class="fas fa-table"></i> Tableau de Synthese - Epreuve E6 - Session 2025</h2>
     <p>Ce tableau presente les situations professionnelles realisees durant ma formation BTS SIO et les competences du referentiel associees.</p>
@@ -457,6 +361,7 @@
         </table>
     </div>
 </section>
+
 <section id="skills">
     <h2><i class="fas fa-laptop-code"></i> Competences techniques</h2>
     <div class="skills">
@@ -466,6 +371,7 @@
         <div class="skill"><strong><i class="fas fa-file-alt"></i> Bureautique et Conception :</strong><p>Microsoft Office, LibreOffice, SolidWorks</p></div>
     </div>
 </section>
+
 <section id="veille">
     <h2><i class="fas fa-atom"></i> Veille Technologique</h2>
     <div class="veille-intro">
@@ -494,33 +400,29 @@
         <div class="actualite-item"><h4><i class="fas fa-shield-alt"></i> Quantum Defender : reseau resistant aux menaces quantiques</h4><p>Orange Business et Toshiba ont lance Quantum Defender, un reseau de fibre optique securise resistant aux menaces quantiques. Cette solution combine distribution de cles quantiques et chiffrement post-quantique pour proteger les donnees contre des attaques futures.</p><div class="actualite-source">Source : <a href="https://www.lemondeinformatique.fr/actualites/lire-orange-business-et-toshiba-lancent-un-reseau-resistant-aux-menaces-quantiques-97116.html" target="_blank">Le Monde Informatique</a></div></div>
     </div>
 </section>
+
 <section id="contact">
     <h2><i class="fas fa-envelope"></i> Contact</h2>
     <p>Vous pouvez me contacter par email ou via LinkedIn pour echanger sur mes projets et experiences.</p>
     <a class="contact-btn" href="mailto:thomas.sillion@gmail.com"><i class="fas fa-paper-plane"></i> Envoyer un email</a>
 </section>
 
-<!-- ===== MODAL COMPETENCE ===== -->
-<div id="skill-modal-overlay" onclick="handleSkillOverlayClick(event)">
+<!-- MODAL COMPETENCE -->
+<div id="skill-modal-overlay">
     <div id="skill-modal">
         <div id="skill-modal-header">
-            <div class="skill-icon" id="skill-modal-icon"></div>
-            <h3 id="skill-modal-title"></h3>
-            <button id="skill-modal-close" onclick="closeSkillModal()"><i class="fas fa-times"></i></button>
+            <div class="sm-icon" id="sm-icon"></div>
+            <h3 id="sm-title"></h3>
+            <button id="sm-close" onclick="closeSkillModal()">&#10005;</button>
         </div>
         <div id="skill-modal-body">
-            <div class="skill-category-badge" id="skill-modal-category"></div>
-            <p class="skill-description" id="skill-modal-desc"></p>
-            <div class="skill-usage-title"><i class="fas fa-check-circle"></i> Ce que j'ai accompli avec cette competence</div>
-            <ul class="skill-usage-list" id="skill-modal-list"></ul>
-            <div class="skill-level-bar-wrap">
-                <div class="skill-level-label">
-                    <span>Niveau acquis</span>
-                    <span id="skill-modal-level-txt"></span>
-                </div>
-                <div class="skill-level-track">
-                    <div class="skill-level-fill" id="skill-modal-level-bar"></div>
-                </div>
+            <div class="sm-cat" id="sm-cat"></div>
+            <p class="sm-desc" id="sm-desc"></p>
+            <div class="sm-list-title">&#10003; Ce que j'ai accompli avec cette competence</div>
+            <ul class="sm-list" id="sm-list"></ul>
+            <div class="sm-level-wrap">
+                <div class="sm-level-labels"><span>Niveau acquis</span><span id="sm-level-txt"></span></div>
+                <div class="sm-level-track"><div class="sm-level-fill" id="sm-level-bar"></div></div>
             </div>
         </div>
     </div>
@@ -545,6 +447,7 @@
         <div id="bcm-modal-footer"><p>BCM Informatique, Tous droits reserves</p></div>
     </div>
 </div>
+
 <!-- Modal Harry Potter -->
 <div id="hp-modal-overlay">
     <div id="hp-modal">
@@ -557,25 +460,22 @@
         <div id="hp-modal-content"><div class="hp-loading">Chargement de la magie...</div></div>
     </div>
 </div>
+
 <footer>&copy; 2026 Mon Portfolio BTS SIO - Tous droits reserves</footer>
+
 <script>
-// ===== MATRIX =====
+// MATRIX
 const canvas = document.getElementById('matrix');
 const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+canvas.width = window.innerWidth; canvas.height = window.innerHeight;
 const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%QUANTUM'.split('');
-const fontSize = 16;
-const columns = canvas.width / fontSize;
+const fontSize = 16, columns = canvas.width / fontSize;
 const drops = Array(Math.floor(columns)).fill(1);
 function draw() {
-    ctx.fillStyle = 'rgba(0,0,0,0.05)';
-    ctx.fillRect(0,0,canvas.width,canvas.height);
-    ctx.fillStyle = '#0F0';
-    ctx.font = fontSize + 'px monospace';
+    ctx.fillStyle = 'rgba(0,0,0,0.05)'; ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle = '#0F0'; ctx.font = fontSize + 'px monospace';
     for (let i = 0; i < drops.length; i++) {
-        const text = letters[Math.floor(Math.random()*letters.length)];
-        ctx.fillText(text, i*fontSize, drops[i]*fontSize);
+        ctx.fillText(letters[Math.floor(Math.random()*letters.length)], i*fontSize, drops[i]*fontSize);
         if (drops[i]*fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
         drops[i]++;
     }
@@ -583,307 +483,125 @@ function draw() {
 setInterval(draw, 35);
 window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
 
-// ===== SMOOTH SCROLL =====
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+// SMOOTH SCROLL
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const t = document.querySelector(this.getAttribute('href'));
+        if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 });
 
-// ===== SKILL MODAL DATA =====
-const skillData = {
-    'EasyVista': {
-        icon: 'fas fa-ticket-alt',
-        category: 'Outil ITSM - Gestion de tickets',
-        description: "EasyVista est un outil de gestion de services informatiques (ITSM) utilise pour creer, suivre et cloture des tickets d'incidents ou de demandes. J'ai utilise cet outil quotidiennement lors de mon stage chez Eiffage pour gerer les demandes des collaborateurs.",
-        points: [
-            "Prise en charge et suivi de tickets d'incidents utilisateurs",
-            "Attribution des tickets ACRU aux techniciens concernes",
-            "Verification des demandes de modification serveur via fichier Excel",
-            "Validation et cloture des tickets apres resolution"
-        ],
-        level: 70,
-        levelTxt: "Operationnel"
-    },
-    'Windows 11': {
-        icon: 'fab fa-windows',
-        category: 'Systeme d\'exploitation - Microsoft',
-        description: "Windows 11 est le systeme d'exploitation desktop de Microsoft. Durant mon stage chez Eiffage, j'ai effectue des reinstallations completes de postes en deployant Windows 11 via une cle de boot, avec configuration de la localisation, de la langue et du nom de machine.",
-        points: [
-            "Reinstallation complete de postes via cle de boot (imaging)",
-            "Configuration de la localisation, langue et nom de machine",
-            "Application des mises a jour Windows et pilotes constructeur (Lenovo)",
-            "Mise en reseau des machines apres installation"
-        ],
-        level: 80,
-        levelTxt: "Avance"
-    },
-    'Support N1/N2': {
-        icon: 'fas fa-headset',
-        category: 'Support informatique - Helpdesk',
-        description: "Le support N1 correspond a la prise en charge initiale des demandes utilisateurs (diagnostic, solutions simples), tandis que le N2 implique un niveau d'expertise plus approfondi pour les problemes complexes. J'ai assure ces deux niveaux de support lors de mes stages.",
-        points: [
-            "Diagnostic et resolution d'incidents utilisateurs au quotidien",
-            "Escalade vers les equipes N3 pour les problemes critiques",
-            "Suivi et documentation des interventions via EasyVista",
-            "Conseil aux utilisateurs sur les bonnes pratiques informatiques"
-        ],
-        level: 75,
-        levelTxt: "Operationnel"
-    },
-    'Gestion de parc': {
-        icon: 'fas fa-desktop',
-        category: 'Administration systeme - Parc informatique',
-        description: "La gestion de parc informatique consiste a maintenir un inventaire a jour des equipements, a assurer leur deploiement, leur suivi et leur maintenance. Chez Eiffage, j'ai participe a la gestion physique et logicielle du parc de postes de travail.",
-        points: [
-            "Participation au deploiement de nouveaux postes de travail",
-            "Suivi de l'inventaire materiel lors du demenagement",
-            "Gestion des tickets de modification serveur avec verification prealable",
-            "Maintenance et remasterisation des postes defectueux"
-        ],
-        level: 65,
-        levelTxt: "Intermediaire"
-    },
-    'Inventaire': {
-        icon: 'fas fa-clipboard-list',
-        category: 'Gestion - Traçabilite du materiel',
-        description: "La realisation d'inventaires permet de maintenir une traçabilite precise sur les equipements informatiques. Lors du demenagement chez Eiffage, j'ai effectue un inventaire complet du materiel pour garantir qu'aucun equipement ne soit perdu ou oublie.",
-        points: [
-            "Demontage et etiquetage des ecrans et supports",
-            "Creation d'un inventaire complet avant demenagement",
-            "Verification de la tracabilite de chaque equipement",
-            "Retrait et rangement organise des cables et peripheriques"
-        ],
-        level: 70,
-        levelTxt: "Operationnel"
-    },
-    'Formation': {
-        icon: 'fas fa-chalkboard-teacher',
-        category: 'Pedagogie - Transfert de competences',
-        description: "La capacite a former et accompagner des collegues ou stagiaires est une competence transversale essentielle. Chez Eiffage, j'ai eu l'opportunite d'accueillir et d'integrer de nouveaux stagiaires, en leur transmettant les connaissances acquises.",
-        points: [
-            "Accueil et integration de nouveaux stagiaires dans l'equipe",
-            "Definition d'objectifs clairs et progressifs",
-            "Partage des procedures et bonnes pratiques internes",
-            "Verification de la comprehension par des mises en situation"
-        ],
-        level: 65,
-        levelTxt: "Intermediaire"
-    },
-    'Palo Alto': {
-        icon: 'fas fa-fire-alt',
-        category: 'Securite reseau - Firewall NGFW',
-        description: "Palo Alto Networks est un leader mondial des firewalls de nouvelle generation (NGFW). Lors de mon stage a l'AP-HP, j'ai travaille sur le firewall PA-850, en participant a une operation de bascule en haute disponibilite (HA) pour une maintenance planifiee.",
-        points: [
-            "Bascule en haute disponibilite (HA) vers le firewall secondaire",
-            "Intervention controlee sur l'equipement principal hors production",
-            "Retablissement des flux reseau et tests de stabilite post-maintenance",
-            "Garantie de la continuite de service dans un environnement hospitalier critique"
-        ],
-        level: 55,
-        levelTxt: "Notions avancees"
-    },
-    'Checkpoint': {
-        icon: 'fas fa-shield-alt',
-        category: 'Securite reseau - Gestion des regles firewall',
-        description: "Checkpoint est une solution de securite reseau largement deployee en entreprise. A l'AP-HP, j'ai consulte et modifie des regles de filtrage via l'outil de gestion SMAX, en respectant une tracabilite stricte par trigramme pour chaque intervention.",
-        points: [
-            "Consultation et analyse de la matrice des flux existante",
-            "Modification des regles firewall via tickets SMAX documentes",
-            "Tracabilite des interventions par trigramme pour l'auditabilite",
-            "Respect des procedures formelles avec validation hierarchique"
-        ],
-        level: 50,
-        levelTxt: "Notions avancees"
-    },
-    'Haute Disponibilite': {
-        icon: 'fas fa-sync-alt',
-        category: 'Infrastructure reseau - Redondance & continuite',
-        description: "La haute disponibilite (HA) designe une architecture permettant a un systeme de rester operationnel meme en cas de panne d'un composant. A l'AP-HP, j'ai participe a une bascule HA sur firewall Palo Alto, garantissant la continuite des services hospitaliers.",
-        points: [
-            "Execution d'une bascule HA planifiee sur firewall Palo Alto PA-850",
-            "Tests de stabilite et verification des flux apres bascule",
-            "Comprehension de l'architecture active/passive en environnement critique",
-            "Retablissement du systeme principal apres maintenance"
-        ],
-        level: 55,
-        levelTxt: "Intermediaire"
-    },
-    'VLAN': {
-        icon: 'fas fa-network-wired',
-        category: 'Reseau - Segmentation logique',
-        description: "Les VLANs (Virtual Local Area Network) permettent de segmenter logiquement un reseau physique en plusieurs reseaux independants. J'ai travaille sur cette technologie en cours (configuration sur Cisco) et en stage a l'AP-HP lors de l'incident de telephonie IP.",
-        points: [
-            "Configuration de VLANs en environnement Cisco (TP en formation)",
-            "Analyse de flux inter-VLAN lors d'un incident telephonie IP a l'AP-HP",
-            "Comprehension de la segmentation reseau en milieu hospitalier",
-            "Verification des regles firewall associees a la segmentation VLAN"
-        ],
-        level: 65,
-        levelTxt: "Intermediaire"
-    },
-    'Firewall': {
-        icon: 'fas fa-fire',
-        category: 'Securite reseau - Filtrage & protection perimetre',
-        description: "Un firewall est un equipement ou logiciel qui filtre les flux reseau selon des regles definies. J'ai manipule deux solutions majeures du marche (Palo Alto et Checkpoint) lors de mon stage a l'AP-HP, dans un contexte de securite hospitaliere critique.",
-        points: [
-            "Maintenance du firewall Palo Alto PA-850 avec bascule HA",
-            "Modification de regles de filtrage sur Checkpoint via SMAX",
-            "Resolution d'un incident de telephonie IP lie aux regles firewall",
-            "Comprehension du principe du moindre privilege dans les regles de filtrage"
-        ],
-        level: 60,
-        levelTxt: "Intermediaire"
-    },
-    'SMAX': {
-        icon: 'fas fa-tasks',
-        category: 'Outil ITSM - Gestion de tickets (AP-HP)',
-        description: "SMAX (Service Management Automation X) est l'outil de gestion des services informatiques utilise a l'AP-HP. Il permet de creer et suivre des tickets de modification avec une tracabilite stricte, indispensable dans un environnement hospitalier soumis a audit.",
-        points: [
-            "Creation et suivi de tickets de modification de regles firewall",
-            "Tracabilite par trigramme de chaque intervention realisee",
-            "Respect des procedures formelles de validation avant toute modification",
-            "Documentation des changements pour l'auditabilite des interventions"
-        ],
-        level: 60,
-        levelTxt: "Operationnel"
-    },
-    'Telephonie IP': {
-        icon: 'fas fa-phone-alt',
-        category: 'Reseau - Communication VoIP',
-        description: "La telephonie IP (VoIP) permet de faire transiter les appels telephoniques sur le reseau IP. A l'AP-HP, j'ai resolu un incident impactant la telephonie IP en analysant les flux inter-VLAN et en corrigeant les regles firewall qui bloquaient le trafic vocal.",
-        points: [
-            "Analyse d'un incident de telephonie IP impactant plusieurs services",
-            "Identification du flux inter-VLAN bloque par une regle firewall",
-            "Correction du filtrage reseau pour retablir les communications",
-            "Prise de conscience de l'importance de la telephonie en milieu hospitalier"
-        ],
-        level: 45,
-        levelTxt: "Notions pratiques"
-    },
-    'Securite reseau': {
-        icon: 'fas fa-lock',
-        category: 'Cybersecurite - Protection de l\'infrastructure',
-        description: "La securite reseau englobe l'ensemble des pratiques visant a proteger l'infrastructure informatique contre les menaces. A l'AP-HP, j'ai evolue dans un environnement ou chaque decision technique est prise dans le respect strict du principe du moindre privilege et des procedures formelles.",
-        points: [
-            "Travail sur des equipements critiques (Palo Alto, Checkpoint) en environnement hospitalier",
-            "Application du principe du moindre privilege dans chaque intervention",
-            "Respect des procedures formelles avec validation hierarchique systematique",
-            "Comprehension de l'architecture reseau securisee : DMZ, VLAN, HA, fibre optique"
-        ],
-        level: 60,
-        levelTxt: "Intermediaire"
-    }
+// SKILL MODAL
+var skillData = {
+    'EasyVista': { icon:'fas fa-ticket-alt', cat:'Outil ITSM - Gestion de tickets', desc:"EasyVista est un outil ITSM utilise pour creer, suivre et cloturer des tickets d'incidents. Utilise quotidiennement chez Eiffage pour gerer les demandes des collaborateurs et assurer le suivi des interventions.", points:["Prise en charge et suivi de tickets d'incidents utilisateurs","Attribution des tickets ACRU aux techniciens concernes","Verification des demandes de modification serveur via fichier Excel","Validation et cloture des tickets apres resolution"], level:70, lvl:"Operationnel" },
+    'Windows 11': { icon:'fab fa-windows', cat:"Systeme d'exploitation - Microsoft", desc:"Windows 11 est le systeme d'exploitation desktop de Microsoft. Chez Eiffage, j'ai effectue des reinstallations completes de postes via cle de boot avec configuration integrale de chaque machine.", points:["Reinstallation complete de postes via cle de boot (imaging)","Configuration de la localisation, langue et nom de machine","Application des mises a jour Windows et pilotes constructeur Lenovo","Mise en reseau des machines apres installation"], level:80, lvl:"Avance" },
+    'Support N1/N2': { icon:'fas fa-headset', cat:'Support informatique - Helpdesk', desc:"Le support N1 couvre la prise en charge initiale des incidents utilisateurs, le N2 traite les problemes plus complexes. J'ai assure ces deux niveaux lors de mes stages.", points:["Diagnostic et resolution d'incidents utilisateurs au quotidien","Escalade vers les equipes N3 pour les problemes critiques","Suivi et documentation des interventions via EasyVista","Conseil aux utilisateurs sur les bonnes pratiques informatiques"], level:75, lvl:"Operationnel" },
+    'Gestion de parc': { icon:'fas fa-desktop', cat:'Administration systeme - Parc informatique', desc:"La gestion de parc consiste a maintenir un inventaire a jour, assurer le deploiement et la maintenance des equipements. Chez Eiffage, j'ai participe a la gestion physique et logicielle du parc.", points:["Participation au deploiement de nouveaux postes de travail","Suivi de l'inventaire materiel lors du demenagement","Gestion des tickets de modification serveur avec verification","Maintenance et remasterisation des postes defectueux"], level:65, lvl:"Intermediaire" },
+    'Inventaire': { icon:'fas fa-clipboard-list', cat:'Gestion - Tracabilite du materiel', desc:"La realisation d'inventaires garantit la tracabilite des equipements. Lors du demenagement chez Eiffage, j'ai inventorie l'ensemble du materiel informatique pour eviter toute perte.", points:["Demontage et etiquetage des ecrans et supports","Creation d'un inventaire complet avant demenagement","Verification de la tracabilite de chaque equipement","Retrait et rangement organise des cables et peripheriques"], level:70, lvl:"Operationnel" },
+    'Formation': { icon:'fas fa-chalkboard-teacher', cat:'Pedagogie - Transfert de competences', desc:"Former des collegues est une competence transversale cle. Chez Eiffage, j'ai accueilli et integre de nouveaux stagiaires en leur transmettant les procedures et bonnes pratiques.", points:["Accueil et integration de nouveaux stagiaires dans l'equipe","Definition d'objectifs clairs et progressifs","Partage des procedures et bonnes pratiques internes","Verification de la comprehension par des mises en situation"], level:65, lvl:"Intermediaire" },
+    'Palo Alto': { icon:'fas fa-fire-alt', cat:'Securite reseau - Firewall NGFW', desc:"Palo Alto Networks est un leader mondial des firewalls nouvelle generation. A l'AP-HP, j'ai travaille sur le PA-850 lors d'une operation de bascule en haute disponibilite planifiee.", points:["Bascule en haute disponibilite (HA) vers le firewall secondaire","Intervention controlee sur l'equipement principal hors production","Retablissement des flux reseau et tests de stabilite","Garantie de la continuite de service en environnement hospitalier"], level:55, lvl:"Notions avancees" },
+    'Checkpoint': { icon:'fas fa-shield-alt', cat:'Securite reseau - Gestion des regles firewall', desc:"Checkpoint est une solution de securite reseau tres deployee en entreprise. A l'AP-HP, j'ai modifie des regles de filtrage via SMAX avec une tracabilite stricte par trigramme.", points:["Consultation et analyse de la matrice des flux existante","Modification des regles firewall via tickets SMAX documentes","Tracabilite des interventions par trigramme","Respect des procedures formelles avec validation hierarchique"], level:50, lvl:"Notions avancees" },
+    'Haute Disponibilite': { icon:'fas fa-sync-alt', cat:'Infrastructure reseau - Redondance & continuite', desc:"La haute disponibilite (HA) permet a un systeme de rester operationnel meme en cas de panne. J'ai participe a une bascule HA sur firewall Palo Alto a l'AP-HP.", points:["Execution d'une bascule HA planifiee sur Palo Alto PA-850","Tests de stabilite et verification des flux apres bascule","Comprehension de l'architecture active/passive en milieu critique","Retablissement du systeme principal apres maintenance"], level:55, lvl:"Intermediaire" },
+    'VLAN': { icon:'fas fa-network-wired', cat:'Reseau - Segmentation logique', desc:"Les VLANs segmentent logiquement un reseau physique. Travaille en formation sur Cisco et en stage a l'AP-HP lors d'un incident de telephonie IP lie aux flux inter-VLAN.", points:["Configuration de VLANs en environnement Cisco (TP formation)","Analyse de flux inter-VLAN lors d'un incident telephonie IP","Comprehension de la segmentation reseau en milieu hospitalier","Verification des regles firewall liees aux VLANs"], level:65, lvl:"Intermediaire" },
+    'Firewall': { icon:'fas fa-fire', cat:'Securite reseau - Filtrage & protection perimetre', desc:"Un firewall filtre les flux reseau selon des regles definies. J'ai manipule Palo Alto et Checkpoint a l'AP-HP dans un contexte de securite hospitaliere critique.", points:["Maintenance du firewall Palo Alto PA-850 avec bascule HA","Modification de regles de filtrage sur Checkpoint via SMAX","Resolution d'un incident telephonie IP lie au filtrage firewall","Application du principe du moindre privilege"], level:60, lvl:"Intermediaire" },
+    'SMAX': { icon:'fas fa-tasks', cat:'Outil ITSM - Gestion de tickets AP-HP', desc:"SMAX est l'outil ITSM de l'AP-HP. Il assure la tracabilite stricte de chaque modification reseau, indispensable dans un environnement soumis a audit.", points:["Creation et suivi de tickets de modification de regles firewall","Tracabilite par trigramme de chaque intervention","Respect des procedures formelles de validation","Documentation des changements pour l'auditabilite"], level:60, lvl:"Operationnel" },
+    'Telephonie IP': { icon:'fas fa-phone-alt', cat:'Reseau - Communication VoIP', desc:"La telephonie IP (VoIP) transporte les appels sur le reseau IP. A l'AP-HP, j'ai resolu un incident de telephonie cause par un flux inter-VLAN mal configure.", points:["Analyse d'un incident de telephonie IP impactant plusieurs services","Identification du flux inter-VLAN bloque par une regle firewall","Correction du filtrage reseau pour retablir les communications","Prise de conscience de l'importance de la VoIP en milieu hospitalier"], level:45, lvl:"Notions pratiques" },
+    'Securite reseau': { icon:'fas fa-lock', cat:"Cybersecurite - Protection de l'infrastructure", desc:"La securite reseau protege l'infrastructure contre les menaces. A l'AP-HP, chaque intervention suit le principe du moindre privilege avec validation hierarchique.", points:["Travail sur equipements critiques Palo Alto et Checkpoint","Application du principe du moindre privilege","Respect des procedures formelles avec validation hierarchique","Comprehension de l'architecture : DMZ, VLAN, HA, fibre optique"], level:60, lvl:"Intermediaire" }
 };
 
-function openSkillModal(skillName) {
-    const data = skillData[skillName];
-    if (!data) return;
-
-    document.getElementById('skill-modal-icon').innerHTML = '<i class="' + data.icon + '"></i>';
-    document.getElementById('skill-modal-title').textContent = skillName;
-    document.getElementById('skill-modal-category').textContent = data.category;
-    document.getElementById('skill-modal-desc').textContent = data.description;
-    document.getElementById('skill-modal-level-txt').textContent = data.levelTxt + ' — ' + data.level + '%';
-
-    const list = document.getElementById('skill-modal-list');
-    list.innerHTML = data.points.map(p => '<li><i class="fas fa-angle-right"></i> ' + p + '</li>').join('');
-
-    // Reset then animate bar
-    const bar = document.getElementById('skill-modal-level-bar');
+function openSkillModal(name) {
+    var d = skillData[name];
+    if (!d) return;
+    document.getElementById('sm-icon').innerHTML = '<i class="' + d.icon + '"></i>';
+    document.getElementById('sm-title').textContent = name;
+    document.getElementById('sm-cat').textContent = d.cat;
+    document.getElementById('sm-desc').textContent = d.desc;
+    document.getElementById('sm-level-txt').textContent = d.lvl + ' — ' + d.level + '%';
+    document.getElementById('sm-list').innerHTML = d.points.map(function(p){ return '<li>' + p + '</li>'; }).join('');
+    var bar = document.getElementById('sm-level-bar');
     bar.style.width = '0%';
-
-    document.getElementById('skill-modal-overlay').classList.add('active');
+    var overlay = document.getElementById('skill-modal-overlay');
+    overlay.classList.add('active');
     document.body.style.overflow = 'hidden';
-
-    // Trigger animation after paint
-    requestAnimationFrame(() => {
-        requestAnimationFrame(() => { bar.style.width = data.level + '%'; });
-    });
+    setTimeout(function(){ bar.style.width = d.level + '%'; }, 50);
 }
-
 function closeSkillModal() {
     document.getElementById('skill-modal-overlay').classList.remove('active');
     document.body.style.overflow = '';
 }
-
-function handleSkillOverlayClick(e) {
-    if (e.target === document.getElementById('skill-modal-overlay')) closeSkillModal();
-}
-
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeSkillModal();
+document.getElementById('skill-modal-overlay').addEventListener('click', function(e){
+    if (e.target === this) closeSkillModal();
 });
+document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeSkillModal(); });
 
-// ===== BCM MODAL =====
+// BCM MODAL
 function openBCMModal() { document.getElementById('bcm-modal-overlay').classList.add('active'); document.body.style.overflow = 'hidden'; showBCMPage('accueil', document.querySelector('.bcm-nav-btn')); }
 function closeBCMModal() { document.getElementById('bcm-modal-overlay').classList.remove('active'); document.body.style.overflow = ''; }
-document.getElementById('bcm-modal-overlay').addEventListener('click', function(e) { if (e.target===this) closeBCMModal(); });
+document.getElementById('bcm-modal-overlay').addEventListener('click', function(e){ if(e.target===this) closeBCMModal(); });
 function showBCMPage(page, btn) {
-    document.querySelectorAll('.bcm-page').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.bcm-nav-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.bcm-page').forEach(function(p){ p.classList.remove('active'); });
+    document.querySelectorAll('.bcm-nav-btn').forEach(function(b){ b.classList.remove('active'); });
     document.getElementById('bcm-page-'+page).classList.add('active');
     if (btn) btn.classList.add('active');
 }
 
-// ===== HP MODAL =====
-let hpCharacters = null;
-let hpSpells = null;
+// HP MODAL
+var hpCharacters = null, hpSpells = null;
 function openHPModal() { document.getElementById('hp-modal-overlay').classList.add('active'); document.body.style.overflow = 'hidden'; showHPTab('characters', document.querySelector('.hp-nav-btn')); }
 function closeHPModal() { document.getElementById('hp-modal-overlay').classList.remove('active'); document.body.style.overflow = ''; }
-document.getElementById('hp-modal-overlay').addEventListener('click', function(e) { if (e.target===this) closeHPModal(); });
+document.getElementById('hp-modal-overlay').addEventListener('click', function(e){ if(e.target===this) closeHPModal(); });
 function showHPTab(tab, btn) {
-    document.querySelectorAll('.hp-nav-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.hp-nav-btn').forEach(function(b){ b.classList.remove('active'); });
     if (btn) btn.classList.add('active');
     if (tab==='characters') renderCharacters();
     else if (tab==='spells') renderSpells();
     else renderHouses();
 }
-const HP_FB_CHARS = [{name:"Harry Potter",house:"Gryffindor",image:""},{name:"Hermione Granger",house:"Gryffindor",image:""},{name:"Ron Weasley",house:"Gryffindor",image:""},{name:"Draco Malfoy",house:"Slytherin",image:""},{name:"Luna Lovegood",house:"Ravenclaw",image:""},{name:"Neville Londubat",house:"Gryffindor",image:""},{name:"Cedric Diggory",house:"Hufflepuff",image:""},{name:"Cho Chang",house:"Ravenclaw",image:""}];
-const HP_FB_SPELLS = [{name:"Expelliarmus",description:"Desarme l'adversaire."},{name:"Lumos",description:"Illumine la baguette."},{name:"Alohomora",description:"Ouvre les serrures."},{name:"Expecto Patronum",description:"Invoque un Patronus."},{name:"Wingardium Leviosa",description:"Levite un objet."},{name:"Avada Kedavra",description:"Malediction de la mort."},{name:"Accio",description:"Fait venir un objet a soi."},{name:"Stupefy",description:"Etourdit l'adversaire."}];
+var HP_FB_CHARS = [{name:"Harry Potter",house:"Gryffindor",image:""},{name:"Hermione Granger",house:"Gryffindor",image:""},{name:"Ron Weasley",house:"Gryffindor",image:""},{name:"Draco Malfoy",house:"Slytherin",image:""},{name:"Luna Lovegood",house:"Ravenclaw",image:""},{name:"Neville Londubat",house:"Gryffindor",image:""},{name:"Cedric Diggory",house:"Hufflepuff",image:""},{name:"Cho Chang",house:"Ravenclaw",image:""}];
+var HP_FB_SPELLS = [{name:"Expelliarmus",description:"Desarme l'adversaire."},{name:"Lumos",description:"Illumine la baguette."},{name:"Alohomora",description:"Ouvre les serrures."},{name:"Expecto Patronum",description:"Invoque un Patronus."},{name:"Wingardium Leviosa",description:"Levite un objet."},{name:"Avada Kedavra",description:"Malediction de la mort."},{name:"Accio",description:"Fait venir un objet a soi."},{name:"Stupefy",description:"Etourdit l'adversaire."}];
 async function tryFetch(url) {
-    const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), 12000);
-    const res = await fetch(url, {signal: controller.signal});
-    clearTimeout(timer);
+    var ctrl = new AbortController();
+    var t = setTimeout(function(){ ctrl.abort(); }, 12000);
+    var res = await fetch(url, {signal: ctrl.signal});
+    clearTimeout(t);
     if (!res.ok) throw new Error('HTTP '+res.status);
     return await res.json();
 }
 function showBar(content, emoji, label, attempt, max) {
-    const pct = Math.round(((attempt-1)/max)*100);
+    var pct = Math.round(((attempt-1)/max)*100);
     content.innerHTML = '<div class="hp-loading"><div style="font-size:2em;margin-bottom:12px;">'+emoji+'</div><div style="margin-bottom:14px;">'+label+'</div><div style="background:rgba(255,255,255,0.15);border-radius:20px;height:10px;width:260px;margin:0 auto;"><div id="hpbar" style="background:#d4af37;height:10px;border-radius:20px;width:'+pct+'%;transition:width 0.4s;"></div></div><div style="margin-top:10px;font-size:0.85em;color:#aaa;">'+(attempt>1?'Tentative '+attempt+'/'+max+'...':'Connexion au serveur...')+'</div></div>';
 }
-function animBar(pct) { const b=document.getElementById('hpbar'); if(b) b.style.width=pct+'%'; }
-async function renderCharacters(search='', house='') {
-    const content = document.getElementById('hp-modal-content');
+function animBar(pct) { var b=document.getElementById('hpbar'); if(b) b.style.width=pct+'%'; }
+async function renderCharacters(search, house) {
+    search = search||''; house = house||'';
+    var content = document.getElementById('hp-modal-content');
     if (!hpCharacters) {
-        for (let a=1; a<=3; a++) {
-            showBar(content, 'WIZARD', 'Chargement des personnages...', a, 3);
-            await new Promise(r=>setTimeout(r,50));
-            try { animBar(30+a*20); hpCharacters = await tryFetch('https://hp-api.onrender.com/api/characters'); animBar(100); await new Promise(r=>setTimeout(r,300)); break; }
-            catch(e) { if(a===3){hpCharacters=HP_FB_CHARS;content.innerHTML='<div class="hp-loading" style="color:#d4af37;font-size:1em;">Serveur indisponible - donnees partielles affichees.<br><small style="color:#aaa;">Reessayez dans quelques minutes.</small></div>';await new Promise(r=>setTimeout(r,1800));}else{await new Promise(r=>setTimeout(r,2000));} }
+        for (var a=1; a<=3; a++) {
+            showBar(content,'WIZARD','Chargement des personnages...',a,3);
+            await new Promise(function(r){setTimeout(r,50);});
+            try { animBar(30+a*20); hpCharacters = await tryFetch('https://hp-api.onrender.com/api/characters'); animBar(100); await new Promise(function(r){setTimeout(r,300);}); break; }
+            catch(e) { if(a===3){hpCharacters=HP_FB_CHARS;content.innerHTML='<div class="hp-loading" style="color:#d4af37;font-size:1em;">Serveur indisponible - donnees partielles affichees.</div>';await new Promise(function(r){setTimeout(r,1800);});}else{await new Promise(function(r){setTimeout(r,2000);});} }
         }
     }
-    const filtered = hpCharacters.filter(c => c.name.toLowerCase().includes(search.toLowerCase()) && (house===''||c.house===house));
-    content.innerHTML = '<h3>Personnages ('+filtered.length+')</h3><div class="hp-filters"><input type="text" id="hp-search" placeholder="Rechercher..." value="'+search+'" oninput="renderCharacters(this.value,document.getElementById(\'hp-house\').value)"><select id="hp-house" onchange="renderCharacters(document.getElementById(\'hp-search\').value,this.value)"><option value="">Toutes les maisons</option><option value="Gryffindor"'+(house==='Gryffindor'?' selected':'')+'>Gryffondor</option><option value="Slytherin"'+(house==='Slytherin'?' selected':'')+'>Serpentard</option><option value="Ravenclaw"'+(house==='Ravenclaw'?' selected':'')+'>Serdaigle</option><option value="Hufflepuff"'+(house==='Hufflepuff'?' selected':'')+'>Poufsouffle</option></select></div><div class="hp-card-list">'+filtered.map(c=>'<div class="hp-card"><img src="'+(c.image||'https://via.placeholder.com/100x130?text=?')+'" alt="'+c.name+'"><h4>'+c.name+'</h4><p>'+(c.house||'Inconnu')+'</p></div>').join('')+'</div>';
+    var filtered = hpCharacters.filter(function(c){ return c.name.toLowerCase().includes(search.toLowerCase()) && (house===''||c.house===house); });
+    content.innerHTML = '<h3>Personnages ('+filtered.length+')</h3><div class="hp-filters"><input type="text" id="hp-search" placeholder="Rechercher..." value="'+search+'" oninput="renderCharacters(this.value,document.getElementById(\'hp-house\').value)"><select id="hp-house" onchange="renderCharacters(document.getElementById(\'hp-search\').value,this.value)"><option value="">Toutes les maisons</option><option value="Gryffindor"'+(house==='Gryffindor'?' selected':'')+'>Gryffondor</option><option value="Slytherin"'+(house==='Slytherin'?' selected':'')+'>Serpentard</option><option value="Ravenclaw"'+(house==='Ravenclaw'?' selected':'')+'>Serdaigle</option><option value="Hufflepuff"'+(house==='Hufflepuff'?' selected':'')+'>Poufsouffle</option></select></div><div class="hp-card-list">'+filtered.map(function(c){ return '<div class="hp-card"><img src="'+(c.image||'https://via.placeholder.com/100x130?text=?')+'" alt="'+c.name+'"><h4>'+c.name+'</h4><p>'+(c.house||'Inconnu')+'</p></div>'; }).join('')+'</div>';
 }
 async function renderSpells() {
-    const content = document.getElementById('hp-modal-content');
+    var content = document.getElementById('hp-modal-content');
     if (!hpSpells) {
-        for (let a=1; a<=3; a++) {
-            showBar(content, 'STAR', 'Chargement des sorts...', a, 3);
-            await new Promise(r=>setTimeout(r,50));
-            try { animBar(30+a*20); hpSpells = await tryFetch('https://hp-api.onrender.com/api/spells'); animBar(100); await new Promise(r=>setTimeout(r,300)); break; }
-            catch(e) { if(a===3){hpSpells=HP_FB_SPELLS;content.innerHTML='<div class="hp-loading" style="color:#d4af37;font-size:1em;">Serveur indisponible - donnees partielles affichees.<br><small style="color:#aaa;">Reessayez dans quelques minutes.</small></div>';await new Promise(r=>setTimeout(r,1800));}else{await new Promise(r=>setTimeout(r,2000));} }
+        for (var a=1; a<=3; a++) {
+            showBar(content,'STAR','Chargement des sorts...',a,3);
+            await new Promise(function(r){setTimeout(r,50);});
+            try { animBar(30+a*20); hpSpells = await tryFetch('https://hp-api.onrender.com/api/spells'); animBar(100); await new Promise(function(r){setTimeout(r,300);}); break; }
+            catch(e) { if(a===3){hpSpells=HP_FB_SPELLS;content.innerHTML='<div class="hp-loading" style="color:#d4af37;font-size:1em;">Serveur indisponible.</div>';await new Promise(function(r){setTimeout(r,1800);});}else{await new Promise(function(r){setTimeout(r,2000);});} }
         }
     }
-    content.innerHTML = '<h3>Sorts ('+hpSpells.length+')</h3><div class="hp-card-list">'+hpSpells.map(s=>'<div class="hp-card" style="width:200px;"><h4>'+s.name+'</h4><p style="font-size:0.82em;color:#f5deb3;">'+(s.description||'Pas de description')+'</p></div>').join('')+'</div>';
+    content.innerHTML = '<h3>Sorts ('+hpSpells.length+')</h3><div class="hp-card-list">'+hpSpells.map(function(s){ return '<div class="hp-card" style="width:200px;"><h4>'+s.name+'</h4><p style="font-size:0.82em;color:#f5deb3;">'+(s.description||'Pas de description')+'</p></div>'; }).join('')+'</div>';
 }
 function renderHouses() {
-    const houses = [{name:"Gryffondor",founder:"Godric Gryffondor",colors:"Rouge et Or",mascot:"Lion",traits:"Courage, Determination, Bravoure"},{name:"Serpentard",founder:"Salazar Serpentard",colors:"Vert et Argent",mascot:"Serpent",traits:"Ambition, Ruse, Leadership"},{name:"Poufsouffle",founder:"Helga Poufsouffle",colors:"Jaune et Noir",mascot:"Blaireau",traits:"Loyaute, Patience, Travail"},{name:"Serdaigle",founder:"Rowena Serdaigle",colors:"Bleu et Argent",mascot:"Aigle",traits:"Intelligence, Creativite, Sagesse"}];
-    document.getElementById('hp-modal-content').innerHTML = '<h3>Les Maisons de Poudlard</h3><div class="hp-card-list">'+houses.map(h=>'<div class="hp-card" style="width:220px;"><h4 style="font-size:1.1em;color:#d4af37;">'+h.name+'</h4><p><strong>Fondateur :</strong> '+h.founder+'</p><p><strong>Couleurs :</strong> '+h.colors+'</p><p><strong>Mascotte :</strong> '+h.mascot+'</p><p style="margin-top:8px;font-size:0.85em;">'+h.traits+'</p></div>').join('')+'</div>';
+    var houses = [{name:"Gryffondor",founder:"Godric Gryffondor",colors:"Rouge et Or",mascot:"Lion",traits:"Courage, Determination, Bravoure"},{name:"Serpentard",founder:"Salazar Serpentard",colors:"Vert et Argent",mascot:"Serpent",traits:"Ambition, Ruse, Leadership"},{name:"Poufsouffle",founder:"Helga Poufsouffle",colors:"Jaune et Noir",mascot:"Blaireau",traits:"Loyaute, Patience, Travail"},{name:"Serdaigle",founder:"Rowena Serdaigle",colors:"Bleu et Argent",mascot:"Aigle",traits:"Intelligence, Creativite, Sagesse"}];
+    document.getElementById('hp-modal-content').innerHTML = '<h3>Les Maisons de Poudlard</h3><div class="hp-card-list">'+houses.map(function(h){ return '<div class="hp-card" style="width:220px;"><h4 style="font-size:1.1em;color:#d4af37;">'+h.name+'</h4><p><strong>Fondateur :</strong> '+h.founder+'</p><p><strong>Couleurs :</strong> '+h.colors+'</p><p><strong>Mascotte :</strong> '+h.mascot+'</p><p style="margin-top:8px;font-size:0.85em;">'+h.traits+'</p></div>'; }).join('')+'</div>';
 }
 </script>
 </body>
