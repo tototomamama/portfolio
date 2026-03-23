@@ -37,6 +37,22 @@
         .tableau-synthese tr:hover { background: rgba(0,255,0,0.1); }
         .tableau-synthese .section-header { background: rgba(255,64,129,0.15); color: #ff4081; font-weight: bold; text-align: left; font-style: italic; }
         .check-mark { color: #00ff00; font-size: 1.2em; font-weight: bold; }
+        /* En-têtes de compétences cliquables */
+        .tableau-synthese th.comp-clickable {
+            cursor: pointer;
+            transition: background 0.25s, box-shadow 0.25s;
+            position: relative;
+        }
+        .tableau-synthese th.comp-clickable:hover {
+            background: rgba(0,255,0,0.55);
+            box-shadow: inset 0 0 12px rgba(0,255,0,0.3);
+            color: #fff;
+        }
+        .tableau-synthese th.comp-clickable::after {
+            content: " ⓘ";
+            font-size: 0.8em;
+            opacity: 0.75;
+        }
         .tableau-info { background: rgba(0,255,0,0.08); border: 1px solid rgba(0,255,0,0.3); border-radius: 10px; padding: 20px; margin-bottom: 20px; font-size: 0.9em; }
         .tableau-info p { margin-bottom: 5px; }
         .tableau-info strong { color: #00ff00; }
@@ -63,7 +79,7 @@
         .stage-skill-tag:hover { background: rgba(0,255,0,0.35); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,255,0,0.3); color: #fff; }
         .stage-skill-tag:active { transform: scale(0.96); }
 
-        /* MODAL COMPETENCE */
+        /* MODAL COMPETENCE STAGE */
         #skill-modal-overlay {
             display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88);
             z-index: 9999; align-items: center; justify-content: center;
@@ -113,6 +129,46 @@
         .sm-level-labels span:last-child { color: #00ff00; font-weight: bold; }
         .sm-level-track { background: rgba(255,255,255,0.08); border-radius: 20px; height: 8px; overflow: hidden; }
         .sm-level-fill { height: 100%; border-radius: 20px; background: linear-gradient(90deg,#00bb00,#00ff00); box-shadow: 0 0 8px rgba(0,255,0,0.5); transition: width 0.9s cubic-bezier(0.4,0,0.2,1); width: 0%; }
+
+        /* MODAL COMPETENCE TABLEAU DE SYNTHESE */
+        #comp-modal-overlay {
+            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88);
+            z-index: 9999; align-items: center; justify-content: center;
+            padding: 20px; backdrop-filter: blur(5px);
+        }
+        #comp-modal-overlay.active { display: flex; }
+        #comp-modal {
+            background: #0d0d0d; border: 1px solid #00ff00; border-radius: 16px;
+            max-width: 560px; width: 100%; max-height: 88vh; overflow-y: auto;
+            box-shadow: 0 0 60px rgba(0,255,0,0.3);
+            animation: smIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
+        }
+        #comp-modal-header {
+            background: rgba(0,255,0,0.1); border-bottom: 1px solid rgba(0,255,0,0.3);
+            padding: 18px 22px; display: flex; align-items: center; gap: 14px; position: sticky; top: 0;
+        }
+        .cm-icon {
+            width: 48px; height: 48px; background: rgba(0,255,0,0.12);
+            border: 1px solid rgba(0,255,0,0.4); border-radius: 10px;
+            display: flex; align-items: center; justify-content: center; font-size: 1.5em; flex-shrink: 0;
+        }
+        #comp-modal-header h3 { color: #00ff00; font-size: 1.2em; flex: 1; margin: 0; padding: 0; border: none; text-shadow: 0 0 8px rgba(0,255,0,0.5); line-height: 1.3; }
+        #cm-close {
+            background: none; border: 1px solid rgba(0,255,0,0.4); color: #00ff00;
+            width: 34px; height: 34px; border-radius: 50%; font-size: 1em; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: 0.2s;
+        }
+        #cm-close:hover { background: rgba(0,255,0,0.2); }
+        #comp-modal-body { padding: 22px; }
+        .cm-desc { color: #ddd; line-height: 1.8; font-size: 0.92em; margin-bottom: 18px; border-left: 3px solid rgba(0,255,0,0.4); padding-left: 14px; }
+        .cm-sub-title { color: #00ff00; font-size: 0.88em; font-weight: bold; margin-bottom: 12px; }
+        .cm-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+        .cm-list li {
+            display: flex; align-items: flex-start; gap: 10px; font-size: 0.85em; color: #ccc;
+            background: rgba(255,255,255,0.04); border-radius: 7px; padding: 9px 13px;
+            border-left: 2px solid rgba(0,255,0,0.4);
+        }
+        .cm-list li::before { content: "›"; color: #00ff00; font-size: 1.2em; line-height: 1; flex-shrink: 0; }
 
         .veille-intro { background: linear-gradient(135deg, rgba(0,255,0,0.1), rgba(255,64,129,0.1)); padding: 25px; border-radius: 10px; margin-bottom: 30px; border-left: 4px solid #00ff00; }
         .veille-intro h3 { color: #00ff00; margin-bottom: 15px; font-size: 1.3em; }
@@ -318,7 +374,7 @@
 
 <section id="synthese">
     <h2><i class="fas fa-table"></i> Tableau de Synthese - Epreuve E6 - Session 2025</h2>
-    <p>Ce tableau presente les situations professionnelles realisees durant ma formation BTS SIO et les competences du referentiel associees.</p>
+    <p>Ce tableau presente les situations professionnelles realisees durant ma formation BTS SIO et les competences du referentiel associees. <strong style="color:#00ff00;">Cliquez sur une competence</strong> pour afficher sa description detaillee.</p>
     <div class="tableau-info">
         <p><strong>NOM et prenom :</strong> SILLION Thomas &nbsp;&nbsp;|&nbsp;&nbsp; <strong>N candidat :</strong> 02541488286</p>
         <p><strong>Centre de formation :</strong> Lycee Le Rebours &nbsp;&nbsp;|&nbsp;&nbsp; <strong>Option :</strong> SISR</p>
@@ -330,15 +386,12 @@
                 <tr>
                     <th rowspan="2" style="min-width:220px;">Realisations professionnelles</th>
                     <th rowspan="2" style="min-width:130px;">Periode</th>
-                    <th colspan="6">Competences mises en oeuvre</th>
-                </tr>
-                <tr>
-                    <th style="min-width:110px;">Gerer le patrimoine informatique</th>
-                    <th style="min-width:110px;">Repondre aux incidents</th>
-                    <th style="min-width:110px;">Developper la presence en ligne</th>
-                    <th style="min-width:110px;">Travailler en mode projet</th>
-                    <th style="min-width:110px;">Mettre a disposition un service informatique</th>
-                    <th style="min-width:110px;">Organiser son developpement professionnel</th>
+                    <th class="comp-clickable" style="min-width:110px;" onclick="openCompModal('patrimoine')" title="Cliquer pour plus d'infos">Gerer le patrimoine informatique</th>
+                    <th class="comp-clickable" style="min-width:110px;" onclick="openCompModal('incidents')" title="Cliquer pour plus d'infos">Repondre aux incidents</th>
+                    <th class="comp-clickable" style="min-width:110px;" onclick="openCompModal('presence')" title="Cliquer pour plus d'infos">Developper la presence en ligne</th>
+                    <th class="comp-clickable" style="min-width:110px;" onclick="openCompModal('projet')" title="Cliquer pour plus d'infos">Travailler en mode projet</th>
+                    <th class="comp-clickable" style="min-width:110px;" onclick="openCompModal('service')" title="Cliquer pour plus d'infos">Mettre a disposition un service informatique</th>
+                    <th class="comp-clickable" style="min-width:110px;" onclick="openCompModal('developpement')" title="Cliquer pour plus d'infos">Organiser son developpement professionnel</th>
                 </tr>
             </thead>
             <tbody>
@@ -407,7 +460,7 @@
     <a class="contact-btn" href="mailto:thomas.sillion@gmail.com"><i class="fas fa-paper-plane"></i> Envoyer un email</a>
 </section>
 
-<!-- MODAL COMPETENCE -->
+<!-- MODAL COMPETENCE STAGE -->
 <div id="skill-modal-overlay">
     <div id="skill-modal">
         <div id="skill-modal-header">
@@ -424,6 +477,22 @@
                 <div class="sm-level-labels"><span>Niveau acquis</span><span id="sm-level-txt"></span></div>
                 <div class="sm-level-track"><div class="sm-level-fill" id="sm-level-bar"></div></div>
             </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL COMPETENCE TABLEAU DE SYNTHESE -->
+<div id="comp-modal-overlay" onclick="if(event.target===this)closeCompModal()">
+    <div id="comp-modal">
+        <div id="comp-modal-header">
+            <div class="cm-icon" id="cm-icon"></div>
+            <h3 id="cm-title"></h3>
+            <button id="cm-close" onclick="closeCompModal()">&#10005;</button>
+        </div>
+        <div id="comp-modal-body">
+            <p class="cm-desc" id="cm-desc"></p>
+            <p class="cm-sub-title"><i class="fas fa-list-ul"></i> Sous-competences associees</p>
+            <ul class="cm-list" id="cm-list"></ul>
         </div>
     </div>
 </div>
@@ -492,7 +561,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     });
 });
 
-// SKILL MODAL
+// SKILL MODAL (stages)
 var skillData = {
     'EasyVista': { icon:'fas fa-ticket-alt', cat:'Outil ITSM - Gestion de tickets', desc:"EasyVista est un outil ITSM utilise pour creer, suivre et cloturer des tickets d'incidents. Utilise quotidiennement chez Eiffage pour gerer les demandes des collaborateurs et assurer le suivi des interventions.", points:["Prise en charge et suivi de tickets d'incidents utilisateurs","Attribution des tickets ACRU aux techniciens concernes","Verification des demandes de modification serveur via fichier Excel","Validation et cloture des tickets apres resolution"], level:70, lvl:"Operationnel" },
     'Windows 11': { icon:'fab fa-windows', cat:"Systeme d'exploitation - Microsoft", desc:"Windows 11 est le systeme d'exploitation desktop de Microsoft. Chez Eiffage, j'ai effectue des reinstallations completes de postes via cle de boot avec configuration integrale de chaque machine.", points:["Reinstallation complete de postes via cle de boot (imaging)","Configuration de la localisation, langue et nom de machine","Application des mises a jour Windows et pilotes constructeur Lenovo","Mise en reseau des machines apres installation"], level:80, lvl:"Avance" },
@@ -533,7 +602,107 @@ function closeSkillModal() {
 document.getElementById('skill-modal-overlay').addEventListener('click', function(e){
     if (e.target === this) closeSkillModal();
 });
-document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeSkillModal(); });
+
+// COMP MODAL (tableau de synthese)
+var compData = {
+    'patrimoine': {
+        icon: '&#128187;',
+        title: 'Gerer le patrimoine informatique',
+        desc: "Recenser, maintenir et optimiser l'ensemble des ressources materielles et logicielles d'une organisation, en respectant les referentiels et standards en vigueur.",
+        subs: [
+            "Recenser et identifier les ressources numeriques",
+            "Exploiter des referentiels, normes et standards adoptes par le prestataire informatique",
+            "Mettre en place et verifier les niveaux d'habilitation associes a un service",
+            "Verifier les conditions de la continuite d'un service informatique",
+            "Gerer des sauvegardes",
+            "Verifier le respect des regles d'utilisation des ressources numeriques"
+        ]
+    },
+    'incidents': {
+        icon: '&#128295;',
+        title: 'Repondre aux incidents et aux demandes d\'assistance',
+        desc: "Traiter les incidents signales par les utilisateurs, diagnostiquer les pannes, apporter des solutions correctives et assurer le suivi via un outil de ticketing.",
+        subs: [
+            "Collecter, suivre et orienter des reclamations",
+            "Traiter des demandes concernant les applications et les services informatiques",
+            "Aider a la mise en place d'un projet informatique",
+            "Mettre en place et deployer une solution informatique",
+            "Gerer des indicateurs",
+            "Suivre des solutions mises en place"
+        ]
+    },
+    'presence': {
+        icon: '&#127760;',
+        title: 'Developper la presence en ligne de l\'organisation',
+        desc: "Creer, gerer et optimiser les supports numeriques de communication, en assurant leur accessibilite, securite et referencement.",
+        subs: [
+            "Participer a la valorisation de l'image de l'organisation sur les medias numeriques",
+            "Referencer les services en ligne de l'organisation et mesurer leur visibilite",
+            "Participer a l'evolution d'un site Web exploitant les donnees de l'organisation",
+            "Securiser les services en ligne de l'organisation",
+            "Gerer et maintenir un service de communication numerique"
+        ]
+    },
+    'projet': {
+        icon: '&#128203;',
+        title: 'Travailler en mode projet',
+        desc: "Organiser et planifier les etapes d'un projet informatique, en coordonnant les equipes et en utilisant des methodologies adaptees (cycle en V, agile...).",
+        subs: [
+            "Analyser les objectifs et les modalites d'organisation d'un projet",
+            "Planifier les activites",
+            "Evaluer les indicateurs de suivi d'un projet et analyser les ecarts",
+            "Participer a des reunions de suivi de projet",
+            "Rediger un compte-rendu de reunion",
+            "Gerer les ressources d'un projet"
+        ]
+    },
+    'service': {
+        icon: '&#9881;',
+        title: 'Mettre a disposition des utilisateurs un service informatique',
+        desc: "Deployer et configurer des services informatiques afin de les rendre disponibles, performants et securises pour les utilisateurs.",
+        subs: [
+            "Realiser les tests d'integration et d'acceptation d'un service",
+            "Deployer un service",
+            "Accompagner les utilisateurs dans la mise en place d'un service",
+            "Deployer et exploiter des elements d'infrastructure",
+            "Documenter les services mis en place"
+        ]
+    },
+    'developpement': {
+        icon: '&#128200;',
+        title: 'Organiser son developpement professionnel',
+        desc: "Mettre a jour ses connaissances, realiser une veille technologique et valoriser son parcours via des outils comme LinkedIn ou un portfolio.",
+        subs: [
+            "Mettre en place son environnement d'apprentissage personnel",
+            "Mettre en oeuvre des outils et strategies de veille informationnelle",
+            "Gerer son identite professionnelle",
+            "Developper son projet professionnel",
+            "Valoriser ses realisations dans son portfolio",
+            "Consulter des sources d'information specialisees"
+        ]
+    }
+};
+
+function openCompModal(key) {
+    var d = compData[key];
+    if (!d) return;
+    document.getElementById('cm-icon').innerHTML = d.icon;
+    document.getElementById('cm-title').textContent = d.title;
+    document.getElementById('cm-desc').textContent = d.desc;
+    document.getElementById('cm-list').innerHTML = d.subs.map(function(s){ return '<li>' + s + '</li>'; }).join('');
+    document.getElementById('comp-modal-overlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+function closeCompModal() {
+    document.getElementById('comp-modal-overlay').classList.remove('active');
+    document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') {
+        closeSkillModal();
+        closeCompModal();
+    }
+});
 
 // BCM MODAL
 function openBCMModal() { document.getElementById('bcm-modal-overlay').classList.add('active'); document.body.style.overflow = 'hidden'; showBCMPage('accueil', document.querySelector('.bcm-nav-btn')); }
