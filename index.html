@@ -37,22 +37,9 @@
         .tableau-synthese tr:hover { background: rgba(0,255,0,0.1); }
         .tableau-synthese .section-header { background: rgba(255,64,129,0.15); color: #ff4081; font-weight: bold; text-align: left; font-style: italic; }
         .check-mark { color: #00ff00; font-size: 1.2em; font-weight: bold; }
-        /* En-têtes de compétences cliquables */
-        .tableau-synthese th.comp-clickable {
-            cursor: pointer;
-            transition: background 0.25s, box-shadow 0.25s;
-            position: relative;
-        }
-        .tableau-synthese th.comp-clickable:hover {
-            background: rgba(0,255,0,0.55);
-            box-shadow: inset 0 0 12px rgba(0,255,0,0.3);
-            color: #fff;
-        }
-        .tableau-synthese th.comp-clickable::after {
-            content: " ⓘ";
-            font-size: 0.8em;
-            opacity: 0.75;
-        }
+        .tableau-synthese th.comp-clickable { cursor: pointer; transition: background 0.25s, box-shadow 0.25s; position: relative; }
+        .tableau-synthese th.comp-clickable:hover { background: rgba(0,255,0,0.55); box-shadow: inset 0 0 12px rgba(0,255,0,0.3); color: #fff; }
+        .tableau-synthese th.comp-clickable::after { content: " ⓘ"; font-size: 0.8em; opacity: 0.75; }
         .tableau-info { background: rgba(0,255,0,0.08); border: 1px solid rgba(0,255,0,0.3); border-radius: 10px; padding: 20px; margin-bottom: 20px; font-size: 0.9em; }
         .tableau-info p { margin-bottom: 5px; }
         .tableau-info strong { color: #00ff00; }
@@ -71,105 +58,44 @@
         .mission-item h5 { color: #ff4081; margin-bottom: 8px; font-size: 1em; }
         .mission-item p { font-size: 0.9em; color: #ccc; line-height: 1.6; }
         .stage-skills { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 8px; }
-        .stage-skill-tag {
-            background: rgba(0,255,0,0.15); color: #00ff00; padding: 6px 14px; border-radius: 15px;
-            font-size: 0.85em; cursor: pointer; border: 1px solid rgba(0,255,0,0.4);
-            transition: all 0.25s ease; user-select: none; display: inline-block;
-        }
+        .stage-skill-tag { background: rgba(0,255,0,0.15); color: #00ff00; padding: 6px 14px; border-radius: 15px; font-size: 0.85em; cursor: pointer; border: 1px solid rgba(0,255,0,0.4); transition: all 0.25s ease; user-select: none; display: inline-block; }
         .stage-skill-tag:hover { background: rgba(0,255,0,0.35); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,255,0,0.3); color: #fff; }
         .stage-skill-tag:active { transform: scale(0.96); }
-
-        /* MODAL COMPETENCE STAGE */
-        #skill-modal-overlay {
-            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88);
-            z-index: 9999; align-items: center; justify-content: center;
-            padding: 20px; backdrop-filter: blur(5px);
-        }
+        #skill-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 9999; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(5px); }
         #skill-modal-overlay.active { display: flex; }
-        #skill-modal {
-            background: #0d0d0d; border: 1px solid #00ff00; border-radius: 16px;
-            max-width: 580px; width: 100%; max-height: 90vh; overflow-y: auto;
-            box-shadow: 0 0 60px rgba(0,255,0,0.3);
-            animation: smIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
-        }
+        #skill-modal { background: #0d0d0d; border: 1px solid #00ff00; border-radius: 16px; max-width: 580px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: 0 0 60px rgba(0,255,0,0.3); animation: smIn 0.3s cubic-bezier(0.34,1.56,0.64,1); }
         @keyframes smIn { from { opacity:0; transform:scale(0.8) translateY(30px); } to { opacity:1; transform:scale(1) translateY(0); } }
-        #skill-modal-header {
-            background: rgba(0,255,0,0.1); border-bottom: 1px solid rgba(0,255,0,0.3);
-            padding: 18px 22px; display: flex; align-items: center; gap: 14px; position: sticky; top: 0;
-        }
-        .sm-icon {
-            width: 48px; height: 48px; background: rgba(0,255,0,0.12);
-            border: 1px solid rgba(0,255,0,0.4); border-radius: 10px;
-            display: flex; align-items: center; justify-content: center; font-size: 1.4em; flex-shrink: 0;
-        }
+        #skill-modal-header { background: rgba(0,255,0,0.1); border-bottom: 1px solid rgba(0,255,0,0.3); padding: 18px 22px; display: flex; align-items: center; gap: 14px; position: sticky; top: 0; }
+        .sm-icon { width: 48px; height: 48px; background: rgba(0,255,0,0.12); border: 1px solid rgba(0,255,0,0.4); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.4em; flex-shrink: 0; }
         #skill-modal-header h3 { color: #00ff00; font-size: 1.3em; flex: 1; margin: 0; padding: 0; border: none; text-shadow: 0 0 8px rgba(0,255,0,0.5); }
-        #sm-close {
-            background: none; border: 1px solid rgba(0,255,0,0.4); color: #00ff00;
-            width: 34px; height: 34px; border-radius: 50%; font-size: 1em; cursor: pointer;
-            display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: 0.2s;
-        }
+        #sm-close { background: none; border: 1px solid rgba(0,255,0,0.4); color: #00ff00; width: 34px; height: 34px; border-radius: 50%; font-size: 1em; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: 0.2s; }
         #sm-close:hover { background: rgba(0,255,0,0.2); }
         #skill-modal-body { padding: 22px; }
-        .sm-cat {
-            display: inline-block; background: rgba(255,64,129,0.18); color: #ff4081;
-            border: 1px solid rgba(255,64,129,0.4); border-radius: 20px; padding: 3px 14px;
-            font-size: 0.78em; font-weight: bold; margin-bottom: 14px;
-        }
+        .sm-cat { display: inline-block; background: rgba(255,64,129,0.18); color: #ff4081; border: 1px solid rgba(255,64,129,0.4); border-radius: 20px; padding: 3px 14px; font-size: 0.78em; font-weight: bold; margin-bottom: 14px; }
         .sm-desc { color: #ddd; line-height: 1.8; font-size: 0.93em; margin-bottom: 18px; }
         .sm-list-title { color: #00ff00; font-size: 0.88em; font-weight: bold; margin-bottom: 10px; }
         .sm-list { list-style: none; display: flex; flex-direction: column; gap: 7px; margin-bottom: 18px; }
-        .sm-list li {
-            display: flex; align-items: flex-start; gap: 10px; font-size: 0.86em; color: #ccc;
-            background: rgba(255,255,255,0.04); border-radius: 7px; padding: 9px 13px;
-            border-left: 2px solid rgba(0,255,0,0.4);
-        }
+        .sm-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.86em; color: #ccc; background: rgba(255,255,255,0.04); border-radius: 7px; padding: 9px 13px; border-left: 2px solid rgba(0,255,0,0.4); }
         .sm-list li::before { content: "›"; color: #00ff00; font-size: 1.2em; line-height: 1; flex-shrink: 0; }
         .sm-level-wrap { background: rgba(255,255,255,0.05); border-radius: 10px; padding: 13px 16px; border: 1px solid rgba(0,255,0,0.15); }
         .sm-level-labels { display: flex; justify-content: space-between; font-size: 0.8em; color: #aaa; margin-bottom: 8px; }
         .sm-level-labels span:last-child { color: #00ff00; font-weight: bold; }
         .sm-level-track { background: rgba(255,255,255,0.08); border-radius: 20px; height: 8px; overflow: hidden; }
         .sm-level-fill { height: 100%; border-radius: 20px; background: linear-gradient(90deg,#00bb00,#00ff00); box-shadow: 0 0 8px rgba(0,255,0,0.5); transition: width 0.9s cubic-bezier(0.4,0,0.2,1); width: 0%; }
-
-        /* MODAL COMPETENCE TABLEAU DE SYNTHESE */
-        #comp-modal-overlay {
-            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88);
-            z-index: 9999; align-items: center; justify-content: center;
-            padding: 20px; backdrop-filter: blur(5px);
-        }
+        #comp-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 9999; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(5px); }
         #comp-modal-overlay.active { display: flex; }
-        #comp-modal {
-            background: #0d0d0d; border: 1px solid #00ff00; border-radius: 16px;
-            max-width: 560px; width: 100%; max-height: 88vh; overflow-y: auto;
-            box-shadow: 0 0 60px rgba(0,255,0,0.3);
-            animation: smIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
-        }
-        #comp-modal-header {
-            background: rgba(0,255,0,0.1); border-bottom: 1px solid rgba(0,255,0,0.3);
-            padding: 18px 22px; display: flex; align-items: center; gap: 14px; position: sticky; top: 0;
-        }
-        .cm-icon {
-            width: 48px; height: 48px; background: rgba(0,255,0,0.12);
-            border: 1px solid rgba(0,255,0,0.4); border-radius: 10px;
-            display: flex; align-items: center; justify-content: center; font-size: 1.5em; flex-shrink: 0;
-        }
+        #comp-modal { background: #0d0d0d; border: 1px solid #00ff00; border-radius: 16px; max-width: 560px; width: 100%; max-height: 88vh; overflow-y: auto; box-shadow: 0 0 60px rgba(0,255,0,0.3); animation: smIn 0.3s cubic-bezier(0.34,1.56,0.64,1); }
+        #comp-modal-header { background: rgba(0,255,0,0.1); border-bottom: 1px solid rgba(0,255,0,0.3); padding: 18px 22px; display: flex; align-items: center; gap: 14px; position: sticky; top: 0; }
+        .cm-icon { width: 48px; height: 48px; background: rgba(0,255,0,0.12); border: 1px solid rgba(0,255,0,0.4); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.5em; flex-shrink: 0; }
         #comp-modal-header h3 { color: #00ff00; font-size: 1.2em; flex: 1; margin: 0; padding: 0; border: none; text-shadow: 0 0 8px rgba(0,255,0,0.5); line-height: 1.3; }
-        #cm-close {
-            background: none; border: 1px solid rgba(0,255,0,0.4); color: #00ff00;
-            width: 34px; height: 34px; border-radius: 50%; font-size: 1em; cursor: pointer;
-            display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: 0.2s;
-        }
+        #cm-close { background: none; border: 1px solid rgba(0,255,0,0.4); color: #00ff00; width: 34px; height: 34px; border-radius: 50%; font-size: 1em; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: 0.2s; }
         #cm-close:hover { background: rgba(0,255,0,0.2); }
         #comp-modal-body { padding: 22px; }
         .cm-desc { color: #ddd; line-height: 1.8; font-size: 0.92em; margin-bottom: 18px; border-left: 3px solid rgba(0,255,0,0.4); padding-left: 14px; }
         .cm-sub-title { color: #00ff00; font-size: 0.88em; font-weight: bold; margin-bottom: 12px; }
         .cm-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
-        .cm-list li {
-            display: flex; align-items: flex-start; gap: 10px; font-size: 0.85em; color: #ccc;
-            background: rgba(255,255,255,0.04); border-radius: 7px; padding: 9px 13px;
-            border-left: 2px solid rgba(0,255,0,0.4);
-        }
+        .cm-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.85em; color: #ccc; background: rgba(255,255,255,0.04); border-radius: 7px; padding: 9px 13px; border-left: 2px solid rgba(0,255,0,0.4); }
         .cm-list li::before { content: "›"; color: #00ff00; font-size: 1.2em; line-height: 1; flex-shrink: 0; }
-
         .veille-intro { background: linear-gradient(135deg, rgba(0,255,0,0.1), rgba(255,64,129,0.1)); padding: 25px; border-radius: 10px; margin-bottom: 30px; border-left: 4px solid #00ff00; }
         .veille-intro h3 { color: #00ff00; margin-bottom: 15px; font-size: 1.3em; }
         .veille-intro p { margin-bottom: 10px; }
@@ -186,6 +112,7 @@
         .article-link { display: inline-block; margin-top: 15px; color: #00ff00; text-decoration: none; font-weight: bold; transition: 0.3s; }
         .article-link:hover { color: #ff4081; }
         .article-link i { margin-left: 5px; }
+        .article-new-badge { display: inline-block; background: rgba(255,64,129,0.2); color: #ff4081; border-radius: 10px; padding: 2px 10px; font-size: 0.75em; font-weight: bold; margin-bottom: 8px; }
         .actualites-section { margin-top: 40px; }
         .actualites-section h3 { color: #ff4081; margin-bottom: 20px; font-size: 1.4em; }
         .actualite-item { background: rgba(255,255,255,0.05); border-radius: 10px; padding: 20px; margin-bottom: 20px; border-left: 3px solid #ff4081; }
@@ -433,17 +360,125 @@
         <p>Les enjeux sont majeurs : optimisation, cryptographie, intelligence artificielle, simulation moleculaire... L'informatique quantique represente a la fois une opportunite et un defi pour la securite informatique.</p>
         <span class="theme-badge"><i class="fas fa-atom"></i> Ordinateur Quantique</span>
     </div>
+
     <h3 style="color:#00ff00;margin-bottom:20px;"><i class="fas fa-newspaper"></i> Articles de reference</h3>
     <div class="articles-grid">
-        <div class="article-card"><h4>Ordinateur : les promesses de l'aube quantique</h4><div class="article-meta"><span><i class="fas fa-user"></i> Julien Bourdet</span><span><i class="fas fa-calendar"></i> 15/04/2019</span></div><div class="article-keywords"><span class="keyword-tag">qubits</span><span class="keyword-tag">supraconducteurs</span><span class="keyword-tag">avenir</span></div><a href="https://lejournal.cnrs.fr/articles/ordinateur-les-promesses-de-laube-quantique" target="_blank" class="article-link">Lire l'article <i class="fas fa-external-link-alt"></i></a></div>
-        <div class="article-card"><h4>Pourquoi s'interesser a l'informatique quantique ?</h4><div class="article-meta"><span><i class="fas fa-user"></i> Maxime Johnson</span><span><i class="fas fa-calendar"></i> 06/03/2025</span></div><div class="article-keywords"><span class="keyword-tag">marche</span><span class="keyword-tag">enjeux</span><span class="keyword-tag">technologie</span></div><a href="https://www.revuegestion.ca/pourquoi-sinteresser-a-linformatique-quantique" target="_blank" class="article-link">Lire l'article <i class="fas fa-external-link-alt"></i></a></div>
-        <div class="article-card"><h4>Informatique quantique : c'est quoi ?</h4><div class="article-meta"><span><i class="fas fa-building"></i> BPI France</span><span><i class="fas fa-calendar"></i> 19/09/2023</span></div><div class="article-keywords"><span class="keyword-tag">definition</span><span class="keyword-tag">applications</span><span class="keyword-tag">potentiel</span></div><a href="https://bigmedia.bpifrance.fr/news/informatique-quantique-quantum-computing-cest-quoi" target="_blank" class="article-link">Lire l'article <i class="fas fa-external-link-alt"></i></a></div>
-        <div class="article-card"><h4>La cryptographie face a la menace quantique</h4><div class="article-meta"><span><i class="fas fa-user"></i> Bastien Contreras</span><span><i class="fas fa-calendar"></i> 13/02/2024</span></div><div class="article-keywords"><span class="keyword-tag">cryptographie</span><span class="keyword-tag">securite</span><span class="keyword-tag">chiffrement</span></div><a href="https://lejournal.cnrs.fr/articles/la-cryptographie-face-a-la-menace-quantique" target="_blank" class="article-link">Lire l'article <i class="fas fa-external-link-alt"></i></a></div>
-        <div class="article-card"><h4>L'ordinateur quantique : tout comprendre en 15 minutes</h4><div class="article-meta"><span><i class="fas fa-user"></i> Landry Bretheau</span><span><i class="fas fa-calendar"></i> 13/09/2023</span></div><div class="article-keywords"><span class="keyword-tag">superposition</span><span class="keyword-tag">intrication</span><span class="keyword-tag">fonctionnement</span></div><a href="https://www.polytechnique-insights.com/tribunes/science/lordinateur-quantique-tout-comprendre-en-15-minutes/" target="_blank" class="article-link">Lire l'article <i class="fas fa-external-link-alt"></i></a></div>
-        <div class="article-card"><h4>L'informatique quantique peut-elle aider l'IA ?</h4><div class="article-meta"><span><i class="fas fa-building"></i> Techniques de l'Ingenieur</span><span><i class="fas fa-calendar"></i> 08/10/2025</span></div><div class="article-keywords"><span class="keyword-tag">IA</span><span class="keyword-tag">synergie</span><span class="keyword-tag">applications</span></div><a href="https://www.techniques-ingenieur.fr/actualite/articles/linformatique-quantique-peut-elle-aider-lia-151118/" target="_blank" class="article-link">Lire l'article <i class="fas fa-external-link-alt"></i></a></div>
-        <div class="article-card"><h4>Quandela fait passer l'ordinateur quantique de l'ombre a la lumiere</h4><div class="article-meta"><span><i class="fas fa-building"></i> Techniques de l'Ingenieur</span><span><i class="fas fa-calendar"></i> 20/12/2024</span></div><div class="article-keywords"><span class="keyword-tag">start-up francaise</span><span class="keyword-tag">innovations</span><span class="keyword-tag">materiel</span></div><a href="https://www.techniques-ingenieur.fr/actualite/articles/a-massy-quandela-fait-passer-l-ordinateur-quantique-de-l-ombre-a-la-lumiere-140720/" target="_blank" class="article-link">Lire l'article <i class="fas fa-external-link-alt"></i></a></div>
-        <div class="article-card"><h4>Codes correcteurs d'erreur : vers l'ordinateur quantique</h4><div class="article-meta"><span><i class="fas fa-building"></i> INRIA</span><span><i class="fas fa-calendar"></i> 28/10/2022</span></div><div class="article-keywords"><span class="keyword-tag">codes correcteurs</span><span class="keyword-tag">fiabilite</span><span class="keyword-tag">qubits logiques</span></div><a href="https://www.inria.fr/fr/theorie-codes-correcteurs-erreur-ordinateur-quantique-resultats-fondamentaux" target="_blank" class="article-link">Lire l'article <i class="fas fa-external-link-alt"></i></a></div>
+
+        <!-- Articles originaux -->
+        <div class="article-card">
+            <h4>Ordinateur : les promesses de l'aube quantique</h4>
+            <div class="article-meta"><span><i class="fas fa-user"></i> Julien Bourdet</span><span><i class="fas fa-calendar"></i> 15/04/2019</span><span><i class="fas fa-building"></i> CNRS Le journal</span></div>
+            <p style="font-size:0.88em;color:#ccc;margin-top:8px;line-height:1.6;">Les supercalculateurs les plus puissants pourraient bientot etre renvoyés a la préhistoire. Retour sur les principes de superposition, d'intrication, la décohérence et les premières implémentations prometteuses (ions piégés, circuits supraconducteurs).</p>
+            <div class="article-keywords"><span class="keyword-tag">qubits</span><span class="keyword-tag">supraconducteurs</span><span class="keyword-tag">décohérence</span></div>
+            <a href="https://lejournal.cnrs.fr/articles/ordinateur-les-promesses-de-laube-quantique" target="_blank" class="article-link">Lire l'article <i class="fas fa-external-link-alt"></i></a>
+        </div>
+
+        <div class="article-card">
+            <h4>Pourquoi s'interesser a l'informatique quantique ?</h4>
+            <div class="article-meta"><span><i class="fas fa-user"></i> Maxime Johnson</span><span><i class="fas fa-calendar"></i> 06/03/2025</span></div>
+            <div class="article-keywords"><span class="keyword-tag">marche</span><span class="keyword-tag">enjeux</span><span class="keyword-tag">technologie</span></div>
+            <a href="https://www.revuegestion.ca/pourquoi-sinteresser-a-linformatique-quantique" target="_blank" class="article-link">Lire l'article <i class="fas fa-external-link-alt"></i></a>
+        </div>
+
+        <div class="article-card">
+            <h4>Informatique quantique : c'est quoi ?</h4>
+            <div class="article-meta"><span><i class="fas fa-building"></i> BPI France</span><span><i class="fas fa-calendar"></i> 19/09/2023</span></div>
+            <div class="article-keywords"><span class="keyword-tag">definition</span><span class="keyword-tag">applications</span><span class="keyword-tag">potentiel</span></div>
+            <a href="https://bigmedia.bpifrance.fr/news/informatique-quantique-quantum-computing-cest-quoi" target="_blank" class="article-link">Lire l'article <i class="fas fa-external-link-alt"></i></a>
+        </div>
+
+        <div class="article-card">
+            <h4>La cryptographie face a la menace quantique</h4>
+            <div class="article-meta"><span><i class="fas fa-user"></i> Bastien Contreras</span><span><i class="fas fa-calendar"></i> 13/02/2024</span></div>
+            <div class="article-keywords"><span class="keyword-tag">cryptographie</span><span class="keyword-tag">securite</span><span class="keyword-tag">chiffrement</span></div>
+            <a href="https://lejournal.cnrs.fr/articles/la-cryptographie-face-a-la-menace-quantique" target="_blank" class="article-link">Lire l'article <i class="fas fa-external-link-alt"></i></a>
+        </div>
+
+        <div class="article-card">
+            <h4>L'ordinateur quantique : tout comprendre en 15 minutes</h4>
+            <div class="article-meta"><span><i class="fas fa-user"></i> Landry Bretheau</span><span><i class="fas fa-calendar"></i> 13/09/2023</span></div>
+            <div class="article-keywords"><span class="keyword-tag">superposition</span><span class="keyword-tag">intrication</span><span class="keyword-tag">fonctionnement</span></div>
+            <a href="https://www.polytechnique-insights.com/tribunes/science/lordinateur-quantique-tout-comprendre-en-15-minutes/" target="_blank" class="article-link">Lire l'article <i class="fas fa-external-link-alt"></i></a>
+        </div>
+
+        <div class="article-card">
+            <h4>L'informatique quantique peut-elle aider l'IA ?</h4>
+            <div class="article-meta"><span><i class="fas fa-building"></i> Techniques de l'Ingenieur</span><span><i class="fas fa-calendar"></i> 08/10/2025</span></div>
+            <div class="article-keywords"><span class="keyword-tag">IA</span><span class="keyword-tag">synergie</span><span class="keyword-tag">applications</span></div>
+            <a href="https://www.techniques-ingenieur.fr/actualite/articles/linformatique-quantique-peut-elle-aider-lia-151118/" target="_blank" class="article-link">Lire l'article <i class="fas fa-external-link-alt"></i></a>
+        </div>
+
+        <div class="article-card">
+            <h4>Quandela fait passer l'ordinateur quantique de l'ombre a la lumiere</h4>
+            <div class="article-meta"><span><i class="fas fa-building"></i> Techniques de l'Ingenieur</span><span><i class="fas fa-calendar"></i> 20/12/2024</span></div>
+            <div class="article-keywords"><span class="keyword-tag">start-up francaise</span><span class="keyword-tag">innovations</span><span class="keyword-tag">materiel</span></div>
+            <a href="https://www.techniques-ingenieur.fr/actualite/articles/a-massy-quandela-fait-passer-l-ordinateur-quantique-de-l-ombre-a-la-lumiere-140720/" target="_blank" class="article-link">Lire l'article <i class="fas fa-external-link-alt"></i></a>
+        </div>
+
+        <div class="article-card">
+            <h4>Codes correcteurs d'erreur : vers l'ordinateur quantique</h4>
+            <div class="article-meta"><span><i class="fas fa-building"></i> INRIA</span><span><i class="fas fa-calendar"></i> 28/10/2022</span></div>
+            <div class="article-keywords"><span class="keyword-tag">codes correcteurs</span><span class="keyword-tag">fiabilite</span><span class="keyword-tag">qubits logiques</span></div>
+            <a href="https://www.inria.fr/fr/theorie-codes-correcteurs-erreur-ordinateur-quantique-resultats-fondamentaux" target="_blank" class="article-link">Lire l'article <i class="fas fa-external-link-alt"></i></a>
+        </div>
+
+        <!-- ===== NOUVEAUX ARTICLES ISSUS DE LA VEILLE ===== -->
+        <div class="article-card" style="border-color:rgba(255,64,129,0.5);">
+            <div class="article-new-badge"><i class="fas fa-star"></i> Nouveau</div>
+            <h4>Principe et fonctionnement des ordinateurs quantiques (2024)</h4>
+            <div class="article-meta"><span><i class="fas fa-user"></i> Johnny Ofthedead</span><span><i class="fas fa-calendar"></i> 2024</span><span><i class="fas fa-building"></i> Sitegeek</span></div>
+            <p style="font-size:0.88em;color:#ccc;margin-top:8px;line-height:1.6;">Guide complet expliquant le fonctionnement d'un ordinateur quantique : superposition, qubits, algorithme de Shor et suprématie quantique. Google a réussi avec son processeur Sycamore (53 qubits) a résoudre en 3 minutes un problème qui prendrait des milliards d'années a un ordinateur classique.</p>
+            <div class="article-keywords"><span class="keyword-tag">qubits</span><span class="keyword-tag">algorithme de Shor</span><span class="keyword-tag">Sycamore</span><span class="keyword-tag">suprématie</span></div>
+            <span class="article-link" style="cursor:default;opacity:0.65;font-size:0.85em;"><i class="fas fa-file-archive"></i> Article archivé (local)</span>
+        </div>
+
+        <div class="article-card" style="border-color:rgba(255,64,129,0.5);">
+            <div class="article-new-badge"><i class="fas fa-star"></i> Nouveau</div>
+            <h4>Dell arme les PC et les serveurs contre les risques liés au quantique et a l'IA</h4>
+            <div class="article-meta"><span><i class="fas fa-user"></i> Jens Jonkers</span><span><i class="fas fa-calendar"></i> 24/03/2026</span><span><i class="fas fa-building"></i> ITdaily</span></div>
+            <p style="font-size:0.88em;color:#ccc;margin-top:8px;line-height:1.6;">Dell intègre des signatures numériques résistantes au quantique directement dans le firmware de ses PC commerciaux. La vérification du BIOS est conforme aux normes post-quantiques, et la récupération assistée par l'IA détecte plus rapidement les ransomwares. Ces fonctions seront déployées sur les nouveaux PC Dell lancés en 2026.</p>
+            <div class="article-keywords"><span class="keyword-tag">post-quantique</span><span class="keyword-tag">firmware</span><span class="keyword-tag">cyber-résilience</span><span class="keyword-tag">Dell</span></div>
+            <span class="article-link" style="cursor:default;opacity:0.65;font-size:0.85em;"><i class="fas fa-file-archive"></i> Article archivé (local)</span>
+        </div>
+
+        <div class="article-card" style="border-color:rgba(255,64,129,0.5);">
+            <div class="article-new-badge"><i class="fas fa-star"></i> Nouveau</div>
+            <h4>La Fondation Ethereum est-elle bien préparée pour l'ère post-quantique ?</h4>
+            <div class="article-meta"><span><i class="fas fa-user"></i> Hannah Collymore</span><span><i class="fas fa-calendar"></i> 24/03/2026</span><span><i class="fas fa-building"></i> Cryptopolitan</span></div>
+            <p style="font-size:0.88em;color:#ccc;margin-top:8px;line-height:1.6;">La Fondation Ethereum lance un tableau de bord public de résistance quantique et engage 2 millions de dollars en prix de recherche. Elle vise 2029 pour achever les mises a niveau du protocole L1. En théorie, un ordinateur quantique suffisamment puissant exécutant l'algorithme de Shor pourrait retrouver une clé privée depuis une clé publique, menaçant ainsi la sécurité d'Ethereum.</p>
+            <div class="article-keywords"><span class="keyword-tag">Ethereum</span><span class="keyword-tag">blockchain</span><span class="keyword-tag">post-quantique</span><span class="keyword-tag">cryptographie</span></div>
+            <span class="article-link" style="cursor:default;opacity:0.65;font-size:0.85em;"><i class="fas fa-file-archive"></i> Article archivé (local)</span>
+        </div>
+
+        <div class="article-card" style="border-color:rgba(255,64,129,0.5);">
+            <div class="article-new-badge"><i class="fas fa-star"></i> Nouveau</div>
+            <h4>La téléportation d'informations entre deux ordinateurs quantiques est désormais possible</h4>
+            <div class="article-meta"><span><i class="fas fa-user"></i> Amandine Venot</span><span><i class="fas fa-calendar"></i> 12/03/2025</span><span><i class="fas fa-building"></i> National Geographic</span></div>
+            <p style="font-size:0.88em;color:#ccc;margin-top:8px;line-height:1.6;">En juin 2024, des chercheurs d'Oxford ont réalisé la téléportation quantique d'informations entre deux ordinateurs distants reliés par fibre optique. Ils utilisent deux espèces d'ions : les uns pour le stockage des qubits, les autres comme interface réseau pour l'intrication. Cette avancée ouvre la voie a un futur Internet quantique.</p>
+            <div class="article-keywords"><span class="keyword-tag">téléportation quantique</span><span class="keyword-tag">ions piégés</span><span class="keyword-tag">internet quantique</span><span class="keyword-tag">Oxford</span></div>
+            <span class="article-link" style="cursor:default;opacity:0.65;font-size:0.85em;"><i class="fas fa-file-archive"></i> Article archivé (local)</span>
+        </div>
+
+        <div class="article-card" style="border-color:rgba(255,64,129,0.5);">
+            <div class="article-new-badge"><i class="fas fa-star"></i> Nouveau</div>
+            <h4>Ordinateurs quantiques : l'avenir de la cybersécurité en jeu</h4>
+            <div class="article-meta"><span><i class="fas fa-user"></i> Samuel Huttner</span><span><i class="fas fa-calendar"></i> 25/11/2025</span><span><i class="fas fa-building"></i> RISKINTEL MEDIA</span></div>
+            <p style="font-size:0.88em;color:#ccc;margin-top:8px;line-height:1.6;">Les ordinateurs quantiques pourraient casser les systèmes RSA et ECC. La stratégie "Harvest Now, Decrypt Later" est une menace réelle et imminente. En 2024, le NIST a publié ses premiers standards post-quantiques officiels : Kyber pour le chiffrement et Dilithium pour les signatures numériques.</p>
+            <div class="article-keywords"><span class="keyword-tag">cybersécurité</span><span class="keyword-tag">NIST</span><span class="keyword-tag">Kyber</span><span class="keyword-tag">Dilithium</span><span class="keyword-tag">RSA</span></div>
+            <span class="article-link" style="cursor:default;opacity:0.65;font-size:0.85em;"><i class="fas fa-file-archive"></i> Article archivé (local)</span>
+        </div>
+
+        <div class="article-card" style="border-color:rgba(255,64,129,0.5);">
+            <div class="article-new-badge"><i class="fas fa-star"></i> Nouveau</div>
+            <h4>Que sont les ordinateurs quantiques, et pourquoi s'y intéresser ?</h4>
+            <div class="article-meta"><span><i class="fas fa-building"></i> Blog officiel Kaspersky</span><span><i class="fas fa-calendar"></i> 2020</span></div>
+            <p style="font-size:0.88em;color:#ccc;margin-top:8px;line-height:1.6;">Google a annoncé la suprématie quantique avec Sycamore : 3 minutes de calcul contre 10 000 ans pour un superordinateur classique. L'article explique que de nombreuses protections actuelles reposent non pas sur l'inviolabilité, mais sur le temps de calcul nécessaire, et que les experts préparent déja la cryptographie post-quantique.</p>
+            <div class="article-keywords"><span class="keyword-tag">Sycamore</span><span class="keyword-tag">Google</span><span class="keyword-tag">suprématie quantique</span><span class="keyword-tag">cybersécurité</span></div>
+            <span class="article-link" style="cursor:default;opacity:0.65;font-size:0.85em;"><i class="fas fa-file-archive"></i> Article archivé (local)</span>
+        </div>
+
     </div>
+
     <div class="actualites-section">
         <h3><i class="fas fa-bolt"></i> Actualites recentes resumees</h3>
         <div class="actualite-item"><h4><i class="fas fa-microchip"></i> Nvidia accelere sur le quantique avec NVQLink et Cuda-Q</h4><p>Nvidia renforce sa presence dans le calcul quantique avec l'extension de Cuda-Q et le lancement de NVQLink pour relier directement les systemes quantiques aux GPU. La plateforme open source permet de combiner calcul quantique et IA. Nvidia collabore notamment avec les entreprises francaises Alice et Bob et Quandela.</p><div class="actualite-source">Source : <a href="https://www.lemondeinformatique.fr/actualites/lire-avec-nvqlink-et-cuda-q-nvidia-accelere-sur-le-quantique-98331.html" target="_blank">Le Monde Informatique</a></div></div>
@@ -609,77 +644,37 @@ var compData = {
         icon: '&#128187;',
         title: 'Gerer le patrimoine informatique',
         desc: "Recenser, maintenir et optimiser l'ensemble des ressources materielles et logicielles d'une organisation, en respectant les referentiels et standards en vigueur.",
-        subs: [
-            "Recenser et identifier les ressources numeriques",
-            "Exploiter des referentiels, normes et standards adoptes par le prestataire informatique",
-            "Mettre en place et verifier les niveaux d'habilitation associes a un service",
-            "Verifier les conditions de la continuite d'un service informatique",
-            "Gerer des sauvegardes",
-            "Verifier le respect des regles d'utilisation des ressources numeriques"
-        ]
+        subs: ["Recenser et identifier les ressources numeriques","Exploiter des referentiels, normes et standards adoptes par le prestataire informatique","Mettre en place et verifier les niveaux d'habilitation associes a un service","Verifier les conditions de la continuite d'un service informatique","Gerer des sauvegardes","Verifier le respect des regles d'utilisation des ressources numeriques"]
     },
     'incidents': {
         icon: '&#128295;',
-        title: 'Repondre aux incidents et aux demandes d\'assistance',
+        title: "Repondre aux incidents et aux demandes d'assistance",
         desc: "Traiter les incidents signales par les utilisateurs, diagnostiquer les pannes, apporter des solutions correctives et assurer le suivi via un outil de ticketing.",
-        subs: [
-            "Collecter, suivre et orienter des reclamations",
-            "Traiter des demandes concernant les applications et les services informatiques",
-            "Aider a la mise en place d'un projet informatique",
-            "Mettre en place et deployer une solution informatique",
-            "Gerer des indicateurs",
-            "Suivre des solutions mises en place"
-        ]
+        subs: ["Collecter, suivre et orienter des reclamations","Traiter des demandes concernant les applications et les services informatiques","Aider a la mise en place d'un projet informatique","Mettre en place et deployer une solution informatique","Gerer des indicateurs","Suivre des solutions mises en place"]
     },
     'presence': {
         icon: '&#127760;',
-        title: 'Developper la presence en ligne de l\'organisation',
+        title: "Developper la presence en ligne de l'organisation",
         desc: "Creer, gerer et optimiser les supports numeriques de communication, en assurant leur accessibilite, securite et referencement.",
-        subs: [
-            "Participer a la valorisation de l'image de l'organisation sur les medias numeriques",
-            "Referencer les services en ligne de l'organisation et mesurer leur visibilite",
-            "Participer a l'evolution d'un site Web exploitant les donnees de l'organisation",
-            "Securiser les services en ligne de l'organisation",
-            "Gerer et maintenir un service de communication numerique"
-        ]
+        subs: ["Participer a la valorisation de l'image de l'organisation sur les medias numeriques","Referencer les services en ligne de l'organisation et mesurer leur visibilite","Participer a l'evolution d'un site Web exploitant les donnees de l'organisation","Securiser les services en ligne de l'organisation","Gerer et maintenir un service de communication numerique"]
     },
     'projet': {
         icon: '&#128203;',
         title: 'Travailler en mode projet',
         desc: "Organiser et planifier les etapes d'un projet informatique, en coordonnant les equipes et en utilisant des methodologies adaptees (cycle en V, agile...).",
-        subs: [
-            "Analyser les objectifs et les modalites d'organisation d'un projet",
-            "Planifier les activites",
-            "Evaluer les indicateurs de suivi d'un projet et analyser les ecarts",
-            "Participer a des reunions de suivi de projet",
-            "Rediger un compte-rendu de reunion",
-            "Gerer les ressources d'un projet"
-        ]
+        subs: ["Analyser les objectifs et les modalites d'organisation d'un projet","Planifier les activites","Evaluer les indicateurs de suivi d'un projet et analyser les ecarts","Participer a des reunions de suivi de projet","Rediger un compte-rendu de reunion","Gerer les ressources d'un projet"]
     },
     'service': {
         icon: '&#9881;',
         title: 'Mettre a disposition des utilisateurs un service informatique',
         desc: "Deployer et configurer des services informatiques afin de les rendre disponibles, performants et securises pour les utilisateurs.",
-        subs: [
-            "Realiser les tests d'integration et d'acceptation d'un service",
-            "Deployer un service",
-            "Accompagner les utilisateurs dans la mise en place d'un service",
-            "Deployer et exploiter des elements d'infrastructure",
-            "Documenter les services mis en place"
-        ]
+        subs: ["Realiser les tests d'integration et d'acceptation d'un service","Deployer un service","Accompagner les utilisateurs dans la mise en place d'un service","Deployer et exploiter des elements d'infrastructure","Documenter les services mis en place"]
     },
     'developpement': {
         icon: '&#128200;',
         title: 'Organiser son developpement professionnel',
         desc: "Mettre a jour ses connaissances, realiser une veille technologique et valoriser son parcours via des outils comme LinkedIn ou un portfolio.",
-        subs: [
-            "Mettre en place son environnement d'apprentissage personnel",
-            "Mettre en oeuvre des outils et strategies de veille informationnelle",
-            "Gerer son identite professionnelle",
-            "Developper son projet professionnel",
-            "Valoriser ses realisations dans son portfolio",
-            "Consulter des sources d'information specialisees"
-        ]
+        subs: ["Mettre en place son environnement d'apprentissage personnel","Mettre en oeuvre des outils et strategies de veille informationnelle","Gerer son identite professionnelle","Developper son projet professionnel","Valoriser ses realisations dans son portfolio","Consulter des sources d'information specialisees"]
     }
 };
 
@@ -698,10 +693,7 @@ function closeCompModal() {
     document.body.style.overflow = '';
 }
 document.addEventListener('keydown', function(e){
-    if (e.key === 'Escape') {
-        closeSkillModal();
-        closeCompModal();
-    }
+    if (e.key === 'Escape') { closeSkillModal(); closeCompModal(); }
 });
 
 // BCM MODAL
