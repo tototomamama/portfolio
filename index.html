@@ -122,8 +122,11 @@
         .actualite-source a { color: #00ff00; text-decoration: none; }
         .actualite-source a:hover { text-decoration: underline; }
         footer { text-align: center; padding: 20px; background: rgba(0,0,0,0.85); margin-top: 20px; }
-        a.contact-btn { display: inline-block; margin-top: 10px; padding: 12px 25px; background: #00ff00; color: #000; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; }
+        .contact-buttons { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 10px; }
+        a.contact-btn { display: inline-block; padding: 12px 25px; background: #00ff00; color: #000; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; }
         a.contact-btn:hover { background: #ff4081; color: #fff; box-shadow: 0 0 15px #ff4081; }
+        a.contact-btn.linkedin-btn { background: #0077b5; color: #fff; }
+        a.contact-btn.linkedin-btn:hover { background: #005885; box-shadow: 0 0 15px #0077b5; }
         .hp-loading { text-align: center; padding: 40px; color: #d4af37; font-size: 1.3em; }
         .hp-card-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 15px; }
         .hp-card { background: rgba(0,0,0,0.7); padding: 15px; border-radius: 10px; text-align: center; width: 160px; box-shadow: 0 0 10px rgba(255,215,0,0.6); transition: transform 0.3s; }
@@ -183,6 +186,7 @@
             .tableau-synthese { font-size: 0.75em; }
             .tableau-synthese th, .tableau-synthese td { padding: 6px 4px; }
             .articles-grid { grid-template-columns: 1fr; }
+            .contact-buttons { flex-direction: column; }
         }
     </style>
 </head>
@@ -196,7 +200,7 @@
     <a href="#skills" title="Competences"><i class="fas fa-laptop-code"></i></a>
     <a href="#veille" title="Veille Technologique"><i class="fas fa-atom"></i></a>
     <a href="#contact" title="Contact"><i class="fas fa-envelope"></i></a>
-    <a href="https://www.linkedin.com/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    <a href="https://www.linkedin.com/in/thomas-sillion-51b304273/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
     <a href="https://github.com/" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
 </div>
 <header>
@@ -363,16 +367,13 @@
 
     <h3 style="color:#00ff00;margin-bottom:20px;"><i class="fas fa-newspaper"></i> Articles de reference</h3>
     <div class="articles-grid">
-
         <div class="article-card">
             <h4>Ordinateur : les promesses de l'aube quantique</h4>
             <div class="article-meta"><span><i class="fas fa-user"></i> Julien Bourdet</span><span><i class="fas fa-calendar"></i> 15/04/2019</span><span><i class="fas fa-building"></i> CNRS Le journal</span></div>
-            <p style="font-size:0.88em;color:#ccc;margin-top:8px;line-height:1.6;">Les supercalculateurs les plus puissants pourraient bientot etre renvoy&eacute;s a la pr&eacute;histoire. Retour sur les principes de superposition, d'intrication, la d&eacute;coh&eacute;rence et les premi&egrave;res impl&eacute;mentations prometteuses (ions pi&eacute;g&eacute;s, circuits supraconducteurs).</p>
-            <div class="article-keywords"><span class="keyword-tag">qubits</span><span class="keyword-tag">supraconducteurs</span><span class="keyword-tag">d&eacute;coh&eacute;rence</span></div>
+            <p style="font-size:0.88em;color:#ccc;margin-top:8px;line-height:1.6;">Les supercalculateurs les plus puissants pourraient bientot etre renvoyes a la prehistoire. Retour sur les principes de superposition, d'intrication, la decoh&eacute;rence et les premieres implementations prometteuses (ions pieges, circuits supraconducteurs).</p>
+            <div class="article-keywords"><span class="keyword-tag">qubits</span><span class="keyword-tag">supraconducteurs</span><span class="keyword-tag">decoh&eacute;rence</span></div>
             <a href="https://lejournal.cnrs.fr/articles/ordinateur-les-promesses-de-laube-quantique" target="_blank" class="article-link">Lire l'article <i class="fas fa-external-link-alt"></i></a>
         </div>
-
-        <!-- ✅ RESUME AJOUTE : Pourquoi s'interesser -->
         <div class="article-card">
             <h4>Pourquoi s'interesser a l'informatique quantique ?</h4>
             <div class="article-meta"><span><i class="fas fa-user"></i> Maxime Johnson</span><span><i class="fas fa-calendar"></i> 06/03/2025</span></div>
@@ -380,40 +381,34 @@
             <div class="article-keywords"><span class="keyword-tag">marche</span><span class="keyword-tag">enjeux</span><span class="keyword-tag">technologie</span></div>
             <a href="https://www.revuegestion.ca/pourquoi-sinteresser-a-linformatique-quantique" target="_blank" class="article-link">Lire l'article <i class="fas fa-external-link-alt"></i></a>
         </div>
-
         <div class="article-card">
             <h4>Informatique quantique : c'est quoi ?</h4>
             <div class="article-meta"><span><i class="fas fa-building"></i> BPI France</span><span><i class="fas fa-calendar"></i> 19/09/2023</span></div>
-            <p style="font-size:0.88em;color:#ccc;margin-top:8px;line-height:1.6;">Article de vulgarisation de BPI France qui d&eacute;finit l'informatique quantique et explique ses diff&eacute;rences fondamentales avec l'informatique classique. Il pr&eacute;sente le principe des qubits, les domaines d'application concrets (chimie, finance, optimisation logistique, cryptographie) et le potentiel &eacute;conomique consid&eacute;rable de cette technologie pour les entreprises et les &eacute;cosyst&egrave;mes d'innovation.</p>
+            <p style="font-size:0.88em;color:#ccc;margin-top:8px;line-height:1.6;">Article de vulgarisation de BPI France qui definit l'informatique quantique et explique ses differences fondamentales avec l'informatique classique. Il presente le principe des qubits, les domaines d'application concrets (chimie, finance, optimisation logistique, cryptographie) et le potentiel economique considerable de cette technologie pour les entreprises et les ecosystemes d'innovation.</p>
             <div class="article-keywords"><span class="keyword-tag">definition</span><span class="keyword-tag">applications</span><span class="keyword-tag">potentiel</span></div>
             <a href="https://bigmedia.bpifrance.fr/news/informatique-quantique-quantum-computing-cest-quoi" target="_blank" class="article-link">Lire l'article <i class="fas fa-external-link-alt"></i></a>
         </div>
-
         <div class="article-card">
             <h4>La cryptographie face a la menace quantique</h4>
             <div class="article-meta"><span><i class="fas fa-user"></i> Bastien Contreras</span><span><i class="fas fa-calendar"></i> 13/02/2024</span></div>
-            <p style="font-size:0.88em;color:#ccc;margin-top:8px;line-height:1.6;">Interview du cryptologue Benjamin Wesolowski (CNRS/ENS Lyon). Il explique comment la cryptographie &agrave; cl&eacute; publique repose sur des probl&egrave;mes math&eacute;matiques difficiles (logarithme discret), et pourquoi un ordinateur quantique pourrait les r&eacute;soudre facilement. Il d&eacute;crit la strat&eacute;gie &laquo;&nbsp;R&eacute;colte maintenant, d&eacute;chiffre plus tard&nbsp;&raquo; et les alternatives post-quantiques &eacute;tudi&eacute;es : r&eacute;seaux euclidiens et isog&eacute;nies de courbes elliptiques.</p>
+            <p style="font-size:0.88em;color:#ccc;margin-top:8px;line-height:1.6;">Interview du cryptologue Benjamin Wesolowski (CNRS/ENS Lyon). Il explique comment la cryptographie a cle publique repose sur des problemes mathematiques difficiles (logarithme discret), et pourquoi un ordinateur quantique pourrait les resoudre facilement. Il decrit la strategie "Recolte maintenant, dechiffre plus tard" et les alternatives post-quantiques etudiees : reseaux euclidiens et isogenies de courbes elliptiques.</p>
             <div class="article-keywords"><span class="keyword-tag">cryptographie</span><span class="keyword-tag">securite</span><span class="keyword-tag">chiffrement</span></div>
             <a href="https://lejournal.cnrs.fr/articles/la-cryptographie-face-a-la-menace-quantique" target="_blank" class="article-link">Lire l'article <i class="fas fa-external-link-alt"></i></a>
         </div>
-
         <div class="article-card">
             <h4>L'ordinateur quantique : tout comprendre en 15 minutes</h4>
             <div class="article-meta"><span><i class="fas fa-user"></i> Landry Bretheau</span><span><i class="fas fa-calendar"></i> 13/09/2023</span></div>
-            <p style="font-size:0.88em;color:#ccc;margin-top:8px;line-height:1.6;">Article de Polytechnique Insights co-r&eacute;dig&eacute; avec le CTO de Pasqal. Il explique concr&egrave;tement comment les qubits exploitent la superposition et l'intrication pour effectuer plusieurs calculs en parall&egrave;le (exemple du labyrinthe). L'article aborde les applications prometteuses (cryptographie, logistique, pharmacologie, IA), les d&eacute;fis restants (d&eacute;coh&eacute;rence, correction d'erreurs, million de qubits n&eacute;cessaires) et le d&eacute;veloppement de l'&eacute;cosyst&egrave;me de start-ups quantiques en France.</p>
+            <p style="font-size:0.88em;color:#ccc;margin-top:8px;line-height:1.6;">Article de Polytechnique Insights co-redige avec le CTO de Pasqal. Il explique concretement comment les qubits exploitent la superposition et l'intrication pour effectuer plusieurs calculs en parallele (exemple du labyrinthe). L'article aborde les applications prometteuses (cryptographie, logistique, pharmacologie, IA), les defis restants (decoh&eacute;rence, correction d'erreurs, million de qubits necessaires) et le developpement de l'ecosysteme de start-ups quantiques en France.</p>
             <div class="article-keywords"><span class="keyword-tag">superposition</span><span class="keyword-tag">intrication</span><span class="keyword-tag">fonctionnement</span></div>
             <a href="https://www.polytechnique-insights.com/tribunes/science/lordinateur-quantique-tout-comprendre-en-15-minutes/" target="_blank" class="article-link">Lire l'article <i class="fas fa-external-link-alt"></i></a>
         </div>
-
         <div class="article-card">
             <h4>L'informatique quantique peut-elle aider l'IA ?</h4>
             <div class="article-meta"><span><i class="fas fa-building"></i> Techniques de l'Ingenieur</span><span><i class="fas fa-calendar"></i> 08/10/2025</span></div>
-            <p style="font-size:0.88em;color:#ccc;margin-top:8px;line-height:1.6;">Cet article analyse les synergies possibles entre informatique quantique et intelligence artificielle. Il explore comment les algorithmes quantiques pourraient acc&eacute;l&eacute;rer l'entra&icirc;nement des mod&egrave;les de machine learning, am&eacute;liorer l'optimisation, et permettre d'explorer de nouveaux espaces de solutions inaccessibles aux ordinateurs classiques, ouvrant la voie &agrave; une IA quantique.</p>
+            <p style="font-size:0.88em;color:#ccc;margin-top:8px;line-height:1.6;">Cet article analyse les synergies possibles entre informatique quantique et intelligence artificielle. Il explore comment les algorithmes quantiques pourraient accelerer l'entrainement des modeles de machine learning, ameliorer l'optimisation, et permettre d'explorer de nouveaux espaces de solutions inaccessibles aux ordinateurs classiques, ouvrant la voie a une IA quantique.</p>
             <div class="article-keywords"><span class="keyword-tag">IA</span><span class="keyword-tag">synergie</span><span class="keyword-tag">applications</span></div>
             <a href="https://www.techniques-ingenieur.fr/actualite/articles/linformatique-quantique-peut-elle-aider-lia-151118/" target="_blank" class="article-link">Lire l'article <i class="fas fa-external-link-alt"></i></a>
         </div>
-
-        <!-- ✅ RESUME AJOUTE : Quandela -->
         <div class="article-card">
             <h4>Quandela fait passer l'ordinateur quantique de l'ombre a la lumiere</h4>
             <div class="article-meta"><span><i class="fas fa-building"></i> Techniques de l'Ingenieur</span><span><i class="fas fa-calendar"></i> 20/12/2024</span></div>
@@ -421,70 +416,61 @@
             <div class="article-keywords"><span class="keyword-tag">start-up francaise</span><span class="keyword-tag">innovations</span><span class="keyword-tag">materiel</span></div>
             <a href="https://www.techniques-ingenieur.fr/actualite/articles/a-massy-quandela-fait-passer-l-ordinateur-quantique-de-l-ombre-a-la-lumiere-140720/" target="_blank" class="article-link">Lire l'article <i class="fas fa-external-link-alt"></i></a>
         </div>
-
         <div class="article-card">
             <h4>Codes correcteurs d'erreur : vers l'ordinateur quantique</h4>
             <div class="article-meta"><span><i class="fas fa-building"></i> INRIA</span><span><i class="fas fa-calendar"></i> 28/10/2022</span></div>
-            <p style="font-size:0.88em;color:#ccc;margin-top:8px;line-height:1.6;">Article Inria sur un r&eacute;sultat scientifique majeur : la publication des &laquo;&nbsp;Quantum Tanner codes&nbsp;&raquo; par Anthony Leverrier et Gilles Z&eacute;mor. Ces codes correcteurs d'erreur quantiques de haute qualit&eacute; permettent de prot&eacute;ger les qubits fragiles en distribuant l'information sur de nombreux qubits redondants. Une avanc&eacute;e fondamentale pour rendre l'ordinateur quantique fiable &agrave; grande &eacute;chelle, r&eacute;compensant plus de 20 ans de recherche sans progr&egrave;s sur ce probl&egrave;me.</p>
+            <p style="font-size:0.88em;color:#ccc;margin-top:8px;line-height:1.6;">Article Inria sur un resultat scientifique majeur : la publication des "Quantum Tanner codes" par Anthony Leverrier et Gilles Zemor. Ces codes correcteurs d'erreur quantiques de haute qualite permettent de proteger les qubits fragiles en distribuant l'information sur de nombreux qubits redondants. Une avancee fondamentale pour rendre l'ordinateur quantique fiable a grande echelle, recompensant plus de 20 ans de recherche sans progres sur ce probleme.</p>
             <div class="article-keywords"><span class="keyword-tag">codes correcteurs</span><span class="keyword-tag">fiabilite</span><span class="keyword-tag">qubits logiques</span></div>
             <a href="https://www.inria.fr/fr/theorie-codes-correcteurs-erreur-ordinateur-quantique-resultats-fondamentaux" target="_blank" class="article-link">Lire l'article <i class="fas fa-external-link-alt"></i></a>
         </div>
-
-        <!-- NOUVEAUX ARTICLES -->
         <div class="article-card" style="border-color:rgba(255,64,129,0.5);">
             <div class="article-new-badge"><i class="fas fa-star"></i> Nouveau</div>
             <h4>Principe et fonctionnement des ordinateurs quantiques (2024)</h4>
             <div class="article-meta"><span><i class="fas fa-user"></i> Johnny Ofthedead</span><span><i class="fas fa-calendar"></i> 2024</span><span><i class="fas fa-building"></i> Sitegeek</span></div>
-            <p style="font-size:0.88em;color:#ccc;margin-top:8px;line-height:1.6;">Guide complet expliquant le fonctionnement d'un ordinateur quantique : superposition, qubits, algorithme de Shor et supr&eacute;matie quantique. Google a r&eacute;ussi avec son processeur Sycamore (53 qubits) a r&eacute;soudre en 3 minutes un probl&egrave;me qui prendrait des milliards d'ann&eacute;es a un ordinateur classique.</p>
-            <div class="article-keywords"><span class="keyword-tag">qubits</span><span class="keyword-tag">algorithme de Shor</span><span class="keyword-tag">Sycamore</span><span class="keyword-tag">supr&eacute;matie</span></div>
+            <p style="font-size:0.88em;color:#ccc;margin-top:8px;line-height:1.6;">Guide complet expliquant le fonctionnement d'un ordinateur quantique : superposition, qubits, algorithme de Shor et suprematie quantique. Google a reussi avec son processeur Sycamore (53 qubits) a resoudre en 3 minutes un probleme qui prendrait des milliards d'annees a un ordinateur classique.</p>
+            <div class="article-keywords"><span class="keyword-tag">qubits</span><span class="keyword-tag">algorithme de Shor</span><span class="keyword-tag">Sycamore</span><span class="keyword-tag">suprematie</span></div>
             <a href="https://www.sitegeek.fr/article-technologie/principe-fonctionnement-ordinateur-quantique/" target="_blank" class="article-link">Lire l'article <i class="fas fa-external-link-alt"></i></a>
         </div>
-
         <div class="article-card" style="border-color:rgba(255,64,129,0.5);">
             <div class="article-new-badge"><i class="fas fa-star"></i> Nouveau</div>
-            <h4>Dell arme les PC et les serveurs contre les risques li&eacute;s au quantique et a l'IA</h4>
+            <h4>Dell arme les PC et les serveurs contre les risques lies au quantique et a l'IA</h4>
             <div class="article-meta"><span><i class="fas fa-user"></i> Jens Jonkers</span><span><i class="fas fa-calendar"></i> 24/03/2026</span><span><i class="fas fa-building"></i> ITdaily</span></div>
-            <p style="font-size:0.88em;color:#ccc;margin-top:8px;line-height:1.6;">Dell int&egrave;gre des signatures num&eacute;riques r&eacute;sistantes au quantique directement dans le firmware de ses PC commerciaux. La v&eacute;rification du BIOS est conforme aux normes post-quantiques, et la r&eacute;cup&eacute;ration assist&eacute;e par l'IA d&eacute;tecte plus rapidement les ransomwares. Ces fonctions seront d&eacute;ploy&eacute;es sur les nouveaux PC Dell lanc&eacute;s en 2026.</p>
-            <div class="article-keywords"><span class="keyword-tag">post-quantique</span><span class="keyword-tag">firmware</span><span class="keyword-tag">cyber-r&eacute;silience</span><span class="keyword-tag">Dell</span></div>
+            <p style="font-size:0.88em;color:#ccc;margin-top:8px;line-height:1.6;">Dell integre des signatures numeriques resistantes au quantique directement dans le firmware de ses PC commerciaux. La verification du BIOS est conforme aux normes post-quantiques, et la recuperation assistee par l'IA detecte plus rapidement les ransomwares. Ces fonctions seront deployees sur les nouveaux PC Dell lances en 2026.</p>
+            <div class="article-keywords"><span class="keyword-tag">post-quantique</span><span class="keyword-tag">firmware</span><span class="keyword-tag">cyber-resilience</span><span class="keyword-tag">Dell</span></div>
             <a href="https://itdaily.fr/nouvelles/securite/dell-quantique-pc-serveur-securite/" target="_blank" class="article-link">Lire l'article <i class="fas fa-external-link-alt"></i></a>
         </div>
-
         <div class="article-card" style="border-color:rgba(255,64,129,0.5);">
             <div class="article-new-badge"><i class="fas fa-star"></i> Nouveau</div>
-            <h4>La Fondation Ethereum est-elle bien pr&eacute;par&eacute;e pour l'&egrave;re post-quantique ?</h4>
+            <h4>La Fondation Ethereum est-elle bien preparee pour l'ere post-quantique ?</h4>
             <div class="article-meta"><span><i class="fas fa-user"></i> Hannah Collymore</span><span><i class="fas fa-calendar"></i> 24/03/2026</span><span><i class="fas fa-building"></i> Cryptopolitan</span></div>
-            <p style="font-size:0.88em;color:#ccc;margin-top:8px;line-height:1.6;">La Fondation Ethereum lance un tableau de bord public de r&eacute;sistance quantique et engage 2 millions de dollars en prix de recherche. Elle vise 2029 pour ach&egrave;ver les mises a niveau du protocole L1. En th&eacute;orie, un ordinateur quantique suffisamment puissant ex&eacute;cutant l'algorithme de Shor pourrait retrouver une cl&eacute; priv&eacute;e depuis une cl&eacute; publique, mena&ccedil;ant ainsi la s&eacute;curit&eacute; d'Ethereum.</p>
+            <p style="font-size:0.88em;color:#ccc;margin-top:8px;line-height:1.6;">La Fondation Ethereum lance un tableau de bord public de resistance quantique et engage 2 millions de dollars en prix de recherche. Elle vise 2029 pour achever les mises a niveau du protocole L1. En theorie, un ordinateur quantique suffisamment puissant executant l'algorithme de Shor pourrait retrouver une cle privee depuis une cle publique, menacant ainsi la securite d'Ethereum.</p>
             <div class="article-keywords"><span class="keyword-tag">Ethereum</span><span class="keyword-tag">blockchain</span><span class="keyword-tag">post-quantique</span><span class="keyword-tag">cryptographie</span></div>
             <a href="https://www.cryptopolitan.com/ethereum-foundation-post-quantum-era/" target="_blank" class="article-link">Lire l'article <i class="fas fa-external-link-alt"></i></a>
         </div>
-
         <div class="article-card" style="border-color:rgba(255,64,129,0.5);">
             <div class="article-new-badge"><i class="fas fa-star"></i> Nouveau</div>
-            <h4>La t&eacute;l&eacute;portation d'informations entre deux ordinateurs quantiques est d&eacute;sormais possible</h4>
+            <h4>La teleportation d'informations entre deux ordinateurs quantiques est desormais possible</h4>
             <div class="article-meta"><span><i class="fas fa-user"></i> Amandine Venot</span><span><i class="fas fa-calendar"></i> 12/03/2025</span><span><i class="fas fa-building"></i> National Geographic</span></div>
-            <p style="font-size:0.88em;color:#ccc;margin-top:8px;line-height:1.6;">En juin 2024, des chercheurs d'Oxford ont r&eacute;alis&eacute; la t&eacute;l&eacute;portation quantique d'informations entre deux ordinateurs distants reli&eacute;s par fibre optique. Ils utilisent deux esp&egrave;ces d'ions : les uns pour le stockage des qubits, les autres comme interface r&eacute;seau pour l'intrication. Cette avanc&eacute;e ouvre la voie a un futur Internet quantique.</p>
-            <div class="article-keywords"><span class="keyword-tag">t&eacute;l&eacute;portation quantique</span><span class="keyword-tag">ions pi&eacute;g&eacute;s</span><span class="keyword-tag">internet quantique</span><span class="keyword-tag">Oxford</span></div>
+            <p style="font-size:0.88em;color:#ccc;margin-top:8px;line-height:1.6;">En juin 2024, des chercheurs d'Oxford ont realise la teleportation quantique d'informations entre deux ordinateurs distants relies par fibre optique. Ils utilisent deux especes d'ions : les uns pour le stockage des qubits, les autres comme interface reseau pour l'intrication. Cette avancee ouvre la voie a un futur Internet quantique.</p>
+            <div class="article-keywords"><span class="keyword-tag">teleportation quantique</span><span class="keyword-tag">ions pieges</span><span class="keyword-tag">internet quantique</span><span class="keyword-tag">Oxford</span></div>
             <a href="https://www.nationalgeographic.fr/sciences/la-teleportation-dinformations-entre-deux-ordinateurs-quantiques-est-desormais-possible" target="_blank" class="article-link">Lire l'article <i class="fas fa-external-link-alt"></i></a>
         </div>
-
         <div class="article-card" style="border-color:rgba(255,64,129,0.5);">
             <div class="article-new-badge"><i class="fas fa-star"></i> Nouveau</div>
-            <h4>Ordinateurs quantiques : l'avenir de la cybers&eacute;curit&eacute; en jeu</h4>
+            <h4>Ordinateurs quantiques : l'avenir de la cybersecurite en jeu</h4>
             <div class="article-meta"><span><i class="fas fa-user"></i> Samuel Huttner</span><span><i class="fas fa-calendar"></i> 25/11/2025</span><span><i class="fas fa-building"></i> RISKINTEL MEDIA</span></div>
-            <p style="font-size:0.88em;color:#ccc;margin-top:8px;line-height:1.6;">Les ordinateurs quantiques pourraient casser les syst&egrave;mes RSA et ECC. La strat&eacute;gie "Harvest Now, Decrypt Later" est une menace r&eacute;elle et imminente. En 2024, le NIST a publi&eacute; ses premiers standards post-quantiques officiels : Kyber pour le chiffrement et Dilithium pour les signatures num&eacute;riques.</p>
-            <div class="article-keywords"><span class="keyword-tag">cybers&eacute;curit&eacute;</span><span class="keyword-tag">NIST</span><span class="keyword-tag">Kyber</span><span class="keyword-tag">Dilithium</span><span class="keyword-tag">RSA</span></div>
+            <p style="font-size:0.88em;color:#ccc;margin-top:8px;line-height:1.6;">Les ordinateurs quantiques pourraient casser les systemes RSA et ECC. La strategie "Harvest Now, Decrypt Later" est une menace reelle et imminente. En 2024, le NIST a publie ses premiers standards post-quantiques officiels : Kyber pour le chiffrement et Dilithium pour les signatures numeriques.</p>
+            <div class="article-keywords"><span class="keyword-tag">cybersecurite</span><span class="keyword-tag">NIST</span><span class="keyword-tag">Kyber</span><span class="keyword-tag">Dilithium</span><span class="keyword-tag">RSA</span></div>
             <a href="https://www.riskintel.fr/articles/ordinateurs-quantiques-lavenir-de-la-cybersecurite-en-jeu" target="_blank" class="article-link">Lire l'article <i class="fas fa-external-link-alt"></i></a>
         </div>
-
         <div class="article-card" style="border-color:rgba(255,64,129,0.5);">
             <div class="article-new-badge"><i class="fas fa-star"></i> Nouveau</div>
-            <h4>Que sont les ordinateurs quantiques, et pourquoi s'y int&eacute;resser ?</h4>
+            <h4>Que sont les ordinateurs quantiques, et pourquoi s'y interesser ?</h4>
             <div class="article-meta"><span><i class="fas fa-building"></i> Blog officiel Kaspersky</span><span><i class="fas fa-calendar"></i> 2020</span></div>
-            <p style="font-size:0.88em;color:#ccc;margin-top:8px;line-height:1.6;">Google a annonc&eacute; la supr&eacute;matie quantique avec Sycamore : 3 minutes de calcul contre 10 000 ans pour un superordinateur classique. L'article explique que de nombreuses protections actuelles reposent non pas sur l'inviolabilit&eacute;, mais sur le temps de calcul n&eacute;cessaire, et que les experts pr&eacute;parent d&eacute;ja la cryptographie post-quantique.</p>
-            <div class="article-keywords"><span class="keyword-tag">Sycamore</span><span class="keyword-tag">Google</span><span class="keyword-tag">supr&eacute;matie quantique</span><span class="keyword-tag">cybers&eacute;curit&eacute;</span></div>
+            <p style="font-size:0.88em;color:#ccc;margin-top:8px;line-height:1.6;">Google a annonce la suprematie quantique avec Sycamore : 3 minutes de calcul contre 10 000 ans pour un superordinateur classique. L'article explique que de nombreuses protections actuelles reposent non pas sur l'inviolabilite, mais sur le temps de calcul necessaire, et que les experts preparent deja la cryptographie post-quantique.</p>
+            <div class="article-keywords"><span class="keyword-tag">Sycamore</span><span class="keyword-tag">Google</span><span class="keyword-tag">suprematie quantique</span><span class="keyword-tag">cybersecurite</span></div>
             <a href="https://www.kaspersky.fr/blog/quantum-computing-explained/14805/" target="_blank" class="article-link">Lire l'article <i class="fas fa-external-link-alt"></i></a>
         </div>
-
     </div>
 
     <div class="actualites-section">
@@ -500,7 +486,10 @@
 <section id="contact">
     <h2><i class="fas fa-envelope"></i> Contact</h2>
     <p>Vous pouvez me contacter par email ou via LinkedIn pour echanger sur mes projets et experiences.</p>
-    <a class="contact-btn" href="mailto:thomas.sillion@gmail.com"><i class="fas fa-paper-plane"></i> Envoyer un email</a>
+    <div class="contact-buttons">
+        <a class="contact-btn" href="mailto:thomas.sillion@gmail.com"><i class="fas fa-paper-plane"></i> Envoyer un email</a>
+        <a class="contact-btn linkedin-btn" href="https://www.linkedin.com/in/thomas-sillion-51b304273/" target="_blank"><i class="fab fa-linkedin-in"></i> Mon LinkedIn</a>
+    </div>
 </section>
 
 <!-- MODAL COMPETENCE STAGE -->
@@ -613,7 +602,7 @@ var skillData = {
     'Inventaire': { icon:'fas fa-clipboard-list', cat:'Gestion - Tracabilite du materiel', desc:"La realisation d'inventaires garantit la tracabilite des equipements. Lors du demenagement chez Eiffage, j'ai inventorie l'ensemble du materiel informatique pour eviter toute perte.", points:["Demontage et etiquetage des ecrans et supports","Creation d'un inventaire complet avant demenagement","Verification de la tracabilite de chaque equipement","Retrait et rangement organise des cables et peripheriques"], level:70, lvl:"Operationnel" },
     'Formation': { icon:'fas fa-chalkboard-teacher', cat:'Pedagogie - Transfert de competences', desc:"Former des collegues est une competence transversale cle. Chez Eiffage, j'ai accueilli et integre de nouveaux stagiaires en leur transmettant les procedures et bonnes pratiques.", points:["Accueil et integration de nouveaux stagiaires dans l'equipe","Definition d'objectifs clairs et progressifs","Partage des procedures et bonnes pratiques internes","Verification de la comprehension par des mises en situation"], level:65, lvl:"Intermediaire" },
     'Palo Alto': { icon:'fas fa-fire-alt', cat:'Securite reseau - Firewall NGFW', desc:"Palo Alto Networks est un leader mondial des firewalls nouvelle generation. A l'AP-HP, j'ai travaille sur le PA-850 lors d'une operation de bascule en haute disponibilite planifiee.", points:["Bascule en haute disponibilite (HA) vers le firewall secondaire","Intervention controlee sur l'equipement principal hors production","Retablissement des flux reseau et tests de stabilite","Garantie de la continuite de service en environnement hospitalier"], level:55, lvl:"Notions avancees" },
-    'Checkpoint': { icon:'fas fa-shield-alt', cat:'Securite reseau - Gestion des regles firewall', desc:"Checkpoint est une solution de securite reseau tres deployee en entreprise. A l'AP-HP, j'ai modifie des regles de filtrage via SMAX avec une tracabilite stricte par trigramme.", points:["Consultation et analyse de la matrice des flux existante","Modification des regles firewall via tickets SMAX documentes","Tracabilite des interventions par trigramme","Respect des procedures formelles avec validation hierarchique"], level:50, lvl:"Notions avancees" },
+    'Checkpoint': { icon:'fas fa-shield-alt', cat:'Securite reseau - Gestion des regles firewall', desc:"Checkpoint est une solution de securite reseau tres deployee en entreprise. A l'AP-HP, j'ai modifie des regles de filtrage via SMAX avec une tracabilite stricte par trigramme.", points:["Consultation et analyse de la matrice des flux existante","Modification des regles firewall via tickets SMAX documentes","Tracabilite par trigramme de chaque intervention","Respect des procedures formelles avec validation hierarchique"], level:50, lvl:"Notions avancees" },
     'Haute Disponibilite': { icon:'fas fa-sync-alt', cat:'Infrastructure reseau - Redondance & continuite', desc:"La haute disponibilite (HA) permet a un systeme de rester operationnel meme en cas de panne. J'ai participe a une bascule HA sur firewall Palo Alto a l'AP-HP.", points:["Execution d'une bascule HA planifiee sur Palo Alto PA-850","Tests de stabilite et verification des flux apres bascule","Comprehension de l'architecture active/passive en milieu critique","Retablissement du systeme principal apres maintenance"], level:55, lvl:"Intermediaire" },
     'VLAN': { icon:'fas fa-network-wired', cat:'Reseau - Segmentation logique', desc:"Les VLANs segmentent logiquement un reseau physique. Travaille en formation sur Cisco et en stage a l'AP-HP lors d'un incident de telephonie IP lie aux flux inter-VLAN.", points:["Configuration de VLANs en environnement Cisco (TP formation)","Analyse de flux inter-VLAN lors d'un incident telephonie IP","Comprehension de la segmentation reseau en milieu hospitalier","Verification des regles firewall liees aux VLANs"], level:65, lvl:"Intermediaire" },
     'Firewall': { icon:'fas fa-fire', cat:'Securite reseau - Filtrage & protection perimetre', desc:"Un firewall filtre les flux reseau selon des regles definies. J'ai manipule Palo Alto et Checkpoint a l'AP-HP dans un contexte de securite hospitaliere critique.", points:["Maintenance du firewall Palo Alto PA-850 avec bascule HA","Modification de regles de filtrage sur Checkpoint via SMAX","Resolution d'un incident telephonie IP lie au filtrage firewall","Application du principe du moindre privilege"], level:60, lvl:"Intermediaire" },
